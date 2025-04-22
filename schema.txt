@@ -1,0 +1,2567 @@
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe
+  Attributes:
+    - classeJava: string
+    - dataHoraSalvamento: string
+    - utlimoCPFAutenticado: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}alimentandos
+    - {http://www.receita.fazenda.gov.br/declaracao}atividadeRural
+    - {http://www.receita.fazenda.gov.br/declaracao}bens
+    - {http://www.receita.fazenda.gov.br/declaracao}colecaoEstatutoCriancaAdolescente
+    - {http://www.receita.fazenda.gov.br/declaracao}colecaoEstatutoIdoso
+    - {http://www.receita.fazenda.gov.br/declaracao}comparativo
+    - {http://www.receita.fazenda.gov.br/declaracao}contribuinte
+    - {http://www.receita.fazenda.gov.br/declaracao}copiaIdentificador
+    - {http://www.receita.fazenda.gov.br/declaracao}dependentes
+    - {http://www.receita.fazenda.gov.br/declaracao}dividas
+    - {http://www.receita.fazenda.gov.br/declaracao}doacoes
+    - {http://www.receita.fazenda.gov.br/declaracao}doacoesEleitorais
+    - {http://www.receita.fazenda.gov.br/declaracao}espolio
+    - {http://www.receita.fazenda.gov.br/declaracao}fundosInvestimentos
+    - {http://www.receita.fazenda.gov.br/declaracao}fundosInvestimentosDependente
+    - {http://www.receita.fazenda.gov.br/declaracao}gcap
+    - {http://www.receita.fazenda.gov.br/declaracao}herdeiros
+    - {http://www.receita.fazenda.gov.br/declaracao}impostoPago
+    - {http://www.receita.fazenda.gov.br/declaracao}pagamentos
+    - {http://www.receita.fazenda.gov.br/declaracao}rendAcm
+    - {http://www.receita.fazenda.gov.br/declaracao}rendIsentos
+    - {http://www.receita.fazenda.gov.br/declaracao}rendPFDependente
+    - {http://www.receita.fazenda.gov.br/declaracao}rendPFTitular
+    - {http://www.receita.fazenda.gov.br/declaracao}rendPJ
+    - {http://www.receita.fazenda.gov.br/declaracao}rendPJComExigibilidade
+    - {http://www.receita.fazenda.gov.br/declaracao}rendTributacaoExclusiva
+    - {http://www.receita.fazenda.gov.br/declaracao}rendaVariavel
+    - {http://www.receita.fazenda.gov.br/declaracao}rendaVariavelDependente
+    - {http://www.receita.fazenda.gov.br/declaracao}rendimentosAplicacoesFinanceiras
+    - {http://www.receita.fazenda.gov.br/declaracao}resumo
+    - {http://www.receita.fazenda.gov.br/declaracao}saida
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}alimentandos
+  Attributes:
+    - confirmacao: string
+    - tipoItens: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural
+  Attributes:
+    - ultimoIndiceGerado: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}bens
+    - {http://www.receita.fazenda.gov.br/declaracao}brasil
+    - {http://www.receita.fazenda.gov.br/declaracao}exterior
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}bens
+  Attributes:
+    - tipoItens: string
+    - totalAnterior: string
+    - totalAtual: string
+    - ultimoIndiceGerado: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}brasil
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}apuracaoResultado
+    - {http://www.receita.fazenda.gov.br/declaracao}dividas
+    - {http://www.receita.fazenda.gov.br/declaracao}identificacaoImovel
+    - {http://www.receita.fazenda.gov.br/declaracao}movimentacaoRebanho
+    - {http://www.receita.fazenda.gov.br/declaracao}receitasDespesas
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}brasil/{http://www.receita.fazenda.gov.br/declaracao}apuracaoResultado
+  Attributes:
+    - compensacaoPrejuizoExerciciosAnteriores: string
+    - despesaCusteio: string
+    - limiteVintePorCentoReceitaBruta: string
+    - opcaoFormaApuracao: string
+    - prejuizoCompensar: string
+    - prejuizoExercicioAnterior: string
+    - receitaBrutaTotal: string
+    - receitaRecebidaContaVenda: string
+    - resultadoI: string
+    - resultadoNaoTributavel: string
+    - resultadoTributavel: string
+    - valorAdiantamento: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}brasil/{http://www.receita.fazenda.gov.br/declaracao}dividas
+  Attributes:
+    - tipoItens: string
+    - totalAnterior: string
+    - totalAtual: string
+    - valorPagamentoAnual: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}brasil/{http://www.receita.fazenda.gov.br/declaracao}identificacaoImovel
+  Attributes:
+    - tipoItens: string
+    - ultimoIndiceGerado: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}brasil/{http://www.receita.fazenda.gov.br/declaracao}movimentacaoRebanho
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}asininos
+    - {http://www.receita.fazenda.gov.br/declaracao}bovinos
+    - {http://www.receita.fazenda.gov.br/declaracao}caprinos
+    - {http://www.receita.fazenda.gov.br/declaracao}outros
+    - {http://www.receita.fazenda.gov.br/declaracao}suinos
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}brasil/{http://www.receita.fazenda.gov.br/declaracao}movimentacaoRebanho/{http://www.receita.fazenda.gov.br/declaracao}asininos
+  Attributes:
+    - aquisicoesAno: string
+    - consumo: string
+    - estoqueFinal: string
+    - estoqueInicial: string
+    - nascidosAno: string
+    - vendas: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}brasil/{http://www.receita.fazenda.gov.br/declaracao}movimentacaoRebanho/{http://www.receita.fazenda.gov.br/declaracao}bovinos
+  Attributes:
+    - aquisicoesAno: string
+    - consumo: string
+    - estoqueFinal: string
+    - estoqueInicial: string
+    - nascidosAno: string
+    - vendas: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}brasil/{http://www.receita.fazenda.gov.br/declaracao}movimentacaoRebanho/{http://www.receita.fazenda.gov.br/declaracao}caprinos
+  Attributes:
+    - aquisicoesAno: string
+    - consumo: string
+    - estoqueFinal: string
+    - estoqueInicial: string
+    - nascidosAno: string
+    - vendas: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}brasil/{http://www.receita.fazenda.gov.br/declaracao}movimentacaoRebanho/{http://www.receita.fazenda.gov.br/declaracao}outros
+  Attributes:
+    - aquisicoesAno: string
+    - consumo: string
+    - estoqueFinal: string
+    - estoqueInicial: string
+    - nascidosAno: string
+    - vendas: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}brasil/{http://www.receita.fazenda.gov.br/declaracao}movimentacaoRebanho/{http://www.receita.fazenda.gov.br/declaracao}suinos
+  Attributes:
+    - aquisicoesAno: string
+    - consumo: string
+    - estoqueFinal: string
+    - estoqueInicial: string
+    - nascidosAno: string
+    - vendas: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}brasil/{http://www.receita.fazenda.gov.br/declaracao}receitasDespesas
+  Attributes:
+    - totalDespesas: string
+    - totalReceita: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}abril
+    - {http://www.receita.fazenda.gov.br/declaracao}agosto
+    - {http://www.receita.fazenda.gov.br/declaracao}dezembro
+    - {http://www.receita.fazenda.gov.br/declaracao}fevereiro
+    - {http://www.receita.fazenda.gov.br/declaracao}janeiro
+    - {http://www.receita.fazenda.gov.br/declaracao}julho
+    - {http://www.receita.fazenda.gov.br/declaracao}junho
+    - {http://www.receita.fazenda.gov.br/declaracao}maio
+    - {http://www.receita.fazenda.gov.br/declaracao}marco
+    - {http://www.receita.fazenda.gov.br/declaracao}novembro
+    - {http://www.receita.fazenda.gov.br/declaracao}outubro
+    - {http://www.receita.fazenda.gov.br/declaracao}setembro
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}brasil/{http://www.receita.fazenda.gov.br/declaracao}receitasDespesas/{http://www.receita.fazenda.gov.br/declaracao}abril
+  Attributes:
+    - despesaCusteioInvestimento: string
+    - receitaBrutaMensal: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}brasil/{http://www.receita.fazenda.gov.br/declaracao}receitasDespesas/{http://www.receita.fazenda.gov.br/declaracao}agosto
+  Attributes:
+    - despesaCusteioInvestimento: string
+    - receitaBrutaMensal: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}brasil/{http://www.receita.fazenda.gov.br/declaracao}receitasDespesas/{http://www.receita.fazenda.gov.br/declaracao}dezembro
+  Attributes:
+    - despesaCusteioInvestimento: string
+    - receitaBrutaMensal: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}brasil/{http://www.receita.fazenda.gov.br/declaracao}receitasDespesas/{http://www.receita.fazenda.gov.br/declaracao}fevereiro
+  Attributes:
+    - despesaCusteioInvestimento: string
+    - receitaBrutaMensal: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}brasil/{http://www.receita.fazenda.gov.br/declaracao}receitasDespesas/{http://www.receita.fazenda.gov.br/declaracao}janeiro
+  Attributes:
+    - despesaCusteioInvestimento: string
+    - receitaBrutaMensal: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}brasil/{http://www.receita.fazenda.gov.br/declaracao}receitasDespesas/{http://www.receita.fazenda.gov.br/declaracao}julho
+  Attributes:
+    - despesaCusteioInvestimento: string
+    - receitaBrutaMensal: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}brasil/{http://www.receita.fazenda.gov.br/declaracao}receitasDespesas/{http://www.receita.fazenda.gov.br/declaracao}junho
+  Attributes:
+    - despesaCusteioInvestimento: string
+    - receitaBrutaMensal: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}brasil/{http://www.receita.fazenda.gov.br/declaracao}receitasDespesas/{http://www.receita.fazenda.gov.br/declaracao}maio
+  Attributes:
+    - despesaCusteioInvestimento: string
+    - receitaBrutaMensal: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}brasil/{http://www.receita.fazenda.gov.br/declaracao}receitasDespesas/{http://www.receita.fazenda.gov.br/declaracao}marco
+  Attributes:
+    - despesaCusteioInvestimento: string
+    - receitaBrutaMensal: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}brasil/{http://www.receita.fazenda.gov.br/declaracao}receitasDespesas/{http://www.receita.fazenda.gov.br/declaracao}novembro
+  Attributes:
+    - despesaCusteioInvestimento: string
+    - receitaBrutaMensal: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}brasil/{http://www.receita.fazenda.gov.br/declaracao}receitasDespesas/{http://www.receita.fazenda.gov.br/declaracao}outubro
+  Attributes:
+    - despesaCusteioInvestimento: string
+    - receitaBrutaMensal: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}brasil/{http://www.receita.fazenda.gov.br/declaracao}receitasDespesas/{http://www.receita.fazenda.gov.br/declaracao}setembro
+  Attributes:
+    - despesaCusteioInvestimento: string
+    - receitaBrutaMensal: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}exterior
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}apuracaoResultado
+    - {http://www.receita.fazenda.gov.br/declaracao}dividas
+    - {http://www.receita.fazenda.gov.br/declaracao}identificacaoImovel
+    - {http://www.receita.fazenda.gov.br/declaracao}movimentacaoRebanho
+    - {http://www.receita.fazenda.gov.br/declaracao}receitasDespesas
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}exterior/{http://www.receita.fazenda.gov.br/declaracao}apuracaoResultado
+  Attributes:
+    - compensacaoPrejuizoExerciciosAnteriores: string
+    - limiteVintePorCentoReceitaBruta: string
+    - opcaoFormaApuracao: string
+    - prejuizoCompensar: string
+    - prejuizoExercicioAnterior: string
+    - receitaRecebidaContaVenda: string
+    - resultadoI_EmDolar: string
+    - resultadoI_EmReais: string
+    - resultadoNaoTributavel: string
+    - resultadoTributavel: string
+    - valorAdiantamento: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}exterior/{http://www.receita.fazenda.gov.br/declaracao}dividas
+  Attributes:
+    - tipoItens: string
+    - totalAnterior: string
+    - totalAtual: string
+    - valorPagamentoAnual: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}exterior/{http://www.receita.fazenda.gov.br/declaracao}identificacaoImovel
+  Attributes:
+    - tipoItens: string
+    - ultimoIndiceGerado: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}exterior/{http://www.receita.fazenda.gov.br/declaracao}movimentacaoRebanho
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}asininos
+    - {http://www.receita.fazenda.gov.br/declaracao}bovinos
+    - {http://www.receita.fazenda.gov.br/declaracao}caprinos
+    - {http://www.receita.fazenda.gov.br/declaracao}outros
+    - {http://www.receita.fazenda.gov.br/declaracao}suinos
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}exterior/{http://www.receita.fazenda.gov.br/declaracao}movimentacaoRebanho/{http://www.receita.fazenda.gov.br/declaracao}asininos
+  Attributes:
+    - aquisicoesAno: string
+    - consumo: string
+    - estoqueFinal: string
+    - estoqueInicial: string
+    - nascidosAno: string
+    - vendas: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}exterior/{http://www.receita.fazenda.gov.br/declaracao}movimentacaoRebanho/{http://www.receita.fazenda.gov.br/declaracao}bovinos
+  Attributes:
+    - aquisicoesAno: string
+    - consumo: string
+    - estoqueFinal: string
+    - estoqueInicial: string
+    - nascidosAno: string
+    - vendas: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}exterior/{http://www.receita.fazenda.gov.br/declaracao}movimentacaoRebanho/{http://www.receita.fazenda.gov.br/declaracao}caprinos
+  Attributes:
+    - aquisicoesAno: string
+    - consumo: string
+    - estoqueFinal: string
+    - estoqueInicial: string
+    - nascidosAno: string
+    - vendas: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}exterior/{http://www.receita.fazenda.gov.br/declaracao}movimentacaoRebanho/{http://www.receita.fazenda.gov.br/declaracao}outros
+  Attributes:
+    - aquisicoesAno: string
+    - consumo: string
+    - estoqueFinal: string
+    - estoqueInicial: string
+    - nascidosAno: string
+    - vendas: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}exterior/{http://www.receita.fazenda.gov.br/declaracao}movimentacaoRebanho/{http://www.receita.fazenda.gov.br/declaracao}suinos
+  Attributes:
+    - aquisicoesAno: string
+    - consumo: string
+    - estoqueFinal: string
+    - estoqueInicial: string
+    - nascidosAno: string
+    - vendas: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}atividadeRural/{http://www.receita.fazenda.gov.br/declaracao}exterior/{http://www.receita.fazenda.gov.br/declaracao}receitasDespesas
+  Attributes:
+    - tipoItens: string
+    - totais: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}bens
+  Attributes:
+    - bensSemMarcacaoBemInventariar: string
+    - bensSemValorDummy: string
+    - existeAtualizacaoValorBem: int
+    - numeroProcessoAtualizacaoValorBem: string
+    - tipoItens: string
+    - totalExercicioAnterior: string
+    - totalExercicioAtual: string
+    - totalItens: int
+    - ultimoIndiceGerado: int
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}item
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}bens/{http://www.receita.fazenda.gov.br/declaracao}item
+  Attributes:
+    - agencia: string
+    - areaTotal: string
+    - atualizadoValorBem: int
+    - bairro: string
+    - banco: string
+    - cep: string
+    - cidade: string
+    - codigo: int
+    - codigoAltcoin: string
+    - codigoNegociacao: string
+    - codigoStablecoin: string
+    - complemento: string
+    - conta: string
+    - cpfBeneficiario: string
+    - dataAquisicao: string
+    - discriminacao: string
+    - dvConta: string
+    - grupo: int
+    - impostoPagoExterior: string
+    - impostoPagoExteriorIRRF: string
+    - indicadorAutoCustodiante: int
+    - indicadorBemComUsufruto: string
+    - indicadorBemInventariar: int
+    - indicadorContaPagamento: int
+    - indicadorProprietarioUsufrutuario: string
+    - indicadorReclassificar: int
+    - indice: int
+    - logradouro: string
+    - lucroPrejuizo: string
+    - matricula: string
+    - municipio: string
+    - negociadoBolsa: int
+    - niEmpresa: string
+    - nomeCartorio: string
+    - nomeMunicipio: string
+    - nomePais: string
+    - numero: string
+    - operacao: string
+    - pais: int
+    - registrado: int
+    - registroBem: string
+    - tipo: string
+    - uf: string
+    - unidade: int
+    - valorExercicioAnterior: string
+    - valorExercicioAtual: string
+    - valorRecebido: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}participacoesInventario
+    - {http://www.receita.fazenda.gov.br/declaracao}proprietariosUsufrutuariosBem
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}bens/{http://www.receita.fazenda.gov.br/declaracao}item/{http://www.receita.fazenda.gov.br/declaracao}participacoesInventario
+  Attributes:
+    - tipoItens: string
+    - totalPercentual: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}bens/{http://www.receita.fazenda.gov.br/declaracao}item/{http://www.receita.fazenda.gov.br/declaracao}proprietariosUsufrutuariosBem
+  Attributes:
+    - tipoItens: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}colecaoEstatutoCriancaAdolescente
+  Attributes:
+    - tipoItens: string
+    - totalDeducaoIncentivoBruto: string
+    - totalDeducaoIncentivoLiquido: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}colecaoEstatutoIdoso
+  Attributes:
+    - tipoItens: string
+    - totalDeducaoIncentivoBruto: string
+    - totalDeducaoIncentivoLiquido: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}comparativo
+  Attributes:
+    - baseCalcCompleta: string
+    - baseCalcSimplificada: string
+    - impRestituirCompleta: string
+    - impRestituirSimplificada: string
+    - saldoPagarCompleta: string
+    - saldoPagarSimplificada: string
+    - totalRendTribCompleta: string
+    - totalRendTribSimplificada: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}contribuinte
+  Attributes:
+    - bairro: string
+    - bairroExt: string
+    - baseCalculoFinalLei14754: string
+    - celular: int
+    - cep: string
+    - cepExt: string
+    - cidade: string
+    - codigoExterior: string
+    - complemento: string
+    - complementoExt: string
+    - conjuge: int
+    - cpfConjuge: string
+    - cpfProcurador: string
+    - dataNascimento: string
+    - dataRetorno: string
+    - ddd: string
+    - dddCelular: int
+    - ddi: string
+    - deficiente: string
+    - email: string
+    - exterior: int
+    - impostoDevidoLei14754: string
+    - logradouro: string
+    - logradouroExt: string
+    - municipio: int
+    - naturezaOcupacao: int
+    - nomePais: string
+    - numero: int
+    - numeroExt: string
+    - ocupacaoPrincipal: int
+    - pais: int
+    - prejuizoAnoAnteriorLei14754: string
+    - processoDigital: string
+    - registroProfissional: string
+    - retornoPais: string
+    - telefone: string
+    - telefoneExt: string
+    - tipoLogradouro: string
+    - tituloEleitor: string
+    - uf: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}copiaIdentificador
+  Attributes:
+    - cpf: string
+    - dataCriacao: string
+    - dataUltimoAcesso: string
+    - declaracaoRetificadora: int
+    - enderecoDiferente: string
+    - exercicio: int
+    - inCLWeb: string
+    - inNovaDeclaracao: int
+    - inUtilizouAPP: int
+    - inUtilizouAssistidaFontePagadora: int
+    - inUtilizouAssistidaPlanoSaude: int
+    - inUtilizouOnLine: int
+    - inUtilizouPGD: int
+    - inUtilizouRascunho: int
+    - inUtilizouSalvarRecuperarOnLine: int
+    - nome: string
+    - numReciboDecRetif: string
+    - numReciboTransmitido: int
+    - numeroReciboDecAnterior: int
+    - prepreenchida: int
+    - resultadoDeclaracao: string
+    - tipoDeclaracao: int
+    - tipoDeclaracaoAES: string
+    - tpIniciada: int
+    - tpTransmitida: string
+    - transmitida: int
+    - versaoBeta: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}dependentes
+  Attributes:
+    - tipoItens: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}item
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}dependentes/{http://www.receita.fazenda.gov.br/declaracao}item
+  Attributes:
+    - codigo: string
+    - cpfDependente: string
+    - dataNascimento: string
+    - ddd: string
+    - dummy: string
+    - email: string
+    - indMoraComTitular: int
+    - indSaidaPaisMesmaData: string
+    - nome: string
+    - telefone: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}dividas
+  Attributes:
+    - tipoItens: string
+    - totalExercicioAnterior: string
+    - totalExercicioAtual: string
+    - totalPgtoAnual: string
+    - ultimoIndiceGerado: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}doacoes
+  Attributes:
+    - tipoItens: string
+    - totalDeducaoIncentivo: string
+    - ultimoIndiceGerado: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}doacoesEleitorais
+  Attributes:
+    - tipoItens: string
+    - totalDoacoes: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}espolio
+  Attributes:
+    - anoObito: string
+    - cpfInventariante: string
+    - indicadorBensInventariar: string
+    - indicadorFinalEspolio: string
+    - indicadorSobrepartilha: string
+    - nomeInventariante: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}partilha
+    - {http://www.receita.fazenda.gov.br/declaracao}sobrepartilha
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}espolio/{http://www.receita.fazenda.gov.br/declaracao}partilha
+  Attributes:
+    - conjugeMeeiro: int
+    - cpfInventariante: string
+    - inventarioConjunto: int
+    - morteAmbosConjuges: int
+    - nomeConjugeCompanheiro: string
+    - nomeInventariante: string
+    - tipoJudicial: int
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}decisaoJudicial
+    - {http://www.receita.fazenda.gov.br/declaracao}escrituracaoPublica
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}espolio/{http://www.receita.fazenda.gov.br/declaracao}partilha/{http://www.receita.fazenda.gov.br/declaracao}decisaoJudicial
+  Attributes:
+    - comarca: string
+    - dtDecisaoJud: string
+    - dtTransito: string
+    - idVaraCivil: string
+    - numProcessoJudicial: string
+    - uf: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}espolio/{http://www.receita.fazenda.gov.br/declaracao}partilha/{http://www.receita.fazenda.gov.br/declaracao}escrituracaoPublica
+  Attributes:
+    - cnpjCartorio: string
+    - dataLavratura: string
+    - folhas: string
+    - livro: string
+    - municipio: string
+    - nome: string
+    - uf: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}espolio/{http://www.receita.fazenda.gov.br/declaracao}sobrepartilha
+  Attributes:
+    - conjugeMeeiro: int
+    - cpfInventariante: string
+    - inventarioConjunto: int
+    - morteAmbosConjuges: int
+    - nomeConjugeCompanheiro: string
+    - nomeInventariante: string
+    - tipoJudicial: int
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}decisaoJudicial
+    - {http://www.receita.fazenda.gov.br/declaracao}escrituracaoPublica
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}espolio/{http://www.receita.fazenda.gov.br/declaracao}sobrepartilha/{http://www.receita.fazenda.gov.br/declaracao}decisaoJudicial
+  Attributes:
+    - comarca: string
+    - dtDecisaoJud: string
+    - dtTransito: string
+    - idVaraCivil: string
+    - numProcessoJudicial: string
+    - uf: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}espolio/{http://www.receita.fazenda.gov.br/declaracao}sobrepartilha/{http://www.receita.fazenda.gov.br/declaracao}escrituracaoPublica
+  Attributes:
+    - cnpjCartorio: string
+    - dataLavratura: string
+    - folhas: string
+    - livro: string
+    - municipio: string
+    - nome: string
+    - uf: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}fundosInvestimentos
+  Attributes:
+    - totalBaseCalcImposto: string
+    - totalImpostoDevido: string
+    - totalImpostoPago: string
+    - totalImpostoRetidoFonteLei11033: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}abr
+    - {http://www.receita.fazenda.gov.br/declaracao}ago
+    - {http://www.receita.fazenda.gov.br/declaracao}dez
+    - {http://www.receita.fazenda.gov.br/declaracao}fev
+    - {http://www.receita.fazenda.gov.br/declaracao}jan
+    - {http://www.receita.fazenda.gov.br/declaracao}jul
+    - {http://www.receita.fazenda.gov.br/declaracao}jun
+    - {http://www.receita.fazenda.gov.br/declaracao}mai
+    - {http://www.receita.fazenda.gov.br/declaracao}mar
+    - {http://www.receita.fazenda.gov.br/declaracao}nov
+    - {http://www.receita.fazenda.gov.br/declaracao}out
+    - {http://www.receita.fazenda.gov.br/declaracao}set
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}fundosInvestimentos/{http://www.receita.fazenda.gov.br/declaracao}abr
+  Attributes:
+    - aliquotaImposto: string
+    - baseCalcImposto: string
+    - impostoAPagar: string
+    - impostoDevido: string
+    - impostoPago: string
+    - impostoRetidoCompensar: string
+    - impostoRetidoFonte: string
+    - impostoRetidoMesesAnteriores: string
+    - prejuizoCompensar: string
+    - resultLiquidoMes: string
+    - resultNegativoAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}fundosInvestimentos/{http://www.receita.fazenda.gov.br/declaracao}ago
+  Attributes:
+    - aliquotaImposto: string
+    - baseCalcImposto: string
+    - impostoAPagar: string
+    - impostoDevido: string
+    - impostoPago: string
+    - impostoRetidoCompensar: string
+    - impostoRetidoFonte: string
+    - impostoRetidoMesesAnteriores: string
+    - prejuizoCompensar: string
+    - resultLiquidoMes: string
+    - resultNegativoAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}fundosInvestimentos/{http://www.receita.fazenda.gov.br/declaracao}dez
+  Attributes:
+    - aliquotaImposto: string
+    - baseCalcImposto: string
+    - impostoAPagar: string
+    - impostoDevido: string
+    - impostoPago: string
+    - impostoRetidoCompensar: string
+    - impostoRetidoFonte: string
+    - impostoRetidoMesesAnteriores: string
+    - prejuizoCompensar: string
+    - resultLiquidoMes: string
+    - resultNegativoAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}fundosInvestimentos/{http://www.receita.fazenda.gov.br/declaracao}fev
+  Attributes:
+    - aliquotaImposto: string
+    - baseCalcImposto: string
+    - impostoAPagar: string
+    - impostoDevido: string
+    - impostoPago: string
+    - impostoRetidoCompensar: string
+    - impostoRetidoFonte: string
+    - impostoRetidoMesesAnteriores: string
+    - prejuizoCompensar: string
+    - resultLiquidoMes: string
+    - resultNegativoAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}fundosInvestimentos/{http://www.receita.fazenda.gov.br/declaracao}jan
+  Attributes:
+    - aliquotaImposto: string
+    - baseCalcImposto: string
+    - impostoAPagar: string
+    - impostoDevido: string
+    - impostoPago: string
+    - impostoRetidoCompensar: string
+    - impostoRetidoFonte: string
+    - impostoRetidoMesesAnteriores: string
+    - prejuizoCompensar: string
+    - resultLiquidoMes: string
+    - resultNegativoAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}fundosInvestimentos/{http://www.receita.fazenda.gov.br/declaracao}jul
+  Attributes:
+    - aliquotaImposto: string
+    - baseCalcImposto: string
+    - impostoAPagar: string
+    - impostoDevido: string
+    - impostoPago: string
+    - impostoRetidoCompensar: string
+    - impostoRetidoFonte: string
+    - impostoRetidoMesesAnteriores: string
+    - prejuizoCompensar: string
+    - resultLiquidoMes: string
+    - resultNegativoAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}fundosInvestimentos/{http://www.receita.fazenda.gov.br/declaracao}jun
+  Attributes:
+    - aliquotaImposto: string
+    - baseCalcImposto: string
+    - impostoAPagar: string
+    - impostoDevido: string
+    - impostoPago: string
+    - impostoRetidoCompensar: string
+    - impostoRetidoFonte: string
+    - impostoRetidoMesesAnteriores: string
+    - prejuizoCompensar: string
+    - resultLiquidoMes: string
+    - resultNegativoAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}fundosInvestimentos/{http://www.receita.fazenda.gov.br/declaracao}mai
+  Attributes:
+    - aliquotaImposto: string
+    - baseCalcImposto: string
+    - impostoAPagar: string
+    - impostoDevido: string
+    - impostoPago: string
+    - impostoRetidoCompensar: string
+    - impostoRetidoFonte: string
+    - impostoRetidoMesesAnteriores: string
+    - prejuizoCompensar: string
+    - resultLiquidoMes: string
+    - resultNegativoAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}fundosInvestimentos/{http://www.receita.fazenda.gov.br/declaracao}mar
+  Attributes:
+    - aliquotaImposto: string
+    - baseCalcImposto: string
+    - impostoAPagar: string
+    - impostoDevido: string
+    - impostoPago: string
+    - impostoRetidoCompensar: string
+    - impostoRetidoFonte: string
+    - impostoRetidoMesesAnteriores: string
+    - prejuizoCompensar: string
+    - resultLiquidoMes: string
+    - resultNegativoAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}fundosInvestimentos/{http://www.receita.fazenda.gov.br/declaracao}nov
+  Attributes:
+    - aliquotaImposto: string
+    - baseCalcImposto: string
+    - impostoAPagar: string
+    - impostoDevido: string
+    - impostoPago: string
+    - impostoRetidoCompensar: string
+    - impostoRetidoFonte: string
+    - impostoRetidoMesesAnteriores: string
+    - prejuizoCompensar: string
+    - resultLiquidoMes: string
+    - resultNegativoAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}fundosInvestimentos/{http://www.receita.fazenda.gov.br/declaracao}out
+  Attributes:
+    - aliquotaImposto: string
+    - baseCalcImposto: string
+    - impostoAPagar: string
+    - impostoDevido: string
+    - impostoPago: string
+    - impostoRetidoCompensar: string
+    - impostoRetidoFonte: string
+    - impostoRetidoMesesAnteriores: string
+    - prejuizoCompensar: string
+    - resultLiquidoMes: string
+    - resultNegativoAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}fundosInvestimentos/{http://www.receita.fazenda.gov.br/declaracao}set
+  Attributes:
+    - aliquotaImposto: string
+    - baseCalcImposto: string
+    - impostoAPagar: string
+    - impostoDevido: string
+    - impostoPago: string
+    - impostoRetidoCompensar: string
+    - impostoRetidoFonte: string
+    - impostoRetidoMesesAnteriores: string
+    - prejuizoCompensar: string
+    - resultLiquidoMes: string
+    - resultNegativoAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}fundosInvestimentosDependente
+  Attributes:
+    - tipoItens: string
+    - totalBaseCalculo: string
+    - totalImpostoDevido: string
+    - totalImpostoPago: string
+    - totalImpostoRetidoFonteLei11033: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}gcap
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}bensImoveis
+    - {http://www.receita.fazenda.gov.br/declaracao}bensMoveis
+    - {http://www.receita.fazenda.gov.br/declaracao}colecaoTotalizacaoMoedasAlienadas
+    - {http://www.receita.fazenda.gov.br/declaracao}consolidacaoGeralBrasil
+    - {http://www.receita.fazenda.gov.br/declaracao}consolidacaoGeralEspecie
+    - {http://www.receita.fazenda.gov.br/declaracao}consolidacaoGeralExterior
+    - {http://www.receita.fazenda.gov.br/declaracao}consolidacoesBrasil
+    - {http://www.receita.fazenda.gov.br/declaracao}consolidacoesExterior
+    - {http://www.receita.fazenda.gov.br/declaracao}especie
+    - {http://www.receita.fazenda.gov.br/declaracao}ids
+    - {http://www.receita.fazenda.gov.br/declaracao}pSocietarias
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}gcap/{http://www.receita.fazenda.gov.br/declaracao}bensImoveis
+  Attributes:
+    - tipoItens: string
+    - totalImpostoDevidoAnoAtual: string
+    - totalImpostoDiferidoAnosAnteriores: string
+    - totalImpostoDiferidoAnosPosteriores: string
+    - totalImpostoPagoBrasil: string
+    - totalImpostoPagoExterior: string
+    - totalImpostoReferenteAlienacaoAnoAtual: string
+    - totalImpostoTotal: string
+    - totalRendIsentosNaoTributaveisBrasil: string
+    - totalRendIsentosNaoTributaveisExterior: string
+    - totalRendSujeitosTributacaoBrasil: string
+    - totalRendSujeitosTributacaoExterior: string
+    - totalValorIRF: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}gcap/{http://www.receita.fazenda.gov.br/declaracao}bensMoveis
+  Attributes:
+    - tipoItens: string
+    - totalImpostoDevidoAnoAtual: string
+    - totalImpostoDiferidoAnosAnteriores: string
+    - totalImpostoDiferidoAnosPosteriores: string
+    - totalImpostoPagoBrasil: string
+    - totalImpostoPagoExterior: string
+    - totalImpostoReferenteAlienacaoAnoAtual: string
+    - totalImpostoTotal: string
+    - totalRendIsentosNaoTributaveisBrasil: string
+    - totalRendIsentosNaoTributaveisExterior: string
+    - totalRendSujeitosTributacaoBrasil: string
+    - totalRendSujeitosTributacaoExterior: string
+    - totalValorIRF: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}gcap/{http://www.receita.fazenda.gov.br/declaracao}colecaoTotalizacaoMoedasAlienadas
+  Attributes:
+    - tipoItens: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}gcap/{http://www.receita.fazenda.gov.br/declaracao}consolidacaoGeralBrasil
+  Attributes:
+    - cpf: string
+    - dataFimPermanencia: string
+    - dataInicioPermanencia: string
+    - impostoDevidoAnoAtual: string
+    - impostoDiferidoAnosAnteriores: string
+    - impostoDiferidoAnosPosteriores: string
+    - impostoReferenteAlienacaoAnoAtual: string
+    - impostoTotal: string
+    - totalImpostoPago: string
+    - totalRendIsentosNaoTributaveis: string
+    - totalRendSujeitosTributacao: string
+    - valorIRF: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}gcap/{http://www.receita.fazenda.gov.br/declaracao}consolidacaoGeralEspecie
+  Attributes:
+    - ganhoCapitalTotal: string
+    - impostoDevido: string
+    - tipoItens: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}gcap/{http://www.receita.fazenda.gov.br/declaracao}consolidacaoGeralExterior
+  Attributes:
+    - cpf: string
+    - dataFimPermanencia: string
+    - dataInicioPermanencia: string
+    - impostoDevidoAnoAtual: string
+    - impostoDiferidoAnosAnteriores: string
+    - impostoDiferidoAnosPosteriores: string
+    - impostoReferenteAlienacaoAnoAtual: string
+    - impostoTotal: string
+    - totalImpostoPago: string
+    - totalRendIsentosNaoTributaveis: string
+    - totalRendSujeitosTributacao: string
+    - valorIRF: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}gcap/{http://www.receita.fazenda.gov.br/declaracao}consolidacoesBrasil
+  Attributes:
+    - tipoItens: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}gcap/{http://www.receita.fazenda.gov.br/declaracao}consolidacoesExterior
+  Attributes:
+    - tipoItens: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}gcap/{http://www.receita.fazenda.gov.br/declaracao}especie
+  Attributes:
+    - aliquotaMedia: string
+    - cpf: string
+    - dataFimPermanencia: string
+    - dataInicioPermanencia: string
+    - ganhoCapitalTotal: string
+    - impostoDevido: string
+    - tipoItens: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}gcap/{http://www.receita.fazenda.gov.br/declaracao}ids
+  Attributes:
+    - tipoItens: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}gcap/{http://www.receita.fazenda.gov.br/declaracao}pSocietarias
+  Attributes:
+    - tipoItens: string
+    - totalImpostoDevidoAnoAtual: string
+    - totalImpostoDiferidoAnosAnteriores: string
+    - totalImpostoDiferidoAnosPosteriores: string
+    - totalImpostoPago: string
+    - totalImpostoReferenteAlienacaoAnoAtual: string
+    - totalImpostoTotal: string
+    - totalRendIsentosNaoTributaveis: string
+    - totalRendSujeitosTributacao: string
+    - totalValorIRF: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}herdeiros
+  Attributes:
+    - tipoItens: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}impostoPago
+  Attributes:
+    - carneLeaoDependentes: string
+    - carneLeaoTitular: string
+    - impostoComplementar: string
+    - impostoDevidoComRendExterior: string
+    - impostoDevidoSemRendExterior: string
+    - impostoPagoExterior: string
+    - impostoRetidoFonte: string
+    - impostoRetidoFonteDependentes: string
+    - impostoRetidoFonteTitular: string
+    - limiteImpPagoExterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}pagamentos
+  Attributes:
+    - tipoItens: string
+    - totalContribEmpregadoDomestico: string
+    - totalContribuicaoFunpresp: string
+    - totalContribuicaoPreviPrivada: string
+    - totalDeducoesInstrucao: string
+    - totalDespesasMedicas: string
+    - totalPensao: string
+    - totalPensaoCartoral: string
+    - ultimoIndiceGerado: int
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}item
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}pagamentos/{http://www.receita.fazenda.gov.br/declaracao}item
+  Attributes:
+    - codigo: int
+    - contribuicaoEntePatrocinador: string
+    - cpfAlimentando: string
+    - cpfDependente: string
+    - dependenteOuAlimentando: string
+    - descricao: string
+    - indice: int
+    - niBeneficiario: string
+    - nitEmpregadoDomestico: string
+    - nomeBeneficiario: string
+    - pais: int
+    - parcelaNaoDedutivel: string
+    - tipo: string
+    - valorPago: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendAcm
+  Attributes:
+    - totalRendRecebAcumuladamente: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}colecaoRendAcmDependente
+    - {http://www.receita.fazenda.gov.br/declaracao}colecaoRendAcmTitular
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendAcm/{http://www.receita.fazenda.gov.br/declaracao}colecaoRendAcmDependente
+  Attributes:
+    - tipoItens: string
+    - totaisContribuicaoPrevOficial: string
+    - totaisContribuicaoPrevOficialAjuste: string
+    - totaisContribuicaoPrevOficialExclusiva: string
+    - totaisImpostoDevidoRRA: string
+    - totaisImpostoRetidoFonte: string
+    - totaisImpostoRetidoFonteAjuste: string
+    - totaisImpostoRetidoFonteExclusiva: string
+    - totaisJuros: string
+    - totaisPensaoAlimenticia: string
+    - totaisPensaoAlimenticiaAjuste: string
+    - totaisPensaoAlimenticiaExclusiva: string
+    - totaisRendRecebidos: string
+    - totaisRendRecebidosAjuste: string
+    - totaisRendRecebidosExclusiva: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendAcm/{http://www.receita.fazenda.gov.br/declaracao}colecaoRendAcmTitular
+  Attributes:
+    - tipoItens: string
+    - totaisContribuicaoPrevOficial: string
+    - totaisContribuicaoPrevOficialAjuste: string
+    - totaisContribuicaoPrevOficialExclusiva: string
+    - totaisImpostoDevidoRRA: string
+    - totaisImpostoRetidoFonte: string
+    - totaisImpostoRetidoFonteAjuste: string
+    - totaisImpostoRetidoFonteExclusiva: string
+    - totaisJuros: string
+    - totaisPensaoAlimenticia: string
+    - totaisPensaoAlimenticiaAjuste: string
+    - totaisPensaoAlimenticiaExclusiva: string
+    - totaisRendRecebidos: string
+    - totaisRendRecebidosAjuste: string
+    - totaisRendRecebidosExclusiva: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendIsentos
+  Attributes:
+    - bensPequenoValorInformado: string
+    - bensPequenoValorTransportado: string
+    - bolsaEstudos: string
+    - capitalApolices: string
+    - ganhosCapitalOuro: string
+    - ganhosLiquidosAcoes: string
+    - impostoRendasAnterioresCompensadoJudicialmente: string
+    - incorporacaoReservaCapital: string
+    - indenizacoes: string
+    - jurosRra: string
+    - lucroAlienacao: string
+    - lucroRecebido: string
+    - meacaoDissolucao: string
+    - medicosResidentes: string
+    - moedaEstrangeiraEspecieInformado: string
+    - outros: string
+    - outrosBensImoveisInformado: string
+    - outrosBensImoveisTransportado: string
+    - parcIsentaAposentadoria: string
+    - parcIsentaAtivRural: string
+    - pensao: string
+    - pensaoAlimenticia: string
+    - poupanca: string
+    - recuperacaoPrejuizosBolsaValores: string
+    - rendAssalariadosMoedaEstrangeira: string
+    - rendSocio: string
+    - restituicaoImpostoRendaAnosAnteriores: string
+    - somaBensPequenoValor: string
+    - somaOutrosBensImoveis: string
+    - somaUnicoImovel: string
+    - total: string
+    - totalInformado: string
+    - totalTransportado: string
+    - transferencias: string
+    - transportadorCargas: string
+    - transportadorPassageiros: string
+    - unicoImovelInformado: string
+    - unicoImovelTransportado: string
+    - voluntariosCopa: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}bolsaEstudosQuadroAuxiliar
+    - {http://www.receita.fazenda.gov.br/declaracao}ganhosCapitalOuroQuadroAuxiliar
+    - {http://www.receita.fazenda.gov.br/declaracao}ganhosLiquidosAcoesQuadroAuxiliar
+    - {http://www.receita.fazenda.gov.br/declaracao}impostoRendasAnterioresCompensadoJudicialmenteQuadroAuxiliar
+    - {http://www.receita.fazenda.gov.br/declaracao}incorporacaoReservaCapitalQuadroAuxiliar
+    - {http://www.receita.fazenda.gov.br/declaracao}indenizacoesQuadroAuxiliar
+    - {http://www.receita.fazenda.gov.br/declaracao}lucroRecebidoQuadroAuxiliar
+    - {http://www.receita.fazenda.gov.br/declaracao}meacaoDissolucaoQuadroAuxiliar
+    - {http://www.receita.fazenda.gov.br/declaracao}medicosResidentesQuadroAuxiliar
+    - {http://www.receita.fazenda.gov.br/declaracao}outrosQuadroAuxiliar
+    - {http://www.receita.fazenda.gov.br/declaracao}parcIsentaAposentadoriaQuadroAuxiliar
+    - {http://www.receita.fazenda.gov.br/declaracao}pensaoAlimenticiaQuadroAuxiliar
+    - {http://www.receita.fazenda.gov.br/declaracao}pensaoQuadroAuxiliar
+    - {http://www.receita.fazenda.gov.br/declaracao}poupancaQuadroAuxiliar
+    - {http://www.receita.fazenda.gov.br/declaracao}rendAssalariadoMoedaEstrangeiraQuadroAuxiliar
+    - {http://www.receita.fazenda.gov.br/declaracao}rendSocioQuadroAuxiliar
+    - {http://www.receita.fazenda.gov.br/declaracao}transferenciasQuadroAuxiliar
+    - {http://www.receita.fazenda.gov.br/declaracao}voluntariosCopaQuadroAuxiliar
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendIsentos/{http://www.receita.fazenda.gov.br/declaracao}bolsaEstudosQuadroAuxiliar
+  Attributes:
+    - tipoItens: string
+    - totais: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendIsentos/{http://www.receita.fazenda.gov.br/declaracao}ganhosCapitalOuroQuadroAuxiliar
+  Attributes:
+    - tipoItens: string
+    - totais: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendIsentos/{http://www.receita.fazenda.gov.br/declaracao}ganhosLiquidosAcoesQuadroAuxiliar
+  Attributes:
+    - tipoItens: string
+    - totais: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendIsentos/{http://www.receita.fazenda.gov.br/declaracao}impostoRendasAnterioresCompensadoJudicialmenteQuadroAuxiliar
+  Attributes:
+    - tipoItens: string
+    - totais: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendIsentos/{http://www.receita.fazenda.gov.br/declaracao}incorporacaoReservaCapitalQuadroAuxiliar
+  Attributes:
+    - tipoItens: string
+    - totais: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendIsentos/{http://www.receita.fazenda.gov.br/declaracao}indenizacoesQuadroAuxiliar
+  Attributes:
+    - tipoItens: string
+    - totais: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendIsentos/{http://www.receita.fazenda.gov.br/declaracao}lucroRecebidoQuadroAuxiliar
+  Attributes:
+    - tipoItens: string
+    - totais: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendIsentos/{http://www.receita.fazenda.gov.br/declaracao}meacaoDissolucaoQuadroAuxiliar
+  Attributes:
+    - tipoItens: string
+    - totais: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendIsentos/{http://www.receita.fazenda.gov.br/declaracao}medicosResidentesQuadroAuxiliar
+  Attributes:
+    - tipoItens: string
+    - totais: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendIsentos/{http://www.receita.fazenda.gov.br/declaracao}outrosQuadroAuxiliar
+  Attributes:
+    - tipoItens: string
+    - totais: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}item
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendIsentos/{http://www.receita.fazenda.gov.br/declaracao}outrosQuadroAuxiliar/{http://www.receita.fazenda.gov.br/declaracao}item
+  Attributes:
+    - cnpjEmpresa: string
+    - codBem: int
+    - cpfBeneficiario: string
+    - descricaoRendimento: string
+    - nomeFonte: string
+    - tipoBeneficiario: string
+    - valor: string
+    - valor13Salario: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendIsentos/{http://www.receita.fazenda.gov.br/declaracao}parcIsentaAposentadoriaQuadroAuxiliar
+  Attributes:
+    - tipoItens: string
+    - totais: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendIsentos/{http://www.receita.fazenda.gov.br/declaracao}pensaoAlimenticiaQuadroAuxiliar
+  Attributes:
+    - tipoItens: string
+    - totais: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendIsentos/{http://www.receita.fazenda.gov.br/declaracao}pensaoQuadroAuxiliar
+  Attributes:
+    - tipoItens: string
+    - totais: string
+    - total13Salario: string
+    - totalIRRF13SalarioDependentes: string
+    - totalIRRF13SalarioTitular: string
+    - totalIRRFDependentes: string
+    - totalIRRFTitular: string
+    - totalPrevidenciaOficialDependentes: string
+    - totalPrevidenciaOficialTitular: string
+    - totalRendimento: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendIsentos/{http://www.receita.fazenda.gov.br/declaracao}poupancaQuadroAuxiliar
+  Attributes:
+    - tipoItens: string
+    - totais: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendIsentos/{http://www.receita.fazenda.gov.br/declaracao}rendAssalariadoMoedaEstrangeiraQuadroAuxiliar
+  Attributes:
+    - tipoItens: string
+    - totais: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendIsentos/{http://www.receita.fazenda.gov.br/declaracao}rendSocioQuadroAuxiliar
+  Attributes:
+    - tipoItens: string
+    - totais: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}item
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendIsentos/{http://www.receita.fazenda.gov.br/declaracao}rendSocioQuadroAuxiliar/{http://www.receita.fazenda.gov.br/declaracao}item
+  Attributes:
+    - cnpjEmpresa: string
+    - codBem: string
+    - cpfAlimentante: string
+    - cpfBeneficiario: string
+    - nomeFonte: string
+    - tipoBeneficiario: string
+    - valor: string
+    - valor13Salario: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendIsentos/{http://www.receita.fazenda.gov.br/declaracao}transferenciasQuadroAuxiliar
+  Attributes:
+    - tipoItens: string
+    - totais: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendIsentos/{http://www.receita.fazenda.gov.br/declaracao}voluntariosCopaQuadroAuxiliar
+  Attributes:
+    - tipoItens: string
+    - totais: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPFDependente
+  Attributes:
+    - tipoItens: string
+    - totalAlugueis: string
+    - totalDarfPago: string
+    - totalDependentes: string
+    - totalExterior: string
+    - totalImpostoPagoExteriorCompensar: string
+    - totalLivroCaixa: string
+    - totalOutros: string
+    - totalPensao: string
+    - totalPessoaFisica: string
+    - totalPrevidencia: string
+    - usouImportacaoCarneLeaoWeb: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPFTitular
+  Attributes:
+    - NITPISPASEP: string
+    - totalAlugueis: string
+    - totalDarfPago: string
+    - totalDependentes: string
+    - totalExterior: string
+    - totalImpostoPagoExteriorCompensar: string
+    - totalLivroCaixa: string
+    - totalNumDependentes: string
+    - totalOutros: string
+    - totalPensao: string
+    - totalPessoaFisica: string
+    - totalPrevidencia: string
+    - usouImportacaoCarneLeaoWeb: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}abril
+    - {http://www.receita.fazenda.gov.br/declaracao}agosto
+    - {http://www.receita.fazenda.gov.br/declaracao}contasAno
+    - {http://www.receita.fazenda.gov.br/declaracao}dezembro
+    - {http://www.receita.fazenda.gov.br/declaracao}fevereiro
+    - {http://www.receita.fazenda.gov.br/declaracao}janeiro
+    - {http://www.receita.fazenda.gov.br/declaracao}julho
+    - {http://www.receita.fazenda.gov.br/declaracao}junho
+    - {http://www.receita.fazenda.gov.br/declaracao}maio
+    - {http://www.receita.fazenda.gov.br/declaracao}marco
+    - {http://www.receita.fazenda.gov.br/declaracao}novembro
+    - {http://www.receita.fazenda.gov.br/declaracao}outubro
+    - {http://www.receita.fazenda.gov.br/declaracao}setembro
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPFTitular/{http://www.receita.fazenda.gov.br/declaracao}abril
+  Attributes:
+    - alugueis: string
+    - carneLeao: string
+    - darfPago: string
+    - dependentes: string
+    - exterior: string
+    - impostoPagoCompensarExterior: string
+    - livroCaixa: string
+    - mes: int
+    - numDependentes: int
+    - outros: string
+    - pensao: string
+    - pessoaFisica: string
+    - previdencia: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPFTitular/{http://www.receita.fazenda.gov.br/declaracao}agosto
+  Attributes:
+    - alugueis: string
+    - carneLeao: string
+    - darfPago: string
+    - dependentes: string
+    - exterior: string
+    - impostoPagoCompensarExterior: string
+    - livroCaixa: string
+    - mes: int
+    - numDependentes: int
+    - outros: string
+    - pensao: string
+    - pessoaFisica: string
+    - previdencia: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPFTitular/{http://www.receita.fazenda.gov.br/declaracao}contasAno
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}abril
+    - {http://www.receita.fazenda.gov.br/declaracao}agosto
+    - {http://www.receita.fazenda.gov.br/declaracao}dezembro
+    - {http://www.receita.fazenda.gov.br/declaracao}fevereiro
+    - {http://www.receita.fazenda.gov.br/declaracao}janeiro
+    - {http://www.receita.fazenda.gov.br/declaracao}julho
+    - {http://www.receita.fazenda.gov.br/declaracao}junho
+    - {http://www.receita.fazenda.gov.br/declaracao}maio
+    - {http://www.receita.fazenda.gov.br/declaracao}marco
+    - {http://www.receita.fazenda.gov.br/declaracao}novembro
+    - {http://www.receita.fazenda.gov.br/declaracao}outubro
+    - {http://www.receita.fazenda.gov.br/declaracao}setembro
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPFTitular/{http://www.receita.fazenda.gov.br/declaracao}contasAno/{http://www.receita.fazenda.gov.br/declaracao}abril
+  Attributes:
+    - nomeMes: int
+    - tipoItens: string
+    - totalRendTrabNaoAssPF: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPFTitular/{http://www.receita.fazenda.gov.br/declaracao}contasAno/{http://www.receita.fazenda.gov.br/declaracao}agosto
+  Attributes:
+    - nomeMes: int
+    - tipoItens: string
+    - totalRendTrabNaoAssPF: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPFTitular/{http://www.receita.fazenda.gov.br/declaracao}contasAno/{http://www.receita.fazenda.gov.br/declaracao}dezembro
+  Attributes:
+    - nomeMes: int
+    - tipoItens: string
+    - totalRendTrabNaoAssPF: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPFTitular/{http://www.receita.fazenda.gov.br/declaracao}contasAno/{http://www.receita.fazenda.gov.br/declaracao}fevereiro
+  Attributes:
+    - nomeMes: int
+    - tipoItens: string
+    - totalRendTrabNaoAssPF: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPFTitular/{http://www.receita.fazenda.gov.br/declaracao}contasAno/{http://www.receita.fazenda.gov.br/declaracao}janeiro
+  Attributes:
+    - nomeMes: int
+    - tipoItens: string
+    - totalRendTrabNaoAssPF: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPFTitular/{http://www.receita.fazenda.gov.br/declaracao}contasAno/{http://www.receita.fazenda.gov.br/declaracao}julho
+  Attributes:
+    - nomeMes: int
+    - tipoItens: string
+    - totalRendTrabNaoAssPF: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPFTitular/{http://www.receita.fazenda.gov.br/declaracao}contasAno/{http://www.receita.fazenda.gov.br/declaracao}junho
+  Attributes:
+    - nomeMes: int
+    - tipoItens: string
+    - totalRendTrabNaoAssPF: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPFTitular/{http://www.receita.fazenda.gov.br/declaracao}contasAno/{http://www.receita.fazenda.gov.br/declaracao}maio
+  Attributes:
+    - nomeMes: int
+    - tipoItens: string
+    - totalRendTrabNaoAssPF: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPFTitular/{http://www.receita.fazenda.gov.br/declaracao}contasAno/{http://www.receita.fazenda.gov.br/declaracao}marco
+  Attributes:
+    - nomeMes: int
+    - tipoItens: string
+    - totalRendTrabNaoAssPF: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPFTitular/{http://www.receita.fazenda.gov.br/declaracao}contasAno/{http://www.receita.fazenda.gov.br/declaracao}novembro
+  Attributes:
+    - nomeMes: int
+    - tipoItens: string
+    - totalRendTrabNaoAssPF: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPFTitular/{http://www.receita.fazenda.gov.br/declaracao}contasAno/{http://www.receita.fazenda.gov.br/declaracao}outubro
+  Attributes:
+    - nomeMes: int
+    - tipoItens: string
+    - totalRendTrabNaoAssPF: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPFTitular/{http://www.receita.fazenda.gov.br/declaracao}contasAno/{http://www.receita.fazenda.gov.br/declaracao}setembro
+  Attributes:
+    - nomeMes: int
+    - tipoItens: string
+    - totalRendTrabNaoAssPF: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPFTitular/{http://www.receita.fazenda.gov.br/declaracao}dezembro
+  Attributes:
+    - alugueis: string
+    - carneLeao: string
+    - darfPago: string
+    - dependentes: string
+    - exterior: string
+    - impostoPagoCompensarExterior: string
+    - livroCaixa: string
+    - mes: int
+    - numDependentes: int
+    - outros: string
+    - pensao: string
+    - pessoaFisica: string
+    - previdencia: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPFTitular/{http://www.receita.fazenda.gov.br/declaracao}fevereiro
+  Attributes:
+    - alugueis: string
+    - carneLeao: string
+    - darfPago: string
+    - dependentes: string
+    - exterior: string
+    - impostoPagoCompensarExterior: string
+    - livroCaixa: string
+    - mes: int
+    - numDependentes: int
+    - outros: string
+    - pensao: string
+    - pessoaFisica: string
+    - previdencia: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPFTitular/{http://www.receita.fazenda.gov.br/declaracao}janeiro
+  Attributes:
+    - alugueis: string
+    - carneLeao: string
+    - darfPago: string
+    - dependentes: string
+    - exterior: string
+    - impostoPagoCompensarExterior: string
+    - livroCaixa: string
+    - mes: int
+    - numDependentes: int
+    - outros: string
+    - pensao: string
+    - pessoaFisica: string
+    - previdencia: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPFTitular/{http://www.receita.fazenda.gov.br/declaracao}julho
+  Attributes:
+    - alugueis: string
+    - carneLeao: string
+    - darfPago: string
+    - dependentes: string
+    - exterior: string
+    - impostoPagoCompensarExterior: string
+    - livroCaixa: string
+    - mes: int
+    - numDependentes: int
+    - outros: string
+    - pensao: string
+    - pessoaFisica: string
+    - previdencia: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPFTitular/{http://www.receita.fazenda.gov.br/declaracao}junho
+  Attributes:
+    - alugueis: string
+    - carneLeao: string
+    - darfPago: string
+    - dependentes: string
+    - exterior: string
+    - impostoPagoCompensarExterior: string
+    - livroCaixa: string
+    - mes: int
+    - numDependentes: int
+    - outros: string
+    - pensao: string
+    - pessoaFisica: string
+    - previdencia: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPFTitular/{http://www.receita.fazenda.gov.br/declaracao}maio
+  Attributes:
+    - alugueis: string
+    - carneLeao: string
+    - darfPago: string
+    - dependentes: string
+    - exterior: string
+    - impostoPagoCompensarExterior: string
+    - livroCaixa: string
+    - mes: int
+    - numDependentes: int
+    - outros: string
+    - pensao: string
+    - pessoaFisica: string
+    - previdencia: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPFTitular/{http://www.receita.fazenda.gov.br/declaracao}marco
+  Attributes:
+    - alugueis: string
+    - carneLeao: string
+    - darfPago: string
+    - dependentes: string
+    - exterior: string
+    - impostoPagoCompensarExterior: string
+    - livroCaixa: string
+    - mes: int
+    - numDependentes: int
+    - outros: string
+    - pensao: string
+    - pessoaFisica: string
+    - previdencia: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPFTitular/{http://www.receita.fazenda.gov.br/declaracao}novembro
+  Attributes:
+    - alugueis: string
+    - carneLeao: string
+    - darfPago: string
+    - dependentes: string
+    - exterior: string
+    - impostoPagoCompensarExterior: string
+    - livroCaixa: string
+    - mes: int
+    - numDependentes: int
+    - outros: string
+    - pensao: string
+    - pessoaFisica: string
+    - previdencia: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPFTitular/{http://www.receita.fazenda.gov.br/declaracao}outubro
+  Attributes:
+    - alugueis: string
+    - carneLeao: string
+    - darfPago: string
+    - dependentes: string
+    - exterior: string
+    - impostoPagoCompensarExterior: string
+    - livroCaixa: string
+    - mes: int
+    - numDependentes: int
+    - outros: string
+    - pensao: string
+    - pessoaFisica: string
+    - previdencia: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPFTitular/{http://www.receita.fazenda.gov.br/declaracao}setembro
+  Attributes:
+    - alugueis: string
+    - carneLeao: string
+    - darfPago: string
+    - dependentes: string
+    - exterior: string
+    - impostoPagoCompensarExterior: string
+    - livroCaixa: string
+    - mes: int
+    - numDependentes: int
+    - outros: string
+    - pensao: string
+    - pessoaFisica: string
+    - previdencia: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPJ
+  Attributes:
+    - totalRendRecebPessoaJuridica: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}colecaoRendPJDependente
+    - {http://www.receita.fazenda.gov.br/declaracao}colecaoRendPJTitular
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPJ/{http://www.receita.fazenda.gov.br/declaracao}colecaoRendPJDependente
+  Attributes:
+    - niMaiorFontePagadora: string
+    - tipoItens: string
+    - totaisContribuicaoPrevOficial: string
+    - totaisDecimoTerceiro: string
+    - totaisIRRFDecimoTerceiro: string
+    - totaisImpostoRetidoFonte: string
+    - totaisRendRecebidoPJ: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPJ/{http://www.receita.fazenda.gov.br/declaracao}colecaoRendPJTitular
+  Attributes:
+    - niMaiorFontePagadora: string
+    - tipoItens: string
+    - totaisContribuicaoPrevOficial: string
+    - totaisDecimoTerceiro: string
+    - totaisIRRFDecimoTerceiro: string
+    - totaisImpostoRetidoFonte: string
+    - totaisRendRecebidoPJ: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}item
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPJ/{http://www.receita.fazenda.gov.br/declaracao}colecaoRendPJTitular/{http://www.receita.fazenda.gov.br/declaracao}item
+  Attributes:
+    - IRRFDecimoTerceiro: string
+    - NIFontePagadora: string
+    - contribuicaoPrevOficial: string
+    - dataComunicacaoSaida: string
+    - decimoTerceiro: string
+    - impostoRetidoFonte: string
+    - nomeFontePagadora: string
+    - rendRecebidoPJ: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPJComExigibilidade
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}colecaoRendPJComExigibilidadeDependente
+    - {http://www.receita.fazenda.gov.br/declaracao}colecaoRendPJComExigibilidadeTitular
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPJComExigibilidade/{http://www.receita.fazenda.gov.br/declaracao}colecaoRendPJComExigibilidadeDependente
+  Attributes:
+    - tipoItens: string
+    - totaisDepositoJudicial: string
+    - totaisRendPJExigSuspensa: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendPJComExigibilidade/{http://www.receita.fazenda.gov.br/declaracao}colecaoRendPJComExigibilidadeTitular
+  Attributes:
+    - tipoItens: string
+    - totaisDepositoJudicial: string
+    - totaisRendPJExigSuspensa: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendTributacaoExclusiva
+  Attributes:
+    - decimoTerceiro: string
+    - decimoTerceiroDependentes: string
+    - ganhosCapital: string
+    - ganhosCapitalEmEspecie: string
+    - ganhosCapitalEstrangeira: string
+    - ganhosRendaVariavel: string
+    - jurosCapitalProprio: string
+    - lei14754: string
+    - outros: string
+    - participacaoLucrosResultados: string
+    - rendAplicacoes: string
+    - rraDependentes: string
+    - rraTitular: string
+    - total: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}jurosCapitalProprioQuadroAuxiliar
+    - {http://www.receita.fazenda.gov.br/declaracao}outrosQuadroAuxiliar
+    - {http://www.receita.fazenda.gov.br/declaracao}participacaoLucrosResultadosQuadroAuxiliar
+    - {http://www.receita.fazenda.gov.br/declaracao}rendAplicacoesQuadroAuxiliar
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendTributacaoExclusiva/{http://www.receita.fazenda.gov.br/declaracao}jurosCapitalProprioQuadroAuxiliar
+  Attributes:
+    - tipoItens: string
+    - totais: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendTributacaoExclusiva/{http://www.receita.fazenda.gov.br/declaracao}outrosQuadroAuxiliar
+  Attributes:
+    - tipoItens: string
+    - totais: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}item
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendTributacaoExclusiva/{http://www.receita.fazenda.gov.br/declaracao}outrosQuadroAuxiliar/{http://www.receita.fazenda.gov.br/declaracao}item
+  Attributes:
+    - cnpjEmpresa: string
+    - codBem: string
+    - cpfBeneficiario: string
+    - descricaoRendimento: string
+    - nomeFonte: string
+    - tipoBeneficiario: string
+    - valor: string
+    - valor13Salario: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendTributacaoExclusiva/{http://www.receita.fazenda.gov.br/declaracao}participacaoLucrosResultadosQuadroAuxiliar
+  Attributes:
+    - tipoItens: string
+    - totais: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}item
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendTributacaoExclusiva/{http://www.receita.fazenda.gov.br/declaracao}participacaoLucrosResultadosQuadroAuxiliar/{http://www.receita.fazenda.gov.br/declaracao}item
+  Attributes:
+    - cnpjEmpresa: string
+    - codBem: string
+    - cpfAlimentante: string
+    - cpfBeneficiario: string
+    - nomeFonte: string
+    - tipoBeneficiario: string
+    - valor: string
+    - valor13Salario: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendTributacaoExclusiva/{http://www.receita.fazenda.gov.br/declaracao}rendAplicacoesQuadroAuxiliar
+  Attributes:
+    - tipoItens: string
+    - totais: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}item
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendTributacaoExclusiva/{http://www.receita.fazenda.gov.br/declaracao}rendAplicacoesQuadroAuxiliar/{http://www.receita.fazenda.gov.br/declaracao}item
+  Attributes:
+    - cnpjEmpresa: string
+    - codBem: int
+    - cpfAlimentante: string
+    - cpfBeneficiario: string
+    - nomeFonte: string
+    - tipoBeneficiario: string
+    - valor: string
+    - valor13Salario: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel
+  Attributes:
+    - totalBaseCalculo: string
+    - totalIRFonteDayTrade: string
+    - totalImpostoAPagar: string
+    - totalImpostoPago: string
+    - totalImpostoRetidoFonteLei11033: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}abril
+    - {http://www.receita.fazenda.gov.br/declaracao}agosto
+    - {http://www.receita.fazenda.gov.br/declaracao}dezembro
+    - {http://www.receita.fazenda.gov.br/declaracao}fevereiro
+    - {http://www.receita.fazenda.gov.br/declaracao}janeiro
+    - {http://www.receita.fazenda.gov.br/declaracao}julho
+    - {http://www.receita.fazenda.gov.br/declaracao}junho
+    - {http://www.receita.fazenda.gov.br/declaracao}maio
+    - {http://www.receita.fazenda.gov.br/declaracao}marco
+    - {http://www.receita.fazenda.gov.br/declaracao}novembro
+    - {http://www.receita.fazenda.gov.br/declaracao}outubro
+    - {http://www.receita.fazenda.gov.br/declaracao}setembro
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}abril
+  Attributes:
+    - impostoApagar: string
+    - impostoPago: string
+    - impostoRetidoFonteLei11033: string
+    - impostoRetidoFonteLei11033MesesAnteriores: string
+    - impostoRetidoFonteLei11033MesesCompensar: string
+    - irFonteDayTradeAcompensar: string
+    - irFonteDayTradeMesAtual: string
+    - irFonteDayTradeMesesAnteriores: string
+    - totalImpostoDevido: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}operacoesComuns
+    - {http://www.receita.fazenda.gov.br/declaracao}operacoesDayTrade
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}abril/{http://www.receita.fazenda.gov.br/declaracao}operacoesComuns
+  Attributes:
+    - aliquotaDoImposto: string
+    - baseCalculoImposto: string
+    - impostoDevido: string
+    - mercadoFuturoDolar: string
+    - mercadoFuturoIndices: string
+    - mercadoFuturoJuros: string
+    - mercadoFuturoOutros: string
+    - mercadoOpcoesAcoes: string
+    - mercadoOpcoesForaDeBolsa: string
+    - mercadoOpcoesOuro: string
+    - mercadoOpcoesOutros: string
+    - mercadoTermoAcoes: string
+    - mercadoTermoOutros: string
+    - mercadoVistaAcoes: string
+    - mercadoVistaForaBolsa: string
+    - mercadoVistaOuro: string
+    - prejuizoCompensar: string
+    - resultadoLiquidoMes: string
+    - resultadoNegativoMesAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}abril/{http://www.receita.fazenda.gov.br/declaracao}operacoesDayTrade
+  Attributes:
+    - aliquotaDoImposto: string
+    - baseCalculoImposto: string
+    - impostoDevido: string
+    - mercadoFuturoDolar: string
+    - mercadoFuturoIndices: string
+    - mercadoFuturoJuros: string
+    - mercadoFuturoOutros: string
+    - mercadoOpcoesAcoes: string
+    - mercadoOpcoesForaDeBolsa: string
+    - mercadoOpcoesOuro: string
+    - mercadoOpcoesOutros: string
+    - mercadoTermoAcoes: string
+    - mercadoTermoOutros: string
+    - mercadoVistaAcoes: string
+    - mercadoVistaForaBolsa: string
+    - mercadoVistaOuro: string
+    - prejuizoCompensar: string
+    - resultadoLiquidoMes: string
+    - resultadoNegativoMesAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}agosto
+  Attributes:
+    - impostoApagar: string
+    - impostoPago: string
+    - impostoRetidoFonteLei11033: string
+    - impostoRetidoFonteLei11033MesesAnteriores: string
+    - impostoRetidoFonteLei11033MesesCompensar: string
+    - irFonteDayTradeAcompensar: string
+    - irFonteDayTradeMesAtual: string
+    - irFonteDayTradeMesesAnteriores: string
+    - totalImpostoDevido: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}operacoesComuns
+    - {http://www.receita.fazenda.gov.br/declaracao}operacoesDayTrade
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}agosto/{http://www.receita.fazenda.gov.br/declaracao}operacoesComuns
+  Attributes:
+    - aliquotaDoImposto: string
+    - baseCalculoImposto: string
+    - impostoDevido: string
+    - mercadoFuturoDolar: string
+    - mercadoFuturoIndices: string
+    - mercadoFuturoJuros: string
+    - mercadoFuturoOutros: string
+    - mercadoOpcoesAcoes: string
+    - mercadoOpcoesForaDeBolsa: string
+    - mercadoOpcoesOuro: string
+    - mercadoOpcoesOutros: string
+    - mercadoTermoAcoes: string
+    - mercadoTermoOutros: string
+    - mercadoVistaAcoes: string
+    - mercadoVistaForaBolsa: string
+    - mercadoVistaOuro: string
+    - prejuizoCompensar: string
+    - resultadoLiquidoMes: string
+    - resultadoNegativoMesAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}agosto/{http://www.receita.fazenda.gov.br/declaracao}operacoesDayTrade
+  Attributes:
+    - aliquotaDoImposto: string
+    - baseCalculoImposto: string
+    - impostoDevido: string
+    - mercadoFuturoDolar: string
+    - mercadoFuturoIndices: string
+    - mercadoFuturoJuros: string
+    - mercadoFuturoOutros: string
+    - mercadoOpcoesAcoes: string
+    - mercadoOpcoesForaDeBolsa: string
+    - mercadoOpcoesOuro: string
+    - mercadoOpcoesOutros: string
+    - mercadoTermoAcoes: string
+    - mercadoTermoOutros: string
+    - mercadoVistaAcoes: string
+    - mercadoVistaForaBolsa: string
+    - mercadoVistaOuro: string
+    - prejuizoCompensar: string
+    - resultadoLiquidoMes: string
+    - resultadoNegativoMesAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}dezembro
+  Attributes:
+    - impostoApagar: string
+    - impostoPago: string
+    - impostoRetidoFonteLei11033: string
+    - impostoRetidoFonteLei11033MesesAnteriores: string
+    - impostoRetidoFonteLei11033MesesCompensar: string
+    - irFonteDayTradeAcompensar: string
+    - irFonteDayTradeMesAtual: string
+    - irFonteDayTradeMesesAnteriores: string
+    - totalImpostoDevido: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}operacoesComuns
+    - {http://www.receita.fazenda.gov.br/declaracao}operacoesDayTrade
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}dezembro/{http://www.receita.fazenda.gov.br/declaracao}operacoesComuns
+  Attributes:
+    - aliquotaDoImposto: string
+    - baseCalculoImposto: string
+    - impostoDevido: string
+    - mercadoFuturoDolar: string
+    - mercadoFuturoIndices: string
+    - mercadoFuturoJuros: string
+    - mercadoFuturoOutros: string
+    - mercadoOpcoesAcoes: string
+    - mercadoOpcoesForaDeBolsa: string
+    - mercadoOpcoesOuro: string
+    - mercadoOpcoesOutros: string
+    - mercadoTermoAcoes: string
+    - mercadoTermoOutros: string
+    - mercadoVistaAcoes: string
+    - mercadoVistaForaBolsa: string
+    - mercadoVistaOuro: string
+    - prejuizoCompensar: string
+    - resultadoLiquidoMes: string
+    - resultadoNegativoMesAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}dezembro/{http://www.receita.fazenda.gov.br/declaracao}operacoesDayTrade
+  Attributes:
+    - aliquotaDoImposto: string
+    - baseCalculoImposto: string
+    - impostoDevido: string
+    - mercadoFuturoDolar: string
+    - mercadoFuturoIndices: string
+    - mercadoFuturoJuros: string
+    - mercadoFuturoOutros: string
+    - mercadoOpcoesAcoes: string
+    - mercadoOpcoesForaDeBolsa: string
+    - mercadoOpcoesOuro: string
+    - mercadoOpcoesOutros: string
+    - mercadoTermoAcoes: string
+    - mercadoTermoOutros: string
+    - mercadoVistaAcoes: string
+    - mercadoVistaForaBolsa: string
+    - mercadoVistaOuro: string
+    - prejuizoCompensar: string
+    - resultadoLiquidoMes: string
+    - resultadoNegativoMesAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}fevereiro
+  Attributes:
+    - impostoApagar: string
+    - impostoPago: string
+    - impostoRetidoFonteLei11033: string
+    - impostoRetidoFonteLei11033MesesAnteriores: string
+    - impostoRetidoFonteLei11033MesesCompensar: string
+    - irFonteDayTradeAcompensar: string
+    - irFonteDayTradeMesAtual: string
+    - irFonteDayTradeMesesAnteriores: string
+    - totalImpostoDevido: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}operacoesComuns
+    - {http://www.receita.fazenda.gov.br/declaracao}operacoesDayTrade
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}fevereiro/{http://www.receita.fazenda.gov.br/declaracao}operacoesComuns
+  Attributes:
+    - aliquotaDoImposto: string
+    - baseCalculoImposto: string
+    - impostoDevido: string
+    - mercadoFuturoDolar: string
+    - mercadoFuturoIndices: string
+    - mercadoFuturoJuros: string
+    - mercadoFuturoOutros: string
+    - mercadoOpcoesAcoes: string
+    - mercadoOpcoesForaDeBolsa: string
+    - mercadoOpcoesOuro: string
+    - mercadoOpcoesOutros: string
+    - mercadoTermoAcoes: string
+    - mercadoTermoOutros: string
+    - mercadoVistaAcoes: string
+    - mercadoVistaForaBolsa: string
+    - mercadoVistaOuro: string
+    - prejuizoCompensar: string
+    - resultadoLiquidoMes: string
+    - resultadoNegativoMesAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}fevereiro/{http://www.receita.fazenda.gov.br/declaracao}operacoesDayTrade
+  Attributes:
+    - aliquotaDoImposto: string
+    - baseCalculoImposto: string
+    - impostoDevido: string
+    - mercadoFuturoDolar: string
+    - mercadoFuturoIndices: string
+    - mercadoFuturoJuros: string
+    - mercadoFuturoOutros: string
+    - mercadoOpcoesAcoes: string
+    - mercadoOpcoesForaDeBolsa: string
+    - mercadoOpcoesOuro: string
+    - mercadoOpcoesOutros: string
+    - mercadoTermoAcoes: string
+    - mercadoTermoOutros: string
+    - mercadoVistaAcoes: string
+    - mercadoVistaForaBolsa: string
+    - mercadoVistaOuro: string
+    - prejuizoCompensar: string
+    - resultadoLiquidoMes: string
+    - resultadoNegativoMesAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}janeiro
+  Attributes:
+    - impostoApagar: string
+    - impostoPago: string
+    - impostoRetidoFonteLei11033: string
+    - impostoRetidoFonteLei11033MesesAnteriores: string
+    - impostoRetidoFonteLei11033MesesCompensar: string
+    - irFonteDayTradeAcompensar: string
+    - irFonteDayTradeMesAtual: string
+    - irFonteDayTradeMesesAnteriores: string
+    - totalImpostoDevido: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}operacoesComuns
+    - {http://www.receita.fazenda.gov.br/declaracao}operacoesDayTrade
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}janeiro/{http://www.receita.fazenda.gov.br/declaracao}operacoesComuns
+  Attributes:
+    - aliquotaDoImposto: string
+    - baseCalculoImposto: string
+    - impostoDevido: string
+    - mercadoFuturoDolar: string
+    - mercadoFuturoIndices: string
+    - mercadoFuturoJuros: string
+    - mercadoFuturoOutros: string
+    - mercadoOpcoesAcoes: string
+    - mercadoOpcoesForaDeBolsa: string
+    - mercadoOpcoesOuro: string
+    - mercadoOpcoesOutros: string
+    - mercadoTermoAcoes: string
+    - mercadoTermoOutros: string
+    - mercadoVistaAcoes: string
+    - mercadoVistaForaBolsa: string
+    - mercadoVistaOuro: string
+    - prejuizoCompensar: string
+    - resultadoLiquidoMes: string
+    - resultadoNegativoMesAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}janeiro/{http://www.receita.fazenda.gov.br/declaracao}operacoesDayTrade
+  Attributes:
+    - aliquotaDoImposto: string
+    - baseCalculoImposto: string
+    - impostoDevido: string
+    - mercadoFuturoDolar: string
+    - mercadoFuturoIndices: string
+    - mercadoFuturoJuros: string
+    - mercadoFuturoOutros: string
+    - mercadoOpcoesAcoes: string
+    - mercadoOpcoesForaDeBolsa: string
+    - mercadoOpcoesOuro: string
+    - mercadoOpcoesOutros: string
+    - mercadoTermoAcoes: string
+    - mercadoTermoOutros: string
+    - mercadoVistaAcoes: string
+    - mercadoVistaForaBolsa: string
+    - mercadoVistaOuro: string
+    - prejuizoCompensar: string
+    - resultadoLiquidoMes: string
+    - resultadoNegativoMesAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}julho
+  Attributes:
+    - impostoApagar: string
+    - impostoPago: string
+    - impostoRetidoFonteLei11033: string
+    - impostoRetidoFonteLei11033MesesAnteriores: string
+    - impostoRetidoFonteLei11033MesesCompensar: string
+    - irFonteDayTradeAcompensar: string
+    - irFonteDayTradeMesAtual: string
+    - irFonteDayTradeMesesAnteriores: string
+    - totalImpostoDevido: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}operacoesComuns
+    - {http://www.receita.fazenda.gov.br/declaracao}operacoesDayTrade
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}julho/{http://www.receita.fazenda.gov.br/declaracao}operacoesComuns
+  Attributes:
+    - aliquotaDoImposto: string
+    - baseCalculoImposto: string
+    - impostoDevido: string
+    - mercadoFuturoDolar: string
+    - mercadoFuturoIndices: string
+    - mercadoFuturoJuros: string
+    - mercadoFuturoOutros: string
+    - mercadoOpcoesAcoes: string
+    - mercadoOpcoesForaDeBolsa: string
+    - mercadoOpcoesOuro: string
+    - mercadoOpcoesOutros: string
+    - mercadoTermoAcoes: string
+    - mercadoTermoOutros: string
+    - mercadoVistaAcoes: string
+    - mercadoVistaForaBolsa: string
+    - mercadoVistaOuro: string
+    - prejuizoCompensar: string
+    - resultadoLiquidoMes: string
+    - resultadoNegativoMesAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}julho/{http://www.receita.fazenda.gov.br/declaracao}operacoesDayTrade
+  Attributes:
+    - aliquotaDoImposto: string
+    - baseCalculoImposto: string
+    - impostoDevido: string
+    - mercadoFuturoDolar: string
+    - mercadoFuturoIndices: string
+    - mercadoFuturoJuros: string
+    - mercadoFuturoOutros: string
+    - mercadoOpcoesAcoes: string
+    - mercadoOpcoesForaDeBolsa: string
+    - mercadoOpcoesOuro: string
+    - mercadoOpcoesOutros: string
+    - mercadoTermoAcoes: string
+    - mercadoTermoOutros: string
+    - mercadoVistaAcoes: string
+    - mercadoVistaForaBolsa: string
+    - mercadoVistaOuro: string
+    - prejuizoCompensar: string
+    - resultadoLiquidoMes: string
+    - resultadoNegativoMesAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}junho
+  Attributes:
+    - impostoApagar: string
+    - impostoPago: string
+    - impostoRetidoFonteLei11033: string
+    - impostoRetidoFonteLei11033MesesAnteriores: string
+    - impostoRetidoFonteLei11033MesesCompensar: string
+    - irFonteDayTradeAcompensar: string
+    - irFonteDayTradeMesAtual: string
+    - irFonteDayTradeMesesAnteriores: string
+    - totalImpostoDevido: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}operacoesComuns
+    - {http://www.receita.fazenda.gov.br/declaracao}operacoesDayTrade
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}junho/{http://www.receita.fazenda.gov.br/declaracao}operacoesComuns
+  Attributes:
+    - aliquotaDoImposto: string
+    - baseCalculoImposto: string
+    - impostoDevido: string
+    - mercadoFuturoDolar: string
+    - mercadoFuturoIndices: string
+    - mercadoFuturoJuros: string
+    - mercadoFuturoOutros: string
+    - mercadoOpcoesAcoes: string
+    - mercadoOpcoesForaDeBolsa: string
+    - mercadoOpcoesOuro: string
+    - mercadoOpcoesOutros: string
+    - mercadoTermoAcoes: string
+    - mercadoTermoOutros: string
+    - mercadoVistaAcoes: string
+    - mercadoVistaForaBolsa: string
+    - mercadoVistaOuro: string
+    - prejuizoCompensar: string
+    - resultadoLiquidoMes: string
+    - resultadoNegativoMesAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}junho/{http://www.receita.fazenda.gov.br/declaracao}operacoesDayTrade
+  Attributes:
+    - aliquotaDoImposto: string
+    - baseCalculoImposto: string
+    - impostoDevido: string
+    - mercadoFuturoDolar: string
+    - mercadoFuturoIndices: string
+    - mercadoFuturoJuros: string
+    - mercadoFuturoOutros: string
+    - mercadoOpcoesAcoes: string
+    - mercadoOpcoesForaDeBolsa: string
+    - mercadoOpcoesOuro: string
+    - mercadoOpcoesOutros: string
+    - mercadoTermoAcoes: string
+    - mercadoTermoOutros: string
+    - mercadoVistaAcoes: string
+    - mercadoVistaForaBolsa: string
+    - mercadoVistaOuro: string
+    - prejuizoCompensar: string
+    - resultadoLiquidoMes: string
+    - resultadoNegativoMesAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}maio
+  Attributes:
+    - impostoApagar: string
+    - impostoPago: string
+    - impostoRetidoFonteLei11033: string
+    - impostoRetidoFonteLei11033MesesAnteriores: string
+    - impostoRetidoFonteLei11033MesesCompensar: string
+    - irFonteDayTradeAcompensar: string
+    - irFonteDayTradeMesAtual: string
+    - irFonteDayTradeMesesAnteriores: string
+    - totalImpostoDevido: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}operacoesComuns
+    - {http://www.receita.fazenda.gov.br/declaracao}operacoesDayTrade
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}maio/{http://www.receita.fazenda.gov.br/declaracao}operacoesComuns
+  Attributes:
+    - aliquotaDoImposto: string
+    - baseCalculoImposto: string
+    - impostoDevido: string
+    - mercadoFuturoDolar: string
+    - mercadoFuturoIndices: string
+    - mercadoFuturoJuros: string
+    - mercadoFuturoOutros: string
+    - mercadoOpcoesAcoes: string
+    - mercadoOpcoesForaDeBolsa: string
+    - mercadoOpcoesOuro: string
+    - mercadoOpcoesOutros: string
+    - mercadoTermoAcoes: string
+    - mercadoTermoOutros: string
+    - mercadoVistaAcoes: string
+    - mercadoVistaForaBolsa: string
+    - mercadoVistaOuro: string
+    - prejuizoCompensar: string
+    - resultadoLiquidoMes: string
+    - resultadoNegativoMesAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}maio/{http://www.receita.fazenda.gov.br/declaracao}operacoesDayTrade
+  Attributes:
+    - aliquotaDoImposto: string
+    - baseCalculoImposto: string
+    - impostoDevido: string
+    - mercadoFuturoDolar: string
+    - mercadoFuturoIndices: string
+    - mercadoFuturoJuros: string
+    - mercadoFuturoOutros: string
+    - mercadoOpcoesAcoes: string
+    - mercadoOpcoesForaDeBolsa: string
+    - mercadoOpcoesOuro: string
+    - mercadoOpcoesOutros: string
+    - mercadoTermoAcoes: string
+    - mercadoTermoOutros: string
+    - mercadoVistaAcoes: string
+    - mercadoVistaForaBolsa: string
+    - mercadoVistaOuro: string
+    - prejuizoCompensar: string
+    - resultadoLiquidoMes: string
+    - resultadoNegativoMesAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}marco
+  Attributes:
+    - impostoApagar: string
+    - impostoPago: string
+    - impostoRetidoFonteLei11033: string
+    - impostoRetidoFonteLei11033MesesAnteriores: string
+    - impostoRetidoFonteLei11033MesesCompensar: string
+    - irFonteDayTradeAcompensar: string
+    - irFonteDayTradeMesAtual: string
+    - irFonteDayTradeMesesAnteriores: string
+    - totalImpostoDevido: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}operacoesComuns
+    - {http://www.receita.fazenda.gov.br/declaracao}operacoesDayTrade
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}marco/{http://www.receita.fazenda.gov.br/declaracao}operacoesComuns
+  Attributes:
+    - aliquotaDoImposto: string
+    - baseCalculoImposto: string
+    - impostoDevido: string
+    - mercadoFuturoDolar: string
+    - mercadoFuturoIndices: string
+    - mercadoFuturoJuros: string
+    - mercadoFuturoOutros: string
+    - mercadoOpcoesAcoes: string
+    - mercadoOpcoesForaDeBolsa: string
+    - mercadoOpcoesOuro: string
+    - mercadoOpcoesOutros: string
+    - mercadoTermoAcoes: string
+    - mercadoTermoOutros: string
+    - mercadoVistaAcoes: string
+    - mercadoVistaForaBolsa: string
+    - mercadoVistaOuro: string
+    - prejuizoCompensar: string
+    - resultadoLiquidoMes: string
+    - resultadoNegativoMesAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}marco/{http://www.receita.fazenda.gov.br/declaracao}operacoesDayTrade
+  Attributes:
+    - aliquotaDoImposto: string
+    - baseCalculoImposto: string
+    - impostoDevido: string
+    - mercadoFuturoDolar: string
+    - mercadoFuturoIndices: string
+    - mercadoFuturoJuros: string
+    - mercadoFuturoOutros: string
+    - mercadoOpcoesAcoes: string
+    - mercadoOpcoesForaDeBolsa: string
+    - mercadoOpcoesOuro: string
+    - mercadoOpcoesOutros: string
+    - mercadoTermoAcoes: string
+    - mercadoTermoOutros: string
+    - mercadoVistaAcoes: string
+    - mercadoVistaForaBolsa: string
+    - mercadoVistaOuro: string
+    - prejuizoCompensar: string
+    - resultadoLiquidoMes: string
+    - resultadoNegativoMesAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}novembro
+  Attributes:
+    - impostoApagar: string
+    - impostoPago: string
+    - impostoRetidoFonteLei11033: string
+    - impostoRetidoFonteLei11033MesesAnteriores: string
+    - impostoRetidoFonteLei11033MesesCompensar: string
+    - irFonteDayTradeAcompensar: string
+    - irFonteDayTradeMesAtual: string
+    - irFonteDayTradeMesesAnteriores: string
+    - totalImpostoDevido: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}operacoesComuns
+    - {http://www.receita.fazenda.gov.br/declaracao}operacoesDayTrade
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}novembro/{http://www.receita.fazenda.gov.br/declaracao}operacoesComuns
+  Attributes:
+    - aliquotaDoImposto: string
+    - baseCalculoImposto: string
+    - impostoDevido: string
+    - mercadoFuturoDolar: string
+    - mercadoFuturoIndices: string
+    - mercadoFuturoJuros: string
+    - mercadoFuturoOutros: string
+    - mercadoOpcoesAcoes: string
+    - mercadoOpcoesForaDeBolsa: string
+    - mercadoOpcoesOuro: string
+    - mercadoOpcoesOutros: string
+    - mercadoTermoAcoes: string
+    - mercadoTermoOutros: string
+    - mercadoVistaAcoes: string
+    - mercadoVistaForaBolsa: string
+    - mercadoVistaOuro: string
+    - prejuizoCompensar: string
+    - resultadoLiquidoMes: string
+    - resultadoNegativoMesAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}novembro/{http://www.receita.fazenda.gov.br/declaracao}operacoesDayTrade
+  Attributes:
+    - aliquotaDoImposto: string
+    - baseCalculoImposto: string
+    - impostoDevido: string
+    - mercadoFuturoDolar: string
+    - mercadoFuturoIndices: string
+    - mercadoFuturoJuros: string
+    - mercadoFuturoOutros: string
+    - mercadoOpcoesAcoes: string
+    - mercadoOpcoesForaDeBolsa: string
+    - mercadoOpcoesOuro: string
+    - mercadoOpcoesOutros: string
+    - mercadoTermoAcoes: string
+    - mercadoTermoOutros: string
+    - mercadoVistaAcoes: string
+    - mercadoVistaForaBolsa: string
+    - mercadoVistaOuro: string
+    - prejuizoCompensar: string
+    - resultadoLiquidoMes: string
+    - resultadoNegativoMesAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}outubro
+  Attributes:
+    - impostoApagar: string
+    - impostoPago: string
+    - impostoRetidoFonteLei11033: string
+    - impostoRetidoFonteLei11033MesesAnteriores: string
+    - impostoRetidoFonteLei11033MesesCompensar: string
+    - irFonteDayTradeAcompensar: string
+    - irFonteDayTradeMesAtual: string
+    - irFonteDayTradeMesesAnteriores: string
+    - totalImpostoDevido: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}operacoesComuns
+    - {http://www.receita.fazenda.gov.br/declaracao}operacoesDayTrade
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}outubro/{http://www.receita.fazenda.gov.br/declaracao}operacoesComuns
+  Attributes:
+    - aliquotaDoImposto: string
+    - baseCalculoImposto: string
+    - impostoDevido: string
+    - mercadoFuturoDolar: string
+    - mercadoFuturoIndices: string
+    - mercadoFuturoJuros: string
+    - mercadoFuturoOutros: string
+    - mercadoOpcoesAcoes: string
+    - mercadoOpcoesForaDeBolsa: string
+    - mercadoOpcoesOuro: string
+    - mercadoOpcoesOutros: string
+    - mercadoTermoAcoes: string
+    - mercadoTermoOutros: string
+    - mercadoVistaAcoes: string
+    - mercadoVistaForaBolsa: string
+    - mercadoVistaOuro: string
+    - prejuizoCompensar: string
+    - resultadoLiquidoMes: string
+    - resultadoNegativoMesAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}outubro/{http://www.receita.fazenda.gov.br/declaracao}operacoesDayTrade
+  Attributes:
+    - aliquotaDoImposto: string
+    - baseCalculoImposto: string
+    - impostoDevido: string
+    - mercadoFuturoDolar: string
+    - mercadoFuturoIndices: string
+    - mercadoFuturoJuros: string
+    - mercadoFuturoOutros: string
+    - mercadoOpcoesAcoes: string
+    - mercadoOpcoesForaDeBolsa: string
+    - mercadoOpcoesOuro: string
+    - mercadoOpcoesOutros: string
+    - mercadoTermoAcoes: string
+    - mercadoTermoOutros: string
+    - mercadoVistaAcoes: string
+    - mercadoVistaForaBolsa: string
+    - mercadoVistaOuro: string
+    - prejuizoCompensar: string
+    - resultadoLiquidoMes: string
+    - resultadoNegativoMesAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}setembro
+  Attributes:
+    - impostoApagar: string
+    - impostoPago: string
+    - impostoRetidoFonteLei11033: string
+    - impostoRetidoFonteLei11033MesesAnteriores: string
+    - impostoRetidoFonteLei11033MesesCompensar: string
+    - irFonteDayTradeAcompensar: string
+    - irFonteDayTradeMesAtual: string
+    - irFonteDayTradeMesesAnteriores: string
+    - totalImpostoDevido: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}operacoesComuns
+    - {http://www.receita.fazenda.gov.br/declaracao}operacoesDayTrade
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}setembro/{http://www.receita.fazenda.gov.br/declaracao}operacoesComuns
+  Attributes:
+    - aliquotaDoImposto: string
+    - baseCalculoImposto: string
+    - impostoDevido: string
+    - mercadoFuturoDolar: string
+    - mercadoFuturoIndices: string
+    - mercadoFuturoJuros: string
+    - mercadoFuturoOutros: string
+    - mercadoOpcoesAcoes: string
+    - mercadoOpcoesForaDeBolsa: string
+    - mercadoOpcoesOuro: string
+    - mercadoOpcoesOutros: string
+    - mercadoTermoAcoes: string
+    - mercadoTermoOutros: string
+    - mercadoVistaAcoes: string
+    - mercadoVistaForaBolsa: string
+    - mercadoVistaOuro: string
+    - prejuizoCompensar: string
+    - resultadoLiquidoMes: string
+    - resultadoNegativoMesAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavel/{http://www.receita.fazenda.gov.br/declaracao}setembro/{http://www.receita.fazenda.gov.br/declaracao}operacoesDayTrade
+  Attributes:
+    - aliquotaDoImposto: string
+    - baseCalculoImposto: string
+    - impostoDevido: string
+    - mercadoFuturoDolar: string
+    - mercadoFuturoIndices: string
+    - mercadoFuturoJuros: string
+    - mercadoFuturoOutros: string
+    - mercadoOpcoesAcoes: string
+    - mercadoOpcoesForaDeBolsa: string
+    - mercadoOpcoesOuro: string
+    - mercadoOpcoesOutros: string
+    - mercadoTermoAcoes: string
+    - mercadoTermoOutros: string
+    - mercadoVistaAcoes: string
+    - mercadoVistaForaBolsa: string
+    - mercadoVistaOuro: string
+    - prejuizoCompensar: string
+    - resultadoLiquidoMes: string
+    - resultadoNegativoMesAnterior: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendaVariavelDependente
+  Attributes:
+    - tipoItens: string
+    - totalBaseCalculo: string
+    - totalIRFonteDayTrade: string
+    - totalImpostoAPagar: string
+    - totalImpostoPago: string
+    - totalImpostoRetidoFonteLei11033: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}rendimentosAplicacoesFinanceiras
+  Attributes:
+    - tipoItens: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}resumo
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}calculoImposto
+    - {http://www.receita.fazenda.gov.br/declaracao}identificadorDeclaracao
+    - {http://www.receita.fazenda.gov.br/declaracao}outrasInformacoes
+    - {http://www.receita.fazenda.gov.br/declaracao}rendimentosTributaveisDeducoes
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}resumo/{http://www.receita.fazenda.gov.br/declaracao}calculoImposto
+  Attributes:
+    - agencia: int
+    - aliquotaEfetiva: string
+    - banco: int
+    - baseCalculo: string
+    - carneLeaoDependentes: string
+    - carneLeaoTitular: string
+    - contaCredito: string
+    - deducaoIncentivo: string
+    - descontoSimplificado: string
+    - dvAgencia: string
+    - dvContaCredito: int
+    - imposto: string
+    - impostoComplementar: string
+    - impostoDevido: string
+    - impostoDevidoI: string
+    - impostoDevidoII: string
+    - impostoDevidoLei14754: string
+    - impostoDevidoRRA: string
+    - impostoPagoExterior: string
+    - impostoRestituir: string
+    - impostoRetidoFonteDependentes: string
+    - impostoRetidoFonteLei11033: string
+    - impostoRetidoFonteTitular: string
+    - impostoRetidoRRA: string
+    - operacao: string
+    - rendAcmDependentes: string
+    - rendAcmTitular: string
+    - rendPFEXTRecebidoDependentes: string
+    - rendPFEXTRecebidoTitular: string
+    - rendPJRecebidoDependentes: string
+    - rendPJRecebidoTitular: string
+    - resultadoTributavelAR: string
+    - saldoImpostoPagar: string
+    - tipoConta: string
+    - totalContribEmpregadoDomestico: string
+    - totalImpostoPago: string
+    - totalResultadosTributaveis: string
+  Children:
+    - {http://www.receita.fazenda.gov.br/declaracao}identificadorDec
+    - {http://www.receita.fazenda.gov.br/declaracao}parcelamento
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}resumo/{http://www.receita.fazenda.gov.br/declaracao}calculoImposto/{http://www.receita.fazenda.gov.br/declaracao}identificadorDec
+  Attributes:
+    - cpf: string
+    - dataCriacao: string
+    - dataUltimoAcesso: string
+    - declaracaoRetificadora: int
+    - enderecoDiferente: string
+    - exercicio: int
+    - inCLWeb: string
+    - inNovaDeclaracao: int
+    - inUtilizouAPP: int
+    - inUtilizouAssistidaFontePagadora: int
+    - inUtilizouAssistidaPlanoSaude: int
+    - inUtilizouOnLine: int
+    - inUtilizouPGD: int
+    - inUtilizouRascunho: int
+    - inUtilizouSalvarRecuperarOnLine: int
+    - nome: string
+    - numReciboDecRetif: string
+    - numReciboTransmitido: int
+    - numeroReciboDecAnterior: int
+    - prepreenchida: int
+    - resultadoDeclaracao: string
+    - tipoDeclaracao: int
+    - tipoDeclaracaoAES: string
+    - tpIniciada: int
+    - tpTransmitida: string
+    - transmitida: int
+    - versaoBeta: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}resumo/{http://www.receita.fazenda.gov.br/declaracao}calculoImposto/{http://www.receita.fazenda.gov.br/declaracao}parcelamento
+  Attributes:
+    - debitoAutomatico: string
+    - indicadorPrimeiraQuota: string
+    - numQuotas: int
+    - valorQuota: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}resumo/{http://www.receita.fazenda.gov.br/declaracao}identificadorDeclaracao
+  Attributes:
+    - cpf: string
+    - dataCriacao: string
+    - dataUltimoAcesso: string
+    - declaracaoRetificadora: int
+    - enderecoDiferente: string
+    - exercicio: int
+    - inCLWeb: string
+    - inNovaDeclaracao: int
+    - inUtilizouAPP: int
+    - inUtilizouAssistidaFontePagadora: int
+    - inUtilizouAssistidaPlanoSaude: int
+    - inUtilizouOnLine: int
+    - inUtilizouPGD: int
+    - inUtilizouRascunho: int
+    - inUtilizouSalvarRecuperarOnLine: int
+    - nome: string
+    - numReciboDecRetif: string
+    - numReciboTransmitido: int
+    - numeroReciboDecAnterior: int
+    - prepreenchida: int
+    - resultadoDeclaracao: string
+    - tipoDeclaracao: int
+    - tipoDeclaracaoAES: string
+    - tpIniciada: int
+    - tpTransmitida: string
+    - transmitida: int
+    - versaoBeta: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}resumo/{http://www.receita.fazenda.gov.br/declaracao}outrasInformacoes
+  Attributes:
+    - bensDireitosExercicioAnterior: string
+    - bensDireitosExercicioAtual: string
+    - depositosJudiciais: string
+    - dividasOnusReaisExercicioAnterior: string
+    - dividasOnusReaisExercicioAtual: string
+    - impostoDevidoGCAP: string
+    - impostoDevidoGCME: string
+    - impostoDevidoRendaVariavel: string
+    - impostoDiferidoGCAP: string
+    - impostoEspecie: string
+    - impostoPagoGCAP: string
+    - impostoPagoME: string
+    - impostoPagoSobreRendaVariavel: string
+    - rendIsentosNaoTributaveis: string
+    - rendIsentosTributacaoExclusiva: string
+    - rendTributaveisExigibilidadeSuspensa: string
+    - totalDoacoesCampanhasEleitorais: string
+    - totalImpostoRetidoNaFonte: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}resumo/{http://www.receita.fazenda.gov.br/declaracao}rendimentosTributaveisDeducoes
+  Attributes:
+    - dependentes: string
+    - despesasInstrucao: string
+    - despesasMedicas: string
+    - livroCaixa: string
+    - pensaoAlimenticia: string
+    - pensaoAlimenticiaRRA: string
+    - pensaoCartoral: string
+    - previdencia: string
+    - previdenciaOficial: string
+    - previdenciaOficialRRA: string
+    - rendRecebidoAcmDependentes: string
+    - rendRecebidoAcmTitular: string
+    - rendRecebidoPFEXTDependentes: string
+    - rendRecebidoPFEXTTitular: string
+    - rendRecebidoPJDependentes: string
+    - rendRecebidoPJTitular: string
+    - rendTributavelAR: string
+    - totalDeducoes: string
+    - totalRendimentos: string
+
+Element: {http://www.receita.fazenda.gov.br/declaracao}classe/{http://www.receita.fazenda.gov.br/declaracao}saida
+  Attributes:
+    - cpfProcurador: string
+    - dtCondicaoNaoResidente: string
+    - dtCondicaoResidente: string
+    - endProcurador: string
+    - nomeProcurador: string
+    - paisResidencia: string
