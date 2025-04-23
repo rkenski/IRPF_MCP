@@ -1,5 +1,0 @@
-CPF:
-OPENAI_API_KEY:  #Deixe em branco caso a sua chave de API já esteja no arquivo .env
-IRPF_DIR_2025: /ProgramasRFB/IRPF2025 #Diretório do programa IRPF 2025
-
-
