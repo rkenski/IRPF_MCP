@@ -1,5 +1,7 @@
 *.DEC
 *.REC
 meus_arquivos/*
-
-
+.gitignore
+.env
+.venv/*
+setup.yaml
