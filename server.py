@@ -1,40 +1,40 @@
 from mcp.server.fastmcp import FastMCP
+from llama_index.core.node_parser import MarkdownNodeParser
+from llama_index.readers.docling import DoclingReader
+from pathlib import Path
 import yaml
 
 
+#Setup Básico
 mcp = FastMCP("IRPF_MCP")
 with open("setup.yaml", "r", encoding="utf-8") as file:
     config = yaml.safe_load(file)
 
-print(config)
-
 '''
 Resources: 
-- Declaração de IR (IRPF)
-- Lista de documentos disponíveis (get_document)
+- Declaração de IR (IRPF) - OK
+- Full docs db
+- Docs vector db
 
 Tools:
 - IR KB
-    - Docs da receita
+    - Docs da receita em vector database
     - Custom sources
 '''
 
 @mcp.resource("declaracao://2025")
-def ler_declaracao():
+def ler_declaracao_atual():
     """Reads the XML file.
 
     Returns:
         dict: XML content.
     """
-    ir_xml = f"{config['IRPF_DIR_2025']}/aplicacao/dados/{config['CPF']}/{config['CPF']}-0000000000.xml"
+    ir_xml = Path.home() / config['IRPF_DIR_2025'] / "aplicacao" / "dados" / str(config['CPF']) / f"{config['CPF']}-0000000000.xml"
     with open(ir_xml, "r") as f:
         return f.read()
-    with open(ir_xml, "r") as f:
-        ir= f.read()
 
-
-@mcp.resource()
-def read_schema():
+@mcp.resource("declaracao://schema")
+def ler_schema_declaracao():
     """Reads the XML schema file.
 
     Returns:
@@ -42,6 +42,31 @@ def read_schema():
     """
     with open("schema.txt", "r") as f:
         return f.read()
+
+def criar_db_documentos(doc_folder):
+    reader = DoclingReader()
+    node_parser = MarkdownNodeParser()
+
+    index = VectorStoreIndex.from_documents(
+        documents=reader.load_data(SOURCE),
+        transformations=[node_parser],
+        embed_model=EMBED_MODEL,
+    )
+    result = index.as_query_engine(llm=GEN_MODEL).query(QUERY)
+    print(f"Q: {QUERY}\nA: {result.response.strip()}\n\nSources:")
+    display([(n.text, n.metadata) for n in result.source_nodes])
+
+    pass
+
+def baixar_textos_receita():
+    pass
+
+def criar_kb_vector_store():
+    pass
+
+
+
+
 
 '''@mcp.tool()
 def read_xml():
@@ -69,3 +94,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     '''
     mcp.run("stdio")
+
+
+
+'ProgramasRFB/IRPF2025/aplicacao/dados/30390505838/30390505838-0000000000.xml'

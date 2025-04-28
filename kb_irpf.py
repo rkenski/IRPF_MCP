@@ -1,7 +1,3 @@
-links = ["https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/perguntas-frequentes/imposto-de-renda/dirpf"]
-
-
-
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
@@ -87,48 +83,7 @@ def crawl_irpf(BASE_URL):
 
 result = crawl_irpf(BASE_URL)
 
-
-
-def get_links_from_page(url):
-    # Requisição da página
-    response = requests.get(url)
-    response.raise_for_status()  # levanta erro se falhar
-
-    # Parse do HTML
-    soup = BeautifulSoup(response.text, "html.parser")
-
-    # Coletar todos os links da página
-    links = set()
-    for a_tag in soup.find_all("a", href=True):
-        href = a_tag["href"]
-        full_url = urljoin(BASE_URL, href)
-
-        # Filtra apenas links do mesmo domínio
-        if urlparse(full_url).netloc.endswith("gov.br"):
-            links.add(full_url)
-    return links
-
-
-valids = [x for x in get_links_from_page(BASE_URL) if BASE_URL in x]
-
-
-all_links = []
-for i in tqdm(valids):
-    all_links.extend(get_links_from_page(i))
-
-
-new_valids = [x for x in all_links if BASE_URL in x]
-len(valids)
-len(new_valids)
-
-
 all_links = list(set([x.url for x in result]))
-
-from trafilatura import extract   
-extract(all_links[0], output_format="json", with_metadata=True)
-
-k = extract(all_links[0], output_format="json", with_metadata=True)
-
 
 # import the necessary functions
 from trafilatura import fetch_url, extract
@@ -136,3 +91,9 @@ from trafilatura import fetch_url, extract
 # grab a HTML file to extract data from
 urls = [fetch_url(x) for x in all_links]
 kb = [extract(x, output_format="json", with_metadata=True) for x in urls]
+import json
+with open("knowledge_base/textos_receita.json", "w") as f:
+    json.dump(kb, f, indent=4)
+
+#Create vector store
+

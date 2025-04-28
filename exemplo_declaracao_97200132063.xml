@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classe xmlns="http://www.receita.fazenda.gov.br/declaracao" classeJava="serpro.ppgd.irpf.DeclaracaoIRPF" dataHoraSalvamento="24/04/2025 16:32:00" utlimoCPFAutenticado="972.001.320-63">
+  <contribuinte bairro="CENTRO" bairroExt="" baseCalculoFinalLei14754="0,00" celular="999999999" cep="01000-000" cepExt="" cidade="SÃO PAULO" codigoExterior="" complemento="APTO 101" complementoExt="" conjuge="0" cpfConjuge="" cpfProcurador="   .   .   -  " dataNascimento="01/01/1980" dataRetorno="  /  /    " ddd="" dddCelular="11" ddi="" deficiente="" email="teste@exemplo.com" exterior="0" impostoDevidoLei14754="0,00" logradouro="RUA DE TESTE" logradouroExt="" municipio="7107" naturezaOcupacao="01" nomePais="" numero="123" numeroExt="" ocupacaoPrincipal="261" pais="105" prejuizoAnoAnteriorLei14754="0,00" processoDigital="" registroProfissional="" retornoPais="" telefone="" telefoneExt="" tipoLogradouro="RUA" tituloEleitor="" uf="SP"/>
+  <dependentes tipoItens="serpro.ppgd.irpf.dependentes.Dependente">
+    <item codigo="01" cpfDependente="123.456.789-00" dataNascimento="01/01/2010" ddd="" dummy="" email="" indMoraComTitular="1" indSaidaPaisMesmaData="" nome="DEPENDENTE TESTE" telefone=""/>
+  </dependentes>
+  <alimentandos confirmacao="" tipoItens="serpro.ppgd.irpf.alimentandos.Alimentando"/>
+  <rendPJ totalRendRecebPessoaJuridica="10000,00">
+    <colecaoRendPJTitular niMaiorFontePagadora="11.111.111/0001-11" tipoItens="serpro.ppgd.irpf.rendpj.RendPJTitular" totaisContribuicaoPrevOficial="1000,00" totaisDecimoTerceiro="800,00" totaisIRRFDecimoTerceiro="100,00" totaisImpostoRetidoFonte="1500,00" totaisRendRecebidoPJ="10000,00">
+      <item IRRFDecimoTerceiro="100,00" NIFontePagadora="11.111.111/0001-11" contribuicaoPrevOficial="1000,00" dataComunicacaoSaida="  /  /    " decimoTerceiro="800,00" impostoRetidoFonte="1500,00" nomeFontePagadora="EMPRESA DE TESTE LTDA" rendRecebidoPJ="10000,00"/>
+    </colecaoRendPJTitular>
+    <colecaoRendPJDependente niMaiorFontePagadora="" tipoItens="serpro.ppgd.irpf.rendpj.RendPJTitular" totaisContribuicaoPrevOficial="0,00" totaisDecimoTerceiro="0,00" totaisIRRFDecimoTerceiro="0,00" totaisImpostoRetidoFonte="0,00" totaisRendRecebidoPJ="0,00"/>
+  </rendPJ>
+  <rendPJComExigibilidade>
+    <colecaoRendPJComExigibilidadeTitular tipoItens="serpro.ppgd.irpf.rendpjexigibilidade.RendPJComExigibilidadeTitular" totaisDepositoJudicial="0,00" totaisRendPJExigSuspensa="0,00"/>
+    <colecaoRendPJComExigibilidadeDependente tipoItens="serpro.ppgd.irpf.rendpjexigibilidade.RendPJComExigibilidadeTitular" totaisDepositoJudicial="0,00" totaisRendPJExigSuspensa="0,00"/>
+  </rendPJComExigibilidade>
+  <rendPFTitular NITPISPASEP="" totalAlugueis="0,00" totalDarfPago="0,00" totalDependentes="0,00" totalExterior="0,00" totalImpostoPagoExteriorCompensar="0,00" totalLivroCaixa="0,00" totalNumDependentes="" totalOutros="0,00" totalPensao="0,00" totalPessoaFisica="0,00" totalPrevidencia="0,00" usouImportacaoCarneLeaoWeb="">
+    <janeiro alugueis="0,00" carneLeao="0,00" darfPago="0,00" dependentes="0,00" exterior="0,00" impostoPagoCompensarExterior="0,00" livroCaixa="0,00" mes="0" numDependentes="0" outros="0,00" pensao="0,00" pessoaFisica="0,00" previdencia="0,00"/>
+    <fevereiro alugueis="0,00" carneLeao="0,00" darfPago="0,00" dependentes="0,00" exterior="0,00" impostoPagoCompensarExterior="0,00" livroCaixa="0,00" mes="0" numDependentes="0" outros="0,00" pensao="0,00" pessoaFisica="0,00" previdencia="0,00"/>
+    <marco alugueis="0,00" carneLeao="0,00" darfPago="0,00" dependentes="0,00" exterior="0,00" impostoPagoCompensarExterior="0,00" livroCaixa="0,00" mes="0" numDependentes="0" outros="0,00" pensao="0,00" pessoaFisica="0,00" previdencia="0,00"/>
+    <abril alugueis="0,00" carneLeao="0,00" darfPago="0,00" dependentes="0,00" exterior="0,00" impostoPagoCompensarExterior="0,00" livroCaixa="0,00" mes="0" numDependentes="0" outros="0,00" pensao="0,00" pessoaFisica="0,00" previdencia="0,00"/>
+    <maio alugueis="0,00" carneLeao="0,00" darfPago="0,00" dependentes="0,00" exterior="0,00" impostoPagoCompensarExterior="0,00" livroCaixa="0,00" mes="0" numDependentes="0" outros="0,00" pensao="0,00" pessoaFisica="0,00" previdencia="0,00"/>
+    <junho alugueis="0,00" carneLeao="0,00" darfPago="0,00" dependentes="0,00" exterior="0,00" impostoPagoCompensarExterior="0,00" livroCaixa="0,00" mes="0" numDependentes="0" outros="0,00" pensao="0,00" pessoaFisica="0,00" previdencia="0,00"/>
+    <julho alugueis="0,00" carneLeao="0,00" darfPago="0,00" dependentes="0,00" exterior="0,00" impostoPagoCompensarExterior="0,00" livroCaixa="0,00" mes="0" numDependentes="0" outros="0,00" pensao="0,00" pessoaFisica="0,00" previdencia="0,00"/>
+    <agosto alugueis="0,00" carneLeao="0,00" darfPago="0,00" dependentes="0,00" exterior="0,00" impostoPagoCompensarExterior="0,00" livroCaixa="0,00" mes="0" numDependentes="0" outros="0,00" pensao="0,00" pessoaFisica="0,00" previdencia="0,00"/>
+    <setembro alugueis="0,00" carneLeao="0,00" darfPago="0,00" dependentes="0,00" exterior="0,00" impostoPagoCompensarExterior="0,00" livroCaixa="0,00" mes="0" numDependentes="0" outros="0,00" pensao="0,00" pessoaFisica="0,00" previdencia="0,00"/>
+    <outubro alugueis="0,00" carneLeao="0,00" darfPago="0,00" dependentes="0,00" exterior="0,00" impostoPagoCompensarExterior="0,00" livroCaixa="0,00" mes="0" numDependentes="0" outros="0,00" pensao="0,00" pessoaFisica="0,00" previdencia="0,00"/>
+    <novembro alugueis="0,00" carneLeao="0,00" darfPago="0,00" dependentes="0,00" exterior="0,00" impostoPagoCompensarExterior="0,00" livroCaixa="0,00" mes="0" numDependentes="0" outros="0,00" pensao="0,00" pessoaFisica="0,00" previdencia="0,00"/>
+    <dezembro alugueis="0,00" carneLeao="0,00" darfPago="0,00" dependentes="0,00" exterior="0,00" impostoPagoCompensarExterior="0,00" livroCaixa="0,00" mes="0" numDependentes="0" outros="0,00" pensao="0,00" pessoaFisica="0,00" previdencia="0,00"/>
+    <contasAno>
+      <janeiro nomeMes="1" tipoItens="serpro.ppgd.irpf.rendpf.Conta" totalRendTrabNaoAssPF="0,00"/>
+      <fevereiro nomeMes="2" tipoItens="serpro.ppgd.irpf.rendpf.Conta" totalRendTrabNaoAssPF="0,00"/>
+      <marco nomeMes="3" tipoItens="serpro.ppgd.irpf.rendpf.Conta" totalRendTrabNaoAssPF="0,00"/>
+      <abril nomeMes="4" tipoItens="serpro.ppgd.irpf.rendpf.Conta" totalRendTrabNaoAssPF="0,00"/>
+      <maio nomeMes="5" tipoItens="serpro.ppgd.irpf.rendpf.Conta" totalRendTrabNaoAssPF="0,00"/>
+      <junho nomeMes="6" tipoItens="serpro.ppgd.irpf.rendpf.Conta" totalRendTrabNaoAssPF="0,00"/>
+      <julho nomeMes="7" tipoItens="serpro.ppgd.irpf.rendpf.Conta" totalRendTrabNaoAssPF="0,00"/>
+      <agosto nomeMes="8" tipoItens="serpro.ppgd.irpf.rendpf.Conta" totalRendTrabNaoAssPF="0,00"/>
+      <setembro nomeMes="9" tipoItens="serpro.ppgd.irpf.rendpf.Conta" totalRendTrabNaoAssPF="0,00"/>
+      <outubro nomeMes="10" tipoItens="serpro.ppgd.irpf.rendpf.Conta" totalRendTrabNaoAssPF="0,00"/>
+      <novembro nomeMes="11" tipoItens="serpro.ppgd.irpf.rendpf.Conta" totalRendTrabNaoAssPF="0,00"/>
+      <dezembro nomeMes="12" tipoItens="serpro.ppgd.irpf.rendpf.Conta" totalRendTrabNaoAssPF="0,00"/>
+    </contasAno>
+  </rendPFTitular>
+  <rendPFDependente tipoItens="serpro.ppgd.irpf.rendpf.ItemRendPFDependente" totalAlugueis="0,00" totalDarfPago="0,00" totalDependentes="0,00" totalExterior="0,00" totalImpostoPagoExteriorCompensar="0,00" totalLivroCaixa="0,00" totalOutros="0,00" totalPensao="0,00" totalPessoaFisica="0,00" totalPrevidencia="0,00" usouImportacaoCarneLeaoWeb=""/>
+  <alimentandos confirmacao="" tipoItens="serpro.ppgd.irpf.alimentandos.Alimentando"/>
+  <bens tipoItens="serpro.ppgd.irpf.bens.Bem" totalExercicioAnterior="10000,00" totalExercicioAtual="20000,00" totalItens="3" ultimoIndiceGerado="00004">
+    <item agencia="1234" banco="001" conta="123456-7" cpfBeneficiario="972.001.320-63" discriminacao="BANCO DO BRASIL S.A. - CONTA CORRENTE" grupo="06" indice="00001" nomePais="105 - Brasil" pais="105" registrado="2" tipo="T" unidade="2" valorExercicioAnterior="1000,00" valorExercicioAtual="1500,00"/>
+    <item agencia="4321" banco="237" conta="765432-1" cpfBeneficiario="972.001.320-63" discriminacao="BANCO BRADESCO S.A. - CONTA CORRENTE" grupo="06" indice="00002" nomePais="105 - Brasil" pais="105" registrado="2" tipo="T" unidade="2" valorExercicioAnterior="2000,00" valorExercicioAtual="2500,00"/>
+    <item banco="341" conta="111111-1" cpfBeneficiario="972.001.320-63" discriminacao="ITAU UNIBANCO S.A. - CONTA CORRENTE" grupo="06" indice="00003" nomePais="105 - Brasil" pais="105" registrado="2" tipo="T" unidade="2" valorExercicioAnterior="5000,00" valorExercicioAtual="7000,00"/>
+  </bens>
+  <dividas tipoItens="serpro.ppgd.irpf.dividas.Divida" totalExercicioAnterior="0,00" totalExercicioAtual="0,00" totalPgtoAnual="0,00" ultimoIndiceGerado=""/>
+  <resumo>
+    <outrasInformacoes bensDireitosExercicioAnterior="10000,00" bensDireitosExercicioAtual="20000,00" depositosJudiciais="0,00" dividasOnusReaisExercicioAnterior="0,00" dividasOnusReaisExercicioAtual="0,00" impostoDevidoGCAP="0,00" impostoDevidoGCME="0,00" impostoDevidoRendaVariavel="0,00" impostoDiferidoGCAP="0,00" impostoEspecie="0,00" impostoPagoGCAP="0,00" impostoPagoME="0,00" impostoPagoSobreRendaVariavel="0,00" rendIsentosNaoTributaveis="0,00" rendIsentosTributacaoExclusiva="0,00" rendTributaveisExigibilidadeSuspensa="0,00" totalDoacoesCampanhasEleitorais="0,00" totalImpostoRetidoNaFonte="0,00"/>
+    <identificadorDeclaracao cpf="972.001.320-63" dataCriacao="24/04/2025 16:32:00" nome="CONTRIBUINTE TESTE" exercicio="2025"/>
+  </resumo>
+</classe>

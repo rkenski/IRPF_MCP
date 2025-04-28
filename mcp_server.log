@@ -1,0 +1,73 @@
+2025-04-24 16:17:32,170 - IRPF_MCP - INFO - Starting MCP server for IRPF_POC
+2025-04-24 16:17:32,175 - mcp.server.lowlevel.server - DEBUG - Initializing server 'IRPF_POC'
+2025-04-24 16:17:32,175 - mcp.server.lowlevel.server - DEBUG - Registering handler for ListToolsRequest
+2025-04-24 16:17:32,176 - mcp.server.lowlevel.server - DEBUG - Registering handler for CallToolRequest
+2025-04-24 16:17:32,176 - mcp.server.lowlevel.server - DEBUG - Registering handler for ListResourcesRequest
+2025-04-24 16:17:32,176 - mcp.server.lowlevel.server - DEBUG - Registering handler for ReadResourceRequest
+2025-04-24 16:17:32,176 - mcp.server.lowlevel.server - DEBUG - Registering handler for PromptListRequest
+2025-04-24 16:17:32,176 - mcp.server.lowlevel.server - DEBUG - Registering handler for GetPromptRequest
+2025-04-24 16:17:32,176 - mcp.server.lowlevel.server - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-04-24 16:17:32,185 - IRPF_MCP - INFO - Loading config from /home/kenski/projects/IRPF_MCP/setup.yaml
+2025-04-24 16:17:32,187 - IRPF_MCP - INFO - Config loaded successfully: {'CPF': 30390505838, 'OPENAI_API_KEY': None, 'IRPF_DIR_2025': '/home/kenski/ProgramasRFB/IRPF2025', 'CHUNK_SIZE': 1000}
+2025-04-24 16:17:32,188 - mcp.server.fastmcp.resources.resource_manager - DEBUG - Adding resource
+2025-04-24 16:18:07,424 - IRPF_MCP - INFO - Starting MCP server for IRPF_POC
+2025-04-24 16:18:07,427 - mcp.server.lowlevel.server - DEBUG - Initializing server 'IRPF_POC'
+2025-04-24 16:18:07,427 - mcp.server.lowlevel.server - DEBUG - Registering handler for ListToolsRequest
+2025-04-24 16:18:07,428 - mcp.server.lowlevel.server - DEBUG - Registering handler for CallToolRequest
+2025-04-24 16:18:07,428 - mcp.server.lowlevel.server - DEBUG - Registering handler for ListResourcesRequest
+2025-04-24 16:18:07,428 - mcp.server.lowlevel.server - DEBUG - Registering handler for ReadResourceRequest
+2025-04-24 16:18:07,428 - mcp.server.lowlevel.server - DEBUG - Registering handler for PromptListRequest
+2025-04-24 16:18:07,428 - mcp.server.lowlevel.server - DEBUG - Registering handler for GetPromptRequest
+2025-04-24 16:18:07,428 - mcp.server.lowlevel.server - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-04-24 16:18:07,435 - IRPF_MCP - INFO - Loading config from /home/kenski/projects/IRPF_MCP/setup.yaml
+2025-04-24 16:18:07,437 - IRPF_MCP - INFO - Config loaded successfully: {'CPF': 30390505838, 'OPENAI_API_KEY': None, 'IRPF_DIR_2025': '/home/kenski/ProgramasRFB/IRPF2025', 'CHUNK_SIZE': 1000}
+2025-04-24 16:18:07,438 - mcp.server.fastmcp.resources.resource_manager - DEBUG - Adding resource
+2025-04-24 16:18:07,441 - IRPF_MCP - INFO - 🚀 Starting MCP server on stdio...
+2025-04-24 16:18:07,446 - asyncio - DEBUG - Using selector: EpollSelector
+2025-04-24 16:18:45,209 - IRPF_MCP - INFO - Starting MCP server for IRPF_POC
+2025-04-24 16:18:45,214 - mcp.server.lowlevel.server - DEBUG - Initializing server 'IRPF_POC'
+2025-04-24 16:18:45,215 - mcp.server.lowlevel.server - DEBUG - Registering handler for ListToolsRequest
+2025-04-24 16:18:45,215 - mcp.server.lowlevel.server - DEBUG - Registering handler for CallToolRequest
+2025-04-24 16:18:45,215 - mcp.server.lowlevel.server - DEBUG - Registering handler for ListResourcesRequest
+2025-04-24 16:18:45,215 - mcp.server.lowlevel.server - DEBUG - Registering handler for ReadResourceRequest
+2025-04-24 16:18:45,215 - mcp.server.lowlevel.server - DEBUG - Registering handler for PromptListRequest
+2025-04-24 16:18:45,215 - mcp.server.lowlevel.server - DEBUG - Registering handler for GetPromptRequest
+2025-04-24 16:18:45,215 - mcp.server.lowlevel.server - DEBUG - Registering handler for ListResourceTemplatesRequest
+2025-04-24 16:18:45,222 - IRPF_MCP - INFO - Loading config from /home/kenski/projects/IRPF_MCP/setup.yaml
+2025-04-24 16:18:45,224 - IRPF_MCP - INFO - Config loaded successfully: {'CPF': 30390505838, 'OPENAI_API_KEY': None, 'IRPF_DIR_2025': '/home/kenski/ProgramasRFB/IRPF2025', 'CHUNK_SIZE': 1000}
+2025-04-24 16:18:45,225 - mcp.server.fastmcp.resources.resource_manager - DEBUG - Adding resource
+2025-04-24 16:18:45,229 - IRPF_MCP - INFO - 🚀 Starting MCP server on stdio...
+2025-04-24 16:18:45,233 - asyncio - DEBUG - Using selector: EpollSelector
+2025-04-24 16:18:45,246 - mcp.server.lowlevel.server - DEBUG - Received message: root=InitializedNotification(method='notifications/initialized', params=None, jsonrpc='2.0')
+2025-04-24 16:18:47,887 - mcp.server.lowlevel.server - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x7fcfd6a7e770>
+2025-04-24 16:18:47,888 - mcp.server.lowlevel.server - INFO - Processing request of type ListResourcesRequest
+2025-04-24 16:18:47,888 - mcp.server.lowlevel.server - DEBUG - Dispatching request of type ListResourcesRequest
+2025-04-24 16:18:47,888 - mcp.server.fastmcp.resources.resource_manager - DEBUG - Listing resources
+2025-04-24 16:18:47,889 - mcp.server.lowlevel.server - DEBUG - Response sent
+2025-04-24 16:18:53,711 - mcp.server.lowlevel.server - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x7fcfd6a7db10>
+2025-04-24 16:18:53,711 - mcp.server.lowlevel.server - INFO - Processing request of type ListResourceTemplatesRequest
+2025-04-24 16:18:53,711 - mcp.server.lowlevel.server - DEBUG - Dispatching request of type ListResourceTemplatesRequest
+2025-04-24 16:18:53,711 - mcp.server.fastmcp.resources.resource_manager - DEBUG - Listing templates
+2025-04-24 16:18:53,712 - mcp.server.lowlevel.server - DEBUG - Response sent
+2025-04-24 16:18:56,460 - mcp.server.lowlevel.server - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x7fcfd6a7e440>
+2025-04-24 16:18:56,460 - mcp.server.lowlevel.server - INFO - Processing request of type ListPromptsRequest
+2025-04-24 16:18:56,460 - mcp.server.lowlevel.server - DEBUG - Dispatching request of type ListPromptsRequest
+2025-04-24 16:18:56,461 - mcp.server.lowlevel.server - DEBUG - Response sent
+2025-04-24 16:18:58,566 - mcp.server.lowlevel.server - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x7fcfd6a7d8d0>
+2025-04-24 16:18:58,566 - mcp.server.lowlevel.server - INFO - Processing request of type ListToolsRequest
+2025-04-24 16:18:58,566 - mcp.server.lowlevel.server - DEBUG - Dispatching request of type ListToolsRequest
+2025-04-24 16:18:58,567 - mcp.server.lowlevel.server - DEBUG - Response sent
+2025-04-24 16:19:02,651 - mcp.server.lowlevel.server - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x7fcfd6a7d810>
+2025-04-24 16:19:02,652 - mcp.server.lowlevel.server - INFO - Processing request of type CallToolRequest
+2025-04-24 16:19:02,652 - mcp.server.lowlevel.server - DEBUG - Dispatching request of type CallToolRequest
+2025-04-24 16:19:02,652 - IRPF_MCP - INFO - Obtendo resumo da declaração
+2025-04-24 16:19:02,652 - IRPF_MCP - INFO - Attempting to read declaration XML
+2025-04-24 16:19:02,652 - IRPF_MCP - INFO - XML path: /home/kenski/ProgramasRFB/IRPF2025/aplicacao/dados/30390505838/30390505838-0000000000.xml
+2025-04-24 16:19:02,653 - IRPF_MCP - INFO - Successfully read XML (62883 characters)
+2025-04-24 16:19:02,657 - IRPF_MCP - INFO - Resumo obtido com sucesso: {'cpf': 'N/A', 'nome': 'N/A', 'ano_calendario': '2024', 'ano_exercicio': '2025', 'rendimentos': [], 'mensagem': 'Resumo extraído com sucesso da declaração IRPF'}
+2025-04-24 16:19:02,658 - mcp.server.lowlevel.server - DEBUG - Response sent
+2025-04-24 16:19:14,113 - mcp.server.lowlevel.server - DEBUG - Received message: <mcp.shared.session.RequestResponder object at 0x7fcfd6a7e590>
+2025-04-24 16:19:14,114 - mcp.server.lowlevel.server - INFO - Processing request of type CallToolRequest
+2025-04-24 16:19:14,115 - mcp.server.lowlevel.server - DEBUG - Dispatching request of type CallToolRequest
+2025-04-24 16:19:14,115 - IRPF_MCP - INFO - Verificando status da declaração
+2025-04-24 16:19:14,116 - mcp.server.lowlevel.server - DEBUG - Response sent
