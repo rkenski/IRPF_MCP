@@ -5,3 +5,5 @@ meus_arquivos/*
 .env
 .venv/*
 setup.yaml
+chroma_db/*
+dados/*
