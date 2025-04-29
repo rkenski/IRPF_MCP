@@ -10,8 +10,6 @@ import Stemmer
 import nest_asyncio
 nest_asyncio.apply()
 
-PERSIST_FOLDER = "faiss"
-
 parser = LlamaParse(
     num_workers=3,
     do_not_cache=True)
@@ -108,7 +106,6 @@ index = VectorStoreIndex.from_vector_store(
     vector_store,
     embed_model=embed_model,
 )
-
 
 query_engine = index.as_query_engine()
 response = query_engine.query("Qual é a data limite para entrega da declaração?")

@@ -1,6 +1,6 @@
 from decimal import Decimal
 from typing import Literal, Optional, List
-from pydantic import BaseModel, Field, condecimal, validator
+from pydantic import BaseModel, Field, condecimal, field_validator
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -8,9 +8,6 @@ from pydantic import BaseModel, Field, condecimal, validator
 
 # 2-decimal-places currency limited to R$ 999 999 999 999,99
 Money = condecimal(max_digits=14, decimal_places=2)
-
-# Re-usable enumeration types ------------------------------------------------
-TitDepAli = Literal["titular", "dependente", "alimentando"]
 
 
 # ---------------------------------------------------------------------------
@@ -62,8 +59,8 @@ class BemDireito(BaseModel):
         ),
     )
 
-    # Nice-to-have validator
-    @validator("valor_2024", always=True)
+    # Nice-to-have field_validator
+    @field_validator("valor_2024", always=True)
     def auto_repeat(cls, v: Decimal, values):
         if values.get("repetir_valor"):
             return values["valor_2023"]
@@ -103,42 +100,20 @@ class DoacaoEfetuada(BaseModel):
 # 3.  Novo Pagamento Efetuado  ------------------------------------------------
 # ---------------------------------------------------------------------------
 class PagamentoEfetuado(BaseModel):
-    """
-    Ficha “Pagamentos Efetuados” – despesas dedutíveis ou informativas.
-    """
+    codigo: str
+    cpf_beneficiario: str = Field(..., min_length=11, max_length=14)  # 11 digits
+    nome_beneficiario: Optional[str] = None
 
-    codigo: str = Field(
-        ...,
-        description="Código do pagamento (ex.: '10 - Médicos no Brasil').",
-    )
-    pessoa_beneficiada: TitDepAli = Field(
-        "titular",
-        description="Quem usufruiu da despesa: titular, dependente ou alimentando.",
-    )
-    cpf_prestador: Optional[str] = Field(
-        None,
-        description="CPF do profissional ou CNPJ da clínica/prestador do serviço.",
-        alias="cpf_cnpj_prestador",
-    )
-    nome_prestador: Optional[str] = Field(
-        None,
-        description="Nome completo / Razão social do prestador.",
-    )
-    descricao: Optional[str] = Field(
-        None,
-        description="Campo livre para detalhes adicionais (quando necessário).",
-    )
-    valor_pago: Money = Field(
-        ...,
-        description="Valor total pago.",
-    )
-    parcela_nao_dedutivel: Money = Field(
-        Decimal("0.00"),
-        description=(
-            "Parte não dedutível ou valor reembolsado (ex.: reembolso do plano "
-            "de saúde)."
-        ),
-    )
+    cpf_cnpj_prestador: Optional[str] = None
+    nome_prestador: Optional[str] = None
+    descricao: Optional[str] = None
+
+    valor_pago: Money
+    parcela_nao_dedutivel: Money = Decimal("0.00")
+
+    _norm_cpf = field_validator("cpf_beneficiario", allow_reuse=True)(_only_digits)
+    _norm_prest = field_validator("cpf_cnpj_prestador", allow_reuse=True)(_only_digits)
+
 
 
 # ---------------------------------------------------------------------------
@@ -153,13 +128,17 @@ class RendExclusivo(BaseModel):
         ...,
         description="Código do rendimento (ex.: '06 - Aplicações financeiras').",
     )
-    tipo_beneficiario: TitDepAli = Field(
-        "titular", description="Titularidade do rendimento."
-    )
+
     beneficiario: Optional[str] = Field(
         None,
         description="Nome do beneficiário (se dependente/alimentando).",
     )
+
+    cpf_beneficiario: str = Field(
+        ..., min_length=11,
+        max_length=14,
+        description='CPF do beneficiário do rendimento')
+
     cnpj_fonte_pagadora: str = Field(
         ...,
         description="CNPJ da fonte pagadora.",
@@ -186,13 +165,18 @@ class RendIsento(BaseModel):
         ...,
         description="Código do rendimento (ex.: '01 - Bolsas de estudo').",
     )
-    tipo_beneficiario: TitDepAli = Field(
-        "titular", description="Titularidade do rendimento."
-    )
+
     beneficiario: Optional[str] = Field(
         None,
         description="Nome do beneficiário (se dependente/alimentando).",
     )
+
+    cpf_beneficiario: str = Field(
+        ..., min_length=11,
+        max_length=14,
+        description='CPF do beneficiário do rendimento')
+
+
     cnpj_fonte_pagadora: Optional[str] = Field(
         None,
         description="CNPJ da fonte pagadora, quando existir.",
@@ -223,6 +207,17 @@ class RendTribPJ(BaseModel):
         ...,
         description="Nome da fonte pagadora.",
     )
+
+    beneficiario: Optional[str] = Field(
+        None,
+        description="Nome do beneficiário (se dependente/alimentando).",
+    )
+
+    cpf_beneficiario: str = Field(
+        ..., min_length=11,
+        max_length=14,
+        description='CPF do beneficiário do rendimento')
+
     rendimentos: Money = Field(
         ...,
         description="Total de rendimentos tributáveis (salário, pró-labore etc.).",
@@ -246,18 +241,12 @@ class RendTribPJ(BaseModel):
     )
 
 class Summary(BaseModel):
-    """
-    Curta descrição em linguagem natural da declaração.
-    Use-a para exibir um resumo em dashboards ou gerar
-    texto-livre para um PDF, por exemplo.
-    """
-
     text: str = Field(
         ...,
-        description="Resumo de até um parágrafo (pode ser gerado automaticamente).",
-        min_length=1,
+        min_length=1,                 
+        description="Resumo de até um parágrafo da declaração.",
     )
-    
+
     @classmethod
     def __get_validators__(cls):
         yield cls.validate
@@ -284,6 +273,11 @@ class DeclaracaoIRPF2025(BaseModel):
     bens_direitos: List[BemDireito] = Field(
         default_factory=list,
         description="Ficha 'Bens e Direitos' – um item por bem ou direito.",
+    )
+
+    data_documento: date = Field(
+        ...,
+        description="Data em que o documento foi gerado (ou o ano a que se refere).",
     )
 
     doacoes_efetuadas: List[DoacaoEfetuada] = Field(

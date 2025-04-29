@@ -1,9 +1,11 @@
 *.DEC
 *.REC
 meus_arquivos/*
-.gitignore
 .env
 .venv/*
 setup.yaml
-chroma_db/*
-dados/*
+knowledge_base/chroma_db/
+__pycache__/*
+database/*
+.gitignore
+*.pyc
