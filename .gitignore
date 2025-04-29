@@ -1,6 +1,7 @@
 *.DEC
 *.REC
-meus_arquivos/*
+meus_arquivos/data_files/*
+meus_arquivos/originais/*
 .env
 .venv/*
 setup.yaml
@@ -9,3 +10,4 @@ __pycache__/*
 database/*
 .gitignore
 *.pyc
+old_files/*
