@@ -92,6 +92,16 @@ Este projeto está licenciado sob a licença MIT - veja o arquivo LICENSE para d
 
 Este software é fornecido apenas como uma ferramenta auxiliar e não substitui o aconselhamento profissional de um contador ou especialista em impostos. Os usuários são responsáveis pela precisão e conformidade de suas declarações de imposto de renda.
 
+### ⚠️ Alerta de Privacidade
+
+**IMPORTANTE**: Este aplicativo utiliza serviços de APIs externas (OpenAI e LlamaParse) para processamento de documentos e geração de respostas. Seus dados fiscais são enviados para esses serviços durante o processamento. Embora essas empresas tenham políticas de privacidade rigorosas, recomendamos:
+
+- **Não utilizar** este aplicativo para documentos ou dados tributários ultra-sensíveis
+- Considerar a remoção de informações pessoais identificáveis dos documentos antes do processamento
+- Estar ciente de que dados transmitidos para serviços de terceiros estão sujeitos às políticas de privacidade desses serviços
+
+Se você tem preocupações com a privacidade de dados fiscais sensíveis, considere consultar um profissional de impostos diretamente.
+
 ---
 
 <p align="center">
