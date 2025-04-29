@@ -10,21 +10,34 @@ Usage:
 """
 
 from __future__ import annotations
-
 import json
 import logging
-import re
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Iterable, Set
 from urllib.parse import urljoin, urlparse
-
-import requests
-from bs4 import BeautifulSoup
-from requests.adapters import HTTPAdapter, Retry
 from tqdm import tqdm
-from trafilatura import extract, fetch_url
+
+try:
+    from trafilatura import extract, fetch_url
+except ImportError:
+    import subprocess
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "trafilatura"])
+
+try:
+    from bs4 import BeautifulSoup
+except ImportError:
+    import subprocess
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "beautifulsoup4"])
+
+try:
+    import requests
+except ImportError:
+    import subprocess
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
+
+from requests.adapters import HTTPAdapter, Retry
 
 # --------------------------------------------------------------------------- #
 # Configuration

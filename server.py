@@ -13,6 +13,8 @@ import duckdb
 import pandas as pd
 import argparse
 from typing import Dict, Any, Optional
+import shutil
+import sys
 
 # Configure logging
 logging.basicConfig(
@@ -50,11 +52,82 @@ class IRPFMCPServer:
         self.duck_db_path = self.db_dir / "irpf_database.duckdb"
         self.duck_conn = self._initialize_db_connection()
         
+        # Initialize knowledge base and process new documents
+        self._initialize_system()
+        
         # Register resources and tools
         self._register_resources()
         self._register_tools()
         
         logger.info("IRPF MCP Server initialized successfully")
+    
+    def _initialize_system(self):
+        """
+        Initialize the system by:
+        1. Creating the knowledge base if it doesn't exist
+        2. Processing new documents in meus_arquivos/originais if there are any
+        """
+        logger.info("Initializing system...")
+        
+        # Add the project root to the Python path to enable imports
+        project_root = Path(__file__).parent
+        if str(project_root) not in sys.path:
+            sys.path.append(str(project_root))
+        
+        # Initialize knowledge base
+        self._initialize_knowledge_base()
+        
+        # Process new documents in meus_arquivos/originais
+        self._process_personal_documents()
+        
+        logger.info("System initialization completed")
+    
+    def _initialize_knowledge_base(self):
+        """
+        Initialize the knowledge base by creating the chroma_db if it doesn't exist.
+        """
+        try:
+            from knowledge_base.create_kb import create_knowledge_base
+            
+            kb_path = Path("chroma_db")
+            if not kb_path.exists() or not any(kb_path.iterdir()):
+                logger.info("Knowledge base not found or empty. Creating new knowledge base...")
+                create_knowledge_base()
+                logger.info("Knowledge base created successfully")
+            else:
+                logger.info(f"Knowledge base found at {kb_path}")
+        except Exception as e:
+            logger.error(f"Error initializing knowledge base: {e}")
+            # Create a minimal knowledge base structure if the import fails
+            kb_path = Path("chroma_db")
+            kb_path.mkdir(exist_ok=True)
+            logger.info("Created minimal knowledge base structure")
+    
+    def _process_personal_documents(self):
+        """
+        Check for new documents in meus_arquivos/originais and process them if needed.
+        """
+        try:
+            from meus_arquivos.db_arquivos_pessoais import process_personal_documents
+            
+            logger.info("Checking for personal documents...")
+            # Get the absolute path to the meus_arquivos directory
+            meus_arquivos_path = Path(__file__).parent / "meus_arquivos"
+            processed = process_personal_documents(source_folder=meus_arquivos_path)
+            
+            if processed:
+                logger.info("Personal documents processed successfully")
+            else:
+                logger.info("No new personal documents to process")
+                
+        except Exception as e:
+            logger.error(f"Error processing personal documents: {e}")
+            # Create the necessary directories if they don't exist
+            originais_dir = Path(__file__).parent / "meus_arquivos/originais"
+            data_files_dir = Path(__file__).parent / "meus_arquivos/data_files"
+            originais_dir.mkdir(parents=True, exist_ok=True)
+            data_files_dir.mkdir(parents=True, exist_ok=True)
+            logger.info(f"Created directories {originais_dir} and {data_files_dir}")
     
     def _load_config(self, config_path: str) -> Dict[str, Any]:
         """

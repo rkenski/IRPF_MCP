@@ -8,24 +8,98 @@ from llama_cloud_services import LlamaParse
 from typing import List
 import Stemmer
 import nest_asyncio
+import chromadb
+from llama_index.vector_stores.chroma import ChromaVectorStore
+from llama_index.core import StorageContext
+from llama_index.embeddings.openai import OpenAIEmbedding
+import os
+from pathlib import Path
+
 nest_asyncio.apply()
 
-parser = LlamaParse(
-    num_workers=3,
-    do_not_cache=True)
+def create_knowledge_base(input_dir="dados", collection_name="IRPF", db_path="chroma_db"):
+    """
+    Create a knowledge base from documents in the specified input directory.
+    
+    Args:
+        input_dir (str): Directory containing documents to process
+        collection_name (str): Name of the collection in ChromaDB
+        db_path (str): Path to store the ChromaDB database
+        
+    Returns:
+        VectorStoreIndex: The created index
+    """
+    # Create input directory if it doesn't exist
+    input_path = Path(input_dir)
+    if not input_path.exists():
+        input_path.mkdir(parents=True, exist_ok=True)
+        print(f"Created input directory at {input_path}")
+        
+    # Set up document parser
+    parser = LlamaParse(
+        num_workers=3,
+        do_not_cache=True)
 
-file_extractor = {".pdf": parser,
-                    ".json": JSONReader(),
-                    ".txt": parser,
-                    ".doc": parser,
-                    ".docx": parser}
+    file_extractor = {".pdf": parser,
+                      ".json": JSONReader(),
+                      ".txt": parser,
+                      ".doc": parser,
+                      ".docx": parser}
 
-# Load documents
-documents = SimpleDirectoryReader(input_dir="dados",
-                                 required_exts=[".pdf", ".json", ".txt", ".doc", ".docx"],
-                                 file_extractor=file_extractor).load_data()
+    # Check if there are documents to process
+    if not any(input_path.iterdir()):
+        print(f"No documents found in {input_dir}. Creating empty knowledge base.")
+        # Create an empty ChromaDB collection
+        db = chromadb.PersistentClient(path=db_path)
+        chroma_collection = db.get_or_create_collection(collection_name)
+        vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
+        embed_model = OpenAIEmbedding(model="text-embedding-3-large")
+        index = VectorStoreIndex.from_vector_store(
+            vector_store,
+            embed_model=embed_model,
+        )
+        return index
+        
+    # Load documents if they exist
+    try:
+        documents = SimpleDirectoryReader(
+            input_dir=input_dir,
+            required_exts=[".pdf", ".json", ".txt", ".doc", ".docx"],
+            file_extractor=file_extractor
+        ).load_data()
+        
+        # Process documents
+        node_parser = SentenceSplitter(chunk_size=1024, chunk_overlap=200)
+        nodes = node_parser.get_nodes_from_documents(documents, show_progress=True)
+        
+        # Set up ChromaVectorStore and load in data
+        db = chromadb.PersistentClient(path=db_path)
+        chroma_collection = db.get_or_create_collection(collection_name)
+        vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
+        storage_context = StorageContext.from_defaults(vector_store=vector_store)
+        embed_model = OpenAIEmbedding(model="text-embedding-3-large")
+        
+        # Create index
+        index = VectorStoreIndex.from_documents(
+            documents, storage_context=storage_context, embed_model=embed_model
+        )
+        
+        print(f"Knowledge base created successfully with {len(documents)} documents")
+        return index
+    except Exception as e:
+        print(f"Error creating knowledge base: {e}")
+        # Create an empty ChromaDB collection on error
+        db = chromadb.PersistentClient(path=db_path)
+        chroma_collection = db.get_or_create_collection(collection_name)
+        vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
+        embed_model = OpenAIEmbedding(model="text-embedding-3-large")
+        index = VectorStoreIndex.from_vector_store(
+            vector_store,
+            embed_model=embed_model,
+        )
+        return index
 
-# Function to create retrievers
+# Helper functions for retrievers
 def create_embedding_retriever(nodes_, similarity_top_k=2):
     """Function to create an embedding retriever for a list of nodes."""
     vector_index = VectorStoreIndex(nodes_)
@@ -64,55 +138,11 @@ class EmbeddingBM25RerankerRetriever(BaseRetriever):
 
         return vector_nodes
 
-# Main processing
-node_parser = SentenceSplitter(chunk_size=1024, chunk_overlap=200)
-
-nodes = node_parser.get_nodes_from_documents(documents, show_progress=True)
-
-#### Creating Retrievers
-similarity_top_k = 4
-
-embedding_retriever = create_embedding_retriever(
-    nodes, similarity_top_k=similarity_top_k
-)
-bm25_retriever = create_bm25_retriever(
-    nodes, similarity_top_k=similarity_top_k
-)
-embedding_bm25_retriever_rerank = EmbeddingBM25RerankerRetriever(
-    embedding_retriever, bm25_retriever
-)
-
-# set up ChromaVectorStore and load in data
-# create client and a new collection
-from llama_index.vector_stores.chroma import ChromaVectorStore
-from llama_index.core import StorageContext
-from llama_index.embeddings.openai import OpenAIEmbedding
-
-db = chromadb.PersistentClient(path="chroma_db")
-chroma_collection = db.get_or_create_collection("IRPF")
-vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
-storage_context = StorageContext.from_defaults(vector_store=vector_store)
-embed_model = OpenAIEmbedding(model="text-embedding-3-large")
-
-index = VectorStoreIndex.from_documents(
-    documents, storage_context=storage_context, embed_model=embed_model
-)
-
-# load from disk
-db2 = chromadb.PersistentClient(path="./chroma_db")
-chroma_collection = db2.get_or_create_collection("IRPF")
-vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
-index = VectorStoreIndex.from_vector_store(
-    vector_store,
-    embed_model=embed_model,
-)
-
-query_engine = index.as_query_engine()
-response = query_engine.query("Qual é a data limite para entrega da declaração?")
-print(response)
-
-
-
-
-
-
+# Run the knowledge base creation if this file is executed directly
+if __name__ == "__main__":
+    index = create_knowledge_base()
+    
+    # Test query
+    query_engine = index.as_query_engine()
+    response = query_engine.query("Qual é a data limite para entrega da declaração?")
+    print(response)
