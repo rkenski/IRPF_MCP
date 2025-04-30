@@ -1,6 +1,7 @@
 from decimal import Decimal
+from datetime import date
 from typing import Literal, Optional, List
-from pydantic import BaseModel, Field, condecimal, field_validator
+from pydantic import BaseModel, Field, condecimal, field_validator, model_validator
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -60,11 +61,11 @@ class BemDireito(BaseModel):
     )
 
     # Nice-to-have field_validator
-    @field_validator("valor_2024", always=True)
-    def auto_repeat(cls, v: Decimal, values):
-        if values.get("repetir_valor"):
-            return values["valor_2023"]
-        return v
+    @model_validator(mode="before")
+    def copy_valor(cls, data: dict):
+        if data.get("repetir_valor") and not data.get("valor_2024"):
+            data["valor_2024"] = data["valor_2023"]
+        return data
 
 
 # ---------------------------------------------------------------------------
@@ -111,10 +112,9 @@ class PagamentoEfetuado(BaseModel):
     valor_pago: Money
     parcela_nao_dedutivel: Money = Decimal("0.00")
 
-    _norm_cpf = field_validator("cpf_beneficiario", allow_reuse=True)(_only_digits)
-    _norm_prest = field_validator("cpf_cnpj_prestador", allow_reuse=True)(_only_digits)
-
-
+    @field_validator("cpf_beneficiario", "cpf_cnpj_prestador", mode="before")
+    def digits_only(cls, v):
+        return _only_digits(v)
 
 # ---------------------------------------------------------------------------
 # 4.  Rendimento Sujeito à Tributação Exclusiva/Definitiva  ------------------
@@ -151,6 +151,12 @@ class RendExclusivo(BaseModel):
         ...,
         description="Valor bruto tributado de forma exclusiva/definitiva.",
     )
+
+    @field_validator(
+        "cpf_beneficiario", "cnpj_fonte_pagadora", mode="before"
+    )
+    def digits_only(cls, v):
+        return _only_digits(v)
 
 
 # ---------------------------------------------------------------------------
@@ -190,6 +196,9 @@ class RendIsento(BaseModel):
         description="Valor isento recebido.",
     )
 
+    @field_validator("cpf_beneficiario", "cnpj_fonte_pagadora", mode="before")
+    def digits_only(cls, v):
+        return _only_digits(v)
 
 # ---------------------------------------------------------------------------
 # 6.  Rendimento Tributável de Pessoa Jurídica  ------------------------------
@@ -239,6 +248,11 @@ class RendTribPJ(BaseModel):
         Decimal("0.00"),
         description="IRRF retido sobre o 13º salário.",
     )
+
+
+    @field_validator("cpf_cnpj_fonte_pagadora", mode="before")
+    def digits_only(cls, v):
+        return _only_digits(v)
 
 class Summary(BaseModel):
     text: str = Field(

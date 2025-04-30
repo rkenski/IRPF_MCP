@@ -19,7 +19,7 @@ from decimal import Decimal
 from pathlib import Path
 from typing import Dict, List
 
-from IRPF_pydantic_schem_resumido import (
+from IRPF_schema import (
     BemDireito,
     DeclaracaoIRPF2025,
     DoacaoEfetuada,
@@ -28,9 +28,7 @@ from IRPF_pydantic_schem_resumido import (
     RendExclusivo,
     RendIsento,
     RendTribPJ,
-    Summary,
-    TitDepAli,
-)
+    Summary)
 
 # ────────────────────────────────────────────────────────────────────────────────
 #  Helpers
