@@ -18,6 +18,7 @@ from lxml import etree as ET
 from decimal import Decimal
 from pathlib import Path
 from typing import Dict, List
+from datetime import date
 
 from IRPF_schema import (
     BemDireito,
@@ -105,12 +106,15 @@ def parse_bens(root: ET.Element, ns: dict[str, str]) -> list[BemDireito]:
 def parse_pagamentos(root: ET.Element, ns: Dict[str, str]) -> List[PagamentoEfetuado]:
     pags: List[PagamentoEfetuado] = []
     for item in root.findall(".//rf:pagamentos/rf:item", ns):
+        cpf_beneficiario = first_attrib(item, "cpfBeneficiario", "niBeneficiario", "cpfPrestador", default="00000000000")
         pags.append(
             PagamentoEfetuado(
                 codigo=normalise_codigo(item.attrib.get("codigo", "")),
                 pessoa_beneficiada=beneficiario_from_flag(item.attrib.get("tipo")),
+                cpf_beneficiario=cpf_beneficiario,
                 cpf_cnpj_prestador=first_attrib(item, "niBeneficiario", "cpfPrestador"),
                 nome_prestador=first_attrib(item, "nomeBeneficiario", "nomePrestador"),
+                nome_beneficiario=first_attrib(item, "nomeBeneficiario"),
                 descricao=item.attrib.get("descricao") or None,
                 valor_pago=parse_money(item.attrib.get("valorPago")),
                 parcela_nao_dedutivel=parse_money(item.attrib.get("parcelaNaoDedutivel")),
@@ -138,10 +142,13 @@ def parse_rend_trib_pj(root: ET.Element, ns: Dict[str, str]) -> List[RendTribPJ]
     titular_path = ".//rf:colecaoRendPJTitular/rf:item"
     depend_path = ".//rf:colecaoRendPJDependente/rf:item"
     for item in root.findall(f"{titular_path}|{depend_path}", ns):
+        cpf_beneficiario = first_attrib(item, "cpfBeneficiario", default="00000000000")
         rend.append(
             RendTribPJ(
                 cpf_cnpj_fonte_pagadora=item.attrib["NIFontePagadora"],
                 nome_fonte_pagadora=item.attrib["nomeFontePagadora"],
+                cpf_beneficiario=cpf_beneficiario,
+                beneficiario=item.attrib.get("cpfBeneficiario"),
                 rendimentos=parse_money(item.attrib.get("rendRecebidoPJ")),
                 contribuicao_previdenciaria=parse_money(
                     item.attrib.get("contribuicaoPrevOficial")
@@ -160,11 +167,13 @@ def parse_rend_isentos(root: ET.Element, ns: dict[str, str]) -> list[RendIsento]
         if quadro.tag.endswith("QuadroAuxiliar"):
             tipo = quadro.tag.split('}', 1)[-1]
             for item in quadro.findall("rf:item", ns):
+                cpf_beneficiario = first_attrib(item, "cpfBeneficiario", default="00000000000")
                 isentos.append(
                     RendIsento(
                         tipo_rendimento=tipo,
                         tipo_beneficiario=beneficiario_from_flag(item.attrib.get("tipoBeneficiario")),
                         beneficiario=item.attrib.get("cpfBeneficiario"),
+                        cpf_beneficiario=cpf_beneficiario,
                         cnpj_fonte_pagadora=item.attrib.get("cnpjEmpresa"),
                         nome_fonte_pagadora=first_attrib(item, "nomeFonte", "descricaoRendimento"),
                         valor=parse_money(item.attrib.get("valor")),
@@ -177,11 +186,13 @@ def parse_rend_exclusivos(root: ET.Element, ns: Dict[str, str]) -> List[RendExcl
     for section in root.findall(".//rf:rendTributacaoExclusiva", ns):
         for item in section.findall(".//rf:item", ns):
             tipo = item.getparent().tag.split("}", 1)[-1]  # e.g. 'rendAplicacoesQuadroAuxiliar'
+            cpf_beneficiario = first_attrib(item, "cpfBeneficiario", default="00000000000")
             exclusivos.append(
                 RendExclusivo(
                     tipo_rendimento=tipo,
                     tipo_beneficiario=beneficiario_from_flag(item.attrib.get("tipoBeneficiario")),
                     beneficiario=item.attrib.get("cpfBeneficiario"),
+                    cpf_beneficiario=cpf_beneficiario,
                     cnpj_fonte_pagadora=item.attrib.get("cnpjEmpresa"),
                     nome_fonte_pagadora=item.attrib.get("nomeFonte"),
                     valor=parse_money(item.attrib.get("valor")),
@@ -215,6 +226,20 @@ def parse_irpf2025(xml_file: str | Path) -> DeclaracaoIRPF2025:
     nome = ident.attrib.get("nome", "declarante") if ident is not None else "declarante"
     resumo = Summary(text=f"Declaração IRPF-2025 de {nome} (CPF {cpf}).")
 
+    # Get the document date or use current date
+    data_doc = date.today()  # Default to today
+    
+    # Try to extract date from XML if available
+    data_node = root.find(".//rf:dataDeclaracao", ns)
+    if data_node is not None and data_node.text:
+        try:
+            # Assuming format is "YYYY-MM-DD" or similar
+            parts = data_node.text.split("-")
+            if len(parts) == 3:
+                data_doc = date(int(parts[0]), int(parts[1]), int(parts[2]))
+        except (ValueError, IndexError):
+            pass  # Keep default date if parsing fails
+
     return DeclaracaoIRPF2025(
         bens_direitos=bens,
         doacoes_efetuadas=doacoes,
@@ -223,6 +248,7 @@ def parse_irpf2025(xml_file: str | Path) -> DeclaracaoIRPF2025:
         rendimentos_isentos=rend_isentos,
         rendimentos_tributaveis_pj=rend_trib_pj,
         summary=resumo,
+        data_documento=data_doc,
     )
 
 
@@ -239,5 +265,3 @@ if __name__ == "__main__":
 
     decl = parse_irpf2025(args.xmlfile)
     print(json.dumps(decl.model_dump(mode="json"), indent=2, ensure_ascii=False))
-
-

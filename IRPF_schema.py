@@ -10,6 +10,9 @@ from pydantic import BaseModel, Field, condecimal, field_validator, model_valida
 # 2-decimal-places currency limited to R$ 999 999 999 999,99
 Money = condecimal(max_digits=14, decimal_places=2)
 
+def _only_digits(v: str) -> str:
+    """Remove dots/dashes/spaces → keep just digits (useful for CPF/CNPJ)."""
+    return "".join(ch for ch in v if ch.isdigit())
 
 # ---------------------------------------------------------------------------
 # 1.  Novo Bem e Direito  -----------------------------------------------------
