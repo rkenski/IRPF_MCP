@@ -17,7 +17,7 @@ from pathlib import Path
 
 nest_asyncio.apply()
 
-def create_knowledge_base(input_dir="dados", collection_name="IRPF", db_path="chroma_db"):
+def create_knowledge_base(input_dir=None, collection_name="IRPF", db_path="chroma_db"):
     """
     Create a knowledge base from documents in the specified input directory.
     
@@ -29,12 +29,28 @@ def create_knowledge_base(input_dir="dados", collection_name="IRPF", db_path="ch
     Returns:
         VectorStoreIndex: The created index
     """
-    # Create input directory if it doesn't exist
-    input_path = Path(input_dir)
-    if not input_path.exists():
-        input_path.mkdir(parents=True, exist_ok=True)
-        print(f"Created input directory at {input_path}")
-        
+    # Determine project root as two levels up from this file
+    current_file = Path(__file__).resolve()
+    project_root = current_file.parent.parent
+
+    # Set input_dir to <project_root>/knowledge_base/dados if not specified
+    if input_dir is None:
+        input_dir = project_root / "knowledge_base" / "dados"
+    else:
+        input_dir = Path(input_dir)
+        if not input_dir.is_absolute():
+            input_dir = project_root / input_dir
+
+    # Resolve db_path relative to project root if not absolute
+    db_path = Path(db_path)
+    if not db_path.is_absolute():
+        db_path = project_root / db_path
+
+    # Ensure input_dir exists
+    if not input_dir.exists():
+        input_dir.mkdir(parents=True, exist_ok=True)
+        print(f"Created input directory at {input_dir}")
+
     # Set up document parser
     parser = LlamaParse(
         num_workers=3,
@@ -47,7 +63,7 @@ def create_knowledge_base(input_dir="dados", collection_name="IRPF", db_path="ch
                       ".docx": parser}
 
     # Check if there are documents to process
-    if not any(input_path.iterdir()):
+    if not any(input_dir.iterdir()):
         print(f"No documents found in {input_dir}. Creating empty knowledge base.")
         # Create an empty ChromaDB collection
         db = chromadb.PersistentClient(path=db_path)
