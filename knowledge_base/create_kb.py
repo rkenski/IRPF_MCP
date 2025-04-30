@@ -4,7 +4,8 @@ from llama_index.retrievers.bm25 import BM25Retriever
 from llama_index.core.retrievers import BaseRetriever, VectorIndexRetriever
 from llama_index.core.schema import NodeWithScore
 from llama_index.core.node_parser import SentenceSplitter
-from llama_cloud_services import LlamaParse
+from llama_index.readers.docling import DoclingReader
+from llama_index.readers.file import PDFReader
 from typing import List
 import Stemmer
 import nest_asyncio
@@ -12,22 +13,26 @@ import chromadb
 from llama_index.vector_stores.chroma import ChromaVectorStore
 from llama_index.core import StorageContext
 from llama_index.embeddings.openai import OpenAIEmbedding
-import os
+import json
 from pathlib import Path
+from datetime import datetime
 
 nest_asyncio.apply()
 
-def create_knowledge_base(input_dir=None, collection_name="IRPF", db_path="chroma_db"):
+def create_knowledge_base(input_dir=None, collection_name="IRPF", db_path="chroma_db", force_processing=False):
     """
     Create a knowledge base from documents in the specified input directory.
+    Only processes files if they aren't already included in the Chroma database.
     
     Args:
         input_dir (str): Directory containing documents to process
         collection_name (str): Name of the collection in ChromaDB
         db_path (str): Path to store the ChromaDB database
+        force_processing (bool): Force processing even if no new files are detected
         
     Returns:
         VectorStoreIndex: The created index
+        bool: Whether processing was performed
     """
     # Determine project root as two levels up from this file
     current_file = Path(__file__).resolve()
@@ -42,30 +47,68 @@ def create_knowledge_base(input_dir=None, collection_name="IRPF", db_path="chrom
             input_dir = project_root / input_dir
 
     # Resolve db_path relative to project root if not absolute
-    db_path = Path(db_path)
-    if not db_path.is_absolute():
-        db_path = project_root / db_path
+
+    if not Path(db_path).is_absolute():
+        db_path = project_root / "knowledge_base" / db_path
 
     # Ensure input_dir exists
     if not input_dir.exists():
         input_dir.mkdir(parents=True, exist_ok=True)
         print(f"Created input directory at {input_dir}")
-
-    # Set up document parser
-    parser = LlamaParse(
-        num_workers=3,
-        do_not_cache=True)
-
-    file_extractor = {".pdf": parser,
-                      ".json": JSONReader(),
-                      ".txt": parser,
-                      ".doc": parser,
-                      ".docx": parser}
-
+        
+    # Create a marker file path to track processed files
+    marker_dir = project_root / "knowledge_base" / "processed"
+    marker_dir.mkdir(parents=True, exist_ok=True)
+    processed_marker = marker_dir / f"{collection_name}_processed.json"
+    
     # Check if there are documents to process
-    if not any(input_dir.iterdir()):
+    document_files = []
+    for ext in [".pdf", ".json", ".txt", ".doc", ".docx"]:
+        document_files.extend(list(input_dir.glob(f"**/*{ext}")))
+    
+    if not document_files:
         print(f"No documents found in {input_dir}. Creating empty knowledge base.")
         # Create an empty ChromaDB collection
+        db = chromadb.PersistentClient(path=str(db_path))
+        chroma_collection = db.get_or_create_collection(collection_name)
+        vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
+        embed_model = OpenAIEmbedding(model="text-embedding-3-large")
+        index = VectorStoreIndex.from_vector_store(
+            vector_store,
+            embed_model=embed_model,
+        )
+        return index, False
+    
+    # Check if processing is needed
+    processing_needed = force_processing
+    
+    if not processed_marker.exists():
+        print("No processed documents marker found. Processing needed.")
+        processing_needed = True
+    elif document_files:
+        # Check if there are new files or modified files
+        processed_time = processed_marker.stat().st_mtime
+        processed_files = []
+        
+        if processed_marker.exists():
+            try:
+                with open(processed_marker, "r") as f:
+                    processed_data = json.load(f)
+                    processed_files = processed_data.get("processed_files", [])
+            except (json.JSONDecodeError, FileNotFoundError):
+                processing_needed = True
+        
+        # Check for new files or modified files
+        for file_path in document_files:
+            file_str = str(file_path.resolve())
+            if file_str not in processed_files or file_path.stat().st_mtime > processed_time:
+                print(f"New or modified file detected: {file_path}")
+                processing_needed = True
+                break
+    
+    if not processing_needed:
+        print("All documents have already been processed")
+        # Return existing index
         db = chromadb.PersistentClient(path=db_path)
         chroma_collection = db.get_or_create_collection(collection_name)
         vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
@@ -74,34 +117,44 @@ def create_knowledge_base(input_dir=None, collection_name="IRPF", db_path="chrom
             vector_store,
             embed_model=embed_model,
         )
-        return index
+        return index, False
         
     # Load documents if they exist
     try:
         documents = SimpleDirectoryReader(
             input_dir=input_dir,
-            required_exts=[".pdf", ".json", ".txt", ".doc", ".docx"],
-            file_extractor=file_extractor
+            file_extractor= {".json": JSONReader()}
         ).load_data()
-        
+
         # Process documents
         node_parser = SentenceSplitter(chunk_size=1024, chunk_overlap=200)
         nodes = node_parser.get_nodes_from_documents(documents, show_progress=True)
         
         # Set up ChromaVectorStore and load in data
-        db = chromadb.PersistentClient(path=db_path)
+        db = chromadb.PersistentClient(path=str(db_path))
         chroma_collection = db.get_or_create_collection(collection_name)
         vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
         storage_context = StorageContext.from_defaults(vector_store=vector_store)
         embed_model = OpenAIEmbedding(model="text-embedding-3-large")
         
         # Create index
-        index = VectorStoreIndex.from_documents(
-            documents, storage_context=storage_context, embed_model=embed_model
+        index = VectorStoreIndex(
+            nodes,
+            storage_context=storage_context,
+            embed_model=embed_model
         )
         
+        # Update the processed marker file with the list of processed files
+        processed_data = {
+            "last_processed": datetime.now().isoformat(),
+            "processed_files": [str(file_path.resolve()) for file_path in document_files]
+        }
+        
+        with open(processed_marker, "w") as f:
+            json.dump(processed_data, f, indent=4)
+        
         print(f"Knowledge base created successfully with {len(documents)} documents")
-        return index
+        return index, True
     except Exception as e:
         print(f"Error creating knowledge base: {e}")
         # Create an empty ChromaDB collection on error
@@ -113,7 +166,7 @@ def create_knowledge_base(input_dir=None, collection_name="IRPF", db_path="chrom
             vector_store,
             embed_model=embed_model,
         )
-        return index
+        return index, False
 
 # Helper functions for retrievers
 def create_embedding_retriever(nodes_, similarity_top_k=2):
@@ -156,7 +209,12 @@ class EmbeddingBM25RerankerRetriever(BaseRetriever):
 
 # Run the knowledge base creation if this file is executed directly
 if __name__ == "__main__":
-    index = create_knowledge_base()
+    index, processed = create_knowledge_base()
+    
+    if processed:
+        print("Knowledge base was updated with new documents.")
+    else:
+        print("No new documents to process.")
     
     # Test query
     query_engine = index.as_query_engine()
