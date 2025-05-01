@@ -109,7 +109,7 @@ def create_knowledge_base(input_dir=None, collection_name="IRPF", db_path="chrom
     if not processing_needed:
         print("All documents have already been processed")
         # Return existing index
-        db = chromadb.PersistentClient(path=db_path)
+        db = chromadb.PersistentClient(path=str(db_path))
         chroma_collection = db.get_or_create_collection(collection_name)
         vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
         embed_model = OpenAIEmbedding(model="text-embedding-3-large")

@@ -1,141 +1,124 @@
 {
-  "name": "IRPF_MCP",
-  "description": "MCP server for Brazilian tax return (IRPF) assistance",
-  "version": "1.0.0",
-  "resources": [
-    {
-      "name": "declaracao://2025",
-      "description": "Reads the current tax declaration XML file from the Receita Federal IRPF-2025 program",
-      "returns": "JSON representation of the tax declaration",
-      "source": "XML"
-    }
-  ],
-  "tools": [
-    {
-      "category": "XML_DECLARATION",
-      "name": "verificar_status_declaracao",
-      "description": "Checks if the tax declaration is available and accessible (XML source)",
-      "parameters": [],
-      "returns": {
-        "type": "object",
-        "description": "Status of the declaration with basic information"
-      }
-    },
-    {
-      "category": "DOCUMENTS_DATABASE",
-      "name": "query_irpf_db",
-      "description": "Execute a SQL query against the IRPF DuckDB database (documents database)",
-      "parameters": [
-        {
-          "name": "sql_query",
-          "type": "string",
-          "description": "SQL query to execute"
-        }
+  "mcpServers": {
+    "IRPF_MCP": {
+      "command": "/home/kenski/projects/IRPF_MCP/.venv/bin/python",
+      "args": [
+        "/home/kenski/projects/IRPF_MCP/server.py"
       ],
-      "returns": {
-        "type": "dataframe",
-        "description": "Result of the query as a pandas DataFrame"
-      }
-    },
-    {
-      "category": "DOCUMENTS_DATABASE",
-      "name": "find_salary_income",
-      "description": "Find all salary income records in the documents database",
-      "parameters": [],
-      "returns": {
-        "type": "dataframe",
-        "description": "Salary income records from documents database"
-      }
-    },
-    {
-      "category": "DOCUMENTS_DATABASE",
-      "name": "total_payments_by_category",
-      "description": "Calculate total payments by category in the documents database",
-      "parameters": [],
-      "returns": {
-        "type": "dataframe",
-        "description": "Total payments grouped by category from documents database"
-      }
-    },
-    {
-      "category": "DOCUMENTS_DATABASE",
-      "name": "analyze_assets",
-      "description": "Analyze assets with detailed statistics in the documents database",
-      "parameters": [],
-      "returns": {
-        "type": "dataframe",
-        "description": "Asset analysis results with count, sum, average, min, and max values from documents database"
-      }
-    },
-    {
-      "category": "DOCUMENTS_DATABASE",
-      "name": "all_income_sources",
-      "description": "Find all income sources across different categories (taxable, exclusive, exempt) in the documents database",
-      "parameters": [],
-      "returns": {
-        "type": "dataframe",
-        "description": "All income sources ordered by value from documents database"
-      }
-    },
-    {
-      "category": "KNOWLEDGE_BASE",
-      "name": "query_kb",
-      "description": "Query the IRPF knowledge base for tax-related information",
-      "parameters": [
-        {
-          "name": "query",
-          "type": "string",
-          "description": "The query to search in the knowledge base (input in Portuguese)"
+      "env": {
+        "PYTHONPATH": "/home/kenski/projects/IRPF_MCP:${PYTHONPATH}"
+      },
+      "options": {
+        "stdio": true
+      },
+      "description": "MCP server for Brazilian tax return (IRPF) assistance",
+      "version": "1.0.0",
+      "resources": {
+        "tax_return_2025://2025": {
+          "description": "Reads the current tax return XML file from the Receita Federal IRPF-2025 program",
+          "returns": "JSON representation of the tax return",
+          "source": "XML"
         }
-      ],
-      "returns": {
-        "type": "string",
-        "description": "Response from the knowledge base (output in Portuguese)"
+      },
+      "tools": {
+        "check_tax_return_status": {
+          "category": "XML_TAX_RETURN",
+          "description": "Checks if the tax return is available and accessible (XML source)",
+          "parameters": [],
+          "returns": {
+            "type": "object",
+            "description": "Status of the tax return with basic information"
+          }
+        },
+        "query_irpf_db": {
+          "category": "DATABASE",
+          "description": "Execute a SQL query against the IRPF DuckDB database",
+          "parameters": [
+            {
+              "name": "sql_query",
+              "type": "string",
+              "description": "SQL query to execute"
+            }
+          ],
+          "returns": {
+            "type": "object",
+            "description": "Result of the query as a pandas DataFrame"
+          }
+        },
+        "find_salary_income": {
+          "category": "DATABASE",
+          "description": "Find all salary income records in the database",
+          "parameters": [],
+          "returns": {
+            "type": "object",
+            "description": "Salary income records as a pandas DataFrame"
+          }
+        },
+        "total_payments_by_category": {
+          "category": "DATABASE",
+          "description": "Calculate total payments by category",
+          "parameters": [],
+          "returns": {
+            "type": "object",
+            "description": "Total payments grouped by category as a pandas DataFrame"
+          }
+        },
+        "analyze_assets": {
+          "category": "DATABASE",
+          "description": "Analyze assets with detailed statistics",
+          "parameters": [],
+          "returns": {
+            "type": "object",
+            "description": "Asset analysis results as a pandas DataFrame"
+          }
+        },
+        "all_income_sources": {
+          "category": "DATABASE",
+          "description": "Find all income sources across different categories",
+          "parameters": [],
+          "returns": {
+            "type": "object",
+            "description": "All income sources as a pandas DataFrame"
+          }
+        },
+        "query_kb": {
+          "category": "KNOWLEDGE_BASE",
+          "description": "Query the IRPF knowledge base",
+          "parameters": [
+            {
+              "name": "query",
+              "type": "string",
+              "description": "The query to search in the knowledge base"
+            }
+          ],
+          "returns": {
+            "type": "string",
+            "description": "Response from the knowledge base"
+          }
+        }
+      },
+      "toolCategories": {
+        "XML_TAX_RETURN": {
+          "description": "Tools that work with the XML tax return file from the Receita Federal IRPF-2025 program",
+          "source": "XML file in the tax software"
+        },
+        "DATABASE": {
+          "description": "Tools that query the DuckDB database containing information extracted from various financial documents (employers, banks, etc.)",
+          "source": "Parsed PDF documents in meus_arquivos folder"
+        },
+        "KNOWLEDGE_BASE": {
+          "description": "Tools that access the vector database containing tax information from the Brazilian tax authority",
+          "source": "Vector database built from tax authority documentation"
+        }
+      },
+      "metadata": {
+        "author": "IRPF MCP Team",
+        "created_at": "2025-04-29",
+        "language": "pt-BR",
+        "tags": ["irpf", "tax", "brazil", "receita-federal"],
+        "defaultLanguage": "pt-BR",
+        "notes": "While this configuration is in English, all LLM outputs and knowledge base responses will be in Portuguese (pt-BR)"
       }
     }
-  ],
-  "toolCategories": {
-    "XML_DECLARATION": {
-      "description": "Tools that work with the XML declaration file from the Receita Federal IRPF-2025 program",
-      "source": "XML file in the tax software"
-    },
-    "DOCUMENTS_DATABASE": {
-      "description": "Tools that query the DuckDB database containing information extracted from various financial documents (employers, banks, etc.)",
-      "source": "Parsed PDF documents in meus_arquivos folder"
-    },
-    "KNOWLEDGE_BASE": {
-      "description": "Tools that access the vector database containing tax information from the Brazilian tax authority",
-      "source": "Vector database built from tax authority documentation"
-    }
-  },
-  "examples": [
-    {
-      "description": "Check if the tax declaration is available (XML source)",
-      "code": "client.call_tool('verificar_status_declaracao')"
-    },
-    {
-      "description": "Get the current tax declaration (XML source)",
-      "code": "declaration = client.get_resource('declaracao://2025')"
-    },
-    {
-      "description": "Find all salary income (documents database)",
-      "code": "salary_income = client.call_tool('find_salary_income')"
-    },
-    {
-      "description": "Query the knowledge base (tax authority information)",
-      "code": "response = client.call_tool('query_kb', query='Qual é o prazo para entrega da declaração?')"
-    },
-    {
-      "description": "Execute a custom SQL query on the documents database",
-      "code": "result = client.call_tool('query_irpf_db', sql_query='SELECT * FROM rendimentos_tributaveis_pj LIMIT 5')"
-    }
-  ],
-  "metadata": {
-    "author": "IRPF MCP Team",
-    "created_at": "2025-04-29",
-    "language": "pt-BR",
-    "tags": ["irpf", "tax", "brazil", "receita-federal"],
-    "defaultLanguage": "pt-BR",
-    "notes": "While this configuration is in English, all LLM outputs and knowledge base responses will be in Portuguese (pt-BR)"
   }
 }

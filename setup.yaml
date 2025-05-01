@@ -2,3 +2,4 @@ CPF: 30390505838 #Número do CPF sem traços ou pontos
 OPENAI_API_KEY:  #Deixe em branco caso a sua chave de API já esteja no arquivo .env
 LLAMAPARSE_API_KEY:  #Deixe em branco caso a sua chave de API já esteja no arquivo .env
 IRPF_DIR_2025: /home/kenski/ProgramasRFB/IRPF2025 #Diretório do programa IRPF 2025
+DB_DIR: ./database #Diretório do banco de dados
