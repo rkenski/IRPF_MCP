@@ -3,7 +3,8 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.9+-blue.svg" alt="Python Version">
   <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License">
-  <img src="https://img.shields.io/badge/Status-Beta-orange.svg" alt="Status">
+  <img src="https://img.shields.io/badge/Status-Alpha-red.svg" alt="Status">
+  <img src="https://img.shields.io/badge/Platform-Linux%20%7C%20macOS-lightgrey.svg" alt="Platform">
 </p>
 
 IRPF_MCP é um assistente inteligente baseado em IA para auxiliar contribuintes brasileiros com sua declaração de Imposto de Renda de Pessoa Física (IRPF). O sistema utiliza tecnologias avançadas de processamento de linguagem natural e análise de documentos para facilitar o preenchimento, verificação e otimização da declaração de imposto.
@@ -25,14 +26,16 @@ IRPF_MCP é um assistente inteligente baseado em IA para auxiliar contribuintes 
 - **OpenAI**: Modelos de linguagem e embeddings para processamento de linguagem natural
 - **LlamaParse**: Para extração precisa de informações de documentos PDF complexos
 
-## 📋 Pré-requisitos
+## 📋 Instalação e Configuração
 
+### Pré-requisitos
+
+- Sistema operacional Linux ou macOS (não compatível com Windows)
 - Python 3.9 ou superior
-- Programa IRPF 2025 da Receita Federal instalado
-- Chave de API da OpenAI
-- Chave de API da LlamaParse (para processamento de documentos)
+- Ambiente virtual Python (recomendado)
+- Acesso à API da OpenAI (para embeddings e consultas)
 
-## 🚀 Instalação
+### Passos para Instalação
 
 1. Clone o repositório:
    ```bash
@@ -40,57 +43,143 @@ IRPF_MCP é um assistente inteligente baseado em IA para auxiliar contribuintes 
    cd IRPF_MCP
    ```
 
-2. Instale as dependências:
+2. Crie e ative um ambiente virtual:
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate  # Linux/Mac
+   ```
+
+3. Instale as dependências:
    ```bash
    pip install -r requirements.txt
    ```
 
-3. Configure o arquivo `setup.yaml` com suas informações:
-   ```yaml
-   CPF: seu_cpf_sem_pontuacao
-   OPENAI_API_KEY: sua_chave_api_openai
-   LLAMAPARSE_API_KEY: sua_chave_api_llamaparse
-   IRPF_DIR_2025: /caminho/para/ProgramasRFB/IRPF2025
-   ```
+4. Configure o arquivo `setup.yaml` com suas informações pessoais (veja formatação abaixo).
 
-## 📊 Uso
+5. Adicione seus documentos fiscais:
+   - Coloque todos os documentos relacionados ao imposto de renda (informes de rendimentos, extratos bancários, notas fiscais, registros de bens, etc.) na pasta `meus_arquivos/originais`
 
-1. Coloque seus documentos fiscais (PDFs de informes de rendimentos, etc.) na pasta `meus_arquivos/originais/`
+6. Adicione fontes de conhecimento sobre imposto de renda:
+   - Coloque qualquer material de referência sobre imposto de renda (livros, artigos, conversas com contadores, etc.) na pasta `knowledge_base/dados`
 
-2. Inicie o servidor:
+7. Execute o script de configuração:
    ```bash
-   python server.py
+   python setup.py
    ```
 
-3. Acesse o assistente através da interface web ou API
+   > **IMPORTANTE**: O script `setup.py` deve ser executado durante a instalação inicial e sempre que houver novos arquivos nos diretórios de entrada. Este script inicializa a base de conhecimento, processa documentos pessoais e configura os bancos de dados necessários.
 
-4. Exemplos de consultas que você pode fazer:
-   - "Qual o total de rendimentos tributáveis que recebi no ano passado?"
-   - "Quais despesas médicas posso deduzir?"
-   - "Como declarar rendimentos de aluguel?"
-   - "Verifique se há inconsistências na minha declaração"
+### Configuração do arquivo setup.yaml
 
-## 📁 Estrutura do Projeto
+O arquivo `setup.yaml` contém configurações essenciais para o funcionamento do sistema. Crie este arquivo na raiz do projeto com os seguintes parâmetros:
 
-- `server.py`: Servidor principal do IRPF_MCP
-- `setup.yaml`: Arquivo de configuração
-- `meus_arquivos/`: Diretório para documentos pessoais
-  - `originais/`: PDFs e documentos originais
+```yaml
+# Chaves de API
+# Se preferir, você pode salvar as chaves de API como variáveis do ambiente virtual.
+openai_api_key: "sua-chave-da-openai"
+llama_cloud_api_key: "sua-chave-do-llama-cloud"
+
+# Informações pessoais
+cpf: "seu-cpf"
+
+# Caminhos de arquivos
+xml_path: "/caminho/completo/para/seu/arquivo.xml" #o padrão é "ProgramasRFB/IRPF2025/aplicacao/dados/CPF/CPF-0000000000.xml"
+
+# Configurações de banco de dados
+database:
+  path: "meus_arquivos/irpf.duckdb"
+```
+
+Substitua os valores acima pelos seus próprios dados. O arquivo XML pode ser exportado diretamente do programa oficial da Receita Federal.
+
+### Configuração dos Clientes MCP
+
+Para utilizar o IRPF_MCP com diferentes clientes de IA, você precisa adicionar a configuração do servidor MCP ao arquivo de configuração do cliente. O conteúdo do arquivo `irpf_mcp_client_config.json` deve ser copiado e colado no arquivo de configuração MCP do cliente que você deseja usar.
+
+#### Exemplos de Arquivos de Configuração
+
+**Cursor**
+```
+~/.cursor/mcp.json
+```
+
+**Windsurf**
+```
+~/.codeium/windsurf/mcp_config.json
+```
+
+**Claude Desktop**
+```
+~/Library/Application\ Support/Claude/claude_desktop_config.json
+```
+
+**Claude Code**
+```
+~/.claude.json
+```
+
+#### Instruções para Configuração
+
+1. Abra o arquivo `irpf_mcp_client_config.json` deste projeto
+2. Copie todo o conteúdo do arquivo
+3. Abra o arquivo de configuração do cliente MCP que você deseja usar (veja exemplos acima)
+4. Cole o conteúdo no arquivo de configuração, respeitando a estrutura JSON existente
+5. Salve o arquivo
+
+## 🚀 Uso
+
+1. Certifique-se de que o script de configuração foi executado:
+   ```bash
+   python setup.py
+   ```
+
+2. Inicie o servidor MCP minimalista:
+   ```bash
+   python server_minimal.py
+   ```
+   
+   > **Nota**: Use `server_minimal.py` para uma versão simplificada do servidor que assume que as bases de dados já foram criadas pelo `setup.py`. Se preferir a versão completa com inicialização integrada, use `python server.py`.
+
+3. Conecte-se ao servidor usando seu cliente MCP preferido (Cursor, Windsurf, Claude Desktop, etc.)
+
+4. Comece a interagir com o assistente usando linguagem natural para obter ajuda com sua declaração de imposto de renda
+
+## 📊 Escopo Atual
+
+Este projeto é uma prova de conceito e atualmente tem funcionalidades limitadas, focando principalmente em:
+
+- **Receitas**: Análise de rendimentos tributáveis, isentos e exclusivos
+- **Impostos Pagos**: Verificação de impostos retidos na fonte e pagamentos efetuados
+- **Bens e Direitos**: Análise de bens e direitos declarados
+
+Outras áreas da declaração de imposto de renda, como despesas médicas, educação, dependentes, etc., ainda não são completamente suportadas nesta versão.
+
+## 📁 Estrutura de Diretórios
+
+- `knowledge_base/`: Base de conhecimento sobre legislação tributária e regras do IRPF
+  - `dados/`: Coloque aqui fontes de informação sobre imposto de renda (livros, artigos, etc.)
+- `meus_arquivos/`: Diretório para armazenar e processar documentos pessoais
+  - `originais/`: Coloque seus PDFs de informes de rendimentos aqui
   - `data_files/`: Dados extraídos dos documentos
-- `knowledge_base/`: Base de conhecimento sobre legislação tributária
-- `database/`: Banco de dados DuckDB com informações processadas
-
-## 🤝 Contribuição
-
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
+- `server.py`: Servidor MCP principal com inicialização integrada
+- `server_minimal.py`: Versão simplificada do servidor MCP (requer execução prévia de setup.py)
+- `setup.py`: Script de configuração e inicialização
+- `irpf_mcp_client_config.json`: Configuração para clientes MCP
+- `setup.yaml`: Arquivo de configuração com chaves de API e parâmetros pessoais
 
 ## 📄 Licença
 
-Este projeto está licenciado sob a licença MIT - veja o arquivo LICENSE para detalhes.
+Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para detalhes.
+
+
+## ⚠️ Nota Importante
+
+Este projeto é uma prova de conceito e atualmente foca apenas nos principais campos da declaração de imposto de renda: receitas, impostos pagos e bens. Não é uma análise completa da declaração de imposto de renda.
+
 
 ## ⚠️ Aviso Legal
 
-Este software é fornecido apenas como uma ferramenta auxiliar e não substitui o aconselhamento profissional de um contador ou especialista em impostos. Os usuários são responsáveis pela precisão e conformidade de suas declarações de imposto de renda.
+Este software é fornecido apenas para fins educacionais e de assistência. Não substitui o aconselhamento profissional de contadores ou advogados tributários. Os usuários são responsáveis pela precisão de suas declarações de imposto de renda.
 
 ### ⚠️ Alerta de Privacidade
 
