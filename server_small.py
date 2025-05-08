@@ -8,8 +8,7 @@ from llama_index.core import VectorStoreIndex
 from llama_index.vector_stores.chroma import ChromaVectorStore
 from llama_index.embeddings.openai import OpenAIEmbedding
 import time
-import duckdb
-import pandas as pd
+from xml2Pydantic import parse_irpf2025
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -26,9 +25,6 @@ vector_store = None
 index = None
 query_engine = None
 embed_model = None
-
-# Global variables for DuckDB
-duck_conn = None
 
 # Load configuration
 def load_config():
@@ -63,25 +59,6 @@ def initialize_chroma_client():
         # Set to None so we can check if initialization failed
         chroma_client = None
         query_engine = None
-
-# Initialize DuckDB connection
-def initialize_db_connection():
-    global duck_conn, config
-    
-    try:
-        db_dir = Path(config.get('DB_DIR', './database'))
-        duck_db_path = db_dir / "irpf_database.duckdb"
-        
-        if not db_dir.exists():
-            db_dir.mkdir(parents=True, exist_ok=True)
-            logger.info(f"Created database directory at {db_dir}")
-        
-        conn = duckdb.connect(str(duck_db_path))
-        logger.info(f"Connected to DuckDB at {duck_db_path}")
-        return conn
-    except Exception as e:
-        logger.error(f"Error connecting to database: {e}")
-        return None
 
 # Resource function for reading tax return
 @mcp.tool()
@@ -144,137 +121,6 @@ def check_tax_return_status():
             "mensagem": f"Erro ao verificar o status da declaração: {str(e)}"
         }
 
-# Tool function for querying the database
-@mcp.tool()
-def query_irpf_db(sql_query: str):
-    """
-    Execute a SQL query against the IRPF DuckDB database.
-    
-    Args:
-        sql_query (str): SQL query to execute
-        
-    Returns:
-        pandas.DataFrame: Result of the query
-    """
-    global duck_conn
-    
-    try:
-        # Check if we need to initialize the DuckDB connection
-        if duck_conn is None:
-            duck_conn = initialize_db_connection()
-            if duck_conn is None:
-                return pd.DataFrame()
-        
-        logger.info(f"Executing SQL query: {sql_query}")
-        return duck_conn.execute(sql_query).fetchdf()
-    except Exception as e:
-        logger.error(f"Error executing query: {e}")
-        return pd.DataFrame()
-
-# Tool function for finding salary income
-@mcp.tool()
-def find_salary_income():
-    """
-    Find all salary income records in the database.
-    
-    Returns:
-        pandas.DataFrame: Salary income records
-    """
-    query = """
-    SELECT d.file_name, r.nome_fonte_pagadora, r.rendimentos
-    FROM rendimentos_tributaveis_pj r
-    JOIN declarations d ON r.declaration_id = d.declaration_id
-    ORDER BY r.rendimentos DESC
-    """
-    logger.info("Finding salary income")
-    return query_irpf_db(query)
-
-# Tool function for calculating total payments by category
-@mcp.tool()
-def total_payments_by_category():
-    """
-    Calculate total payments by category.
-    
-    Returns:
-        pandas.DataFrame: Total payments grouped by category
-    """
-    query = """
-    SELECT codigo, SUM(valor_pago) as total_value
-    FROM pagamentos_efetuados
-    GROUP BY codigo
-    ORDER BY total_value DESC
-    """
-    logger.info("Calculating total payments by category")
-    return query_irpf_db(query)
-
-# Tool function for analyzing assets
-@mcp.tool()
-def analyze_assets():
-    """
-    Analyze assets with detailed statistics.
-    
-    Returns:
-        pandas.DataFrame: Asset analysis results
-    """
-    query = """
-    SELECT 
-        grupo, 
-        COUNT(*) as count,
-        SUM(valor_2024) as total_value_2024,
-        AVG(valor_2024) as avg_value_2024,
-        MIN(valor_2024) as min_value_2024,
-        MAX(valor_2024) as max_value_2024
-    FROM bens_direitos
-    GROUP BY grupo
-    ORDER BY total_value_2024 DESC
-    """
-    logger.info("Analyzing assets")
-    return query_irpf_db(query)
-
-# Tool function for finding all income sources
-@mcp.tool()
-def all_income_sources():
-    """
-    Find all income sources across different categories.
-    
-    Returns:
-        pandas.DataFrame: All income sources
-    """
-    query = """
-    WITH 
-    tributaveis AS (
-        SELECT 
-            'Tributável PJ' as tipo, 
-            nome_fonte_pagadora as fonte, 
-            rendimentos as valor 
-        FROM rendimentos_tributaveis_pj
-    ),
-    exclusivos AS (
-        SELECT 
-            'Exclusivo' as tipo, 
-            nome_fonte_pagadora as fonte, 
-            valor 
-        FROM rendimentos_exclusivos
-    ),
-    isentos AS (
-        SELECT 
-            'Isento' as tipo, 
-            nome_fonte_pagadora as fonte, 
-            valor 
-        FROM rendimentos_isentos
-        WHERE nome_fonte_pagadora IS NOT NULL
-    )
-    
-    SELECT * FROM tributaveis
-    UNION ALL 
-    SELECT * FROM exclusivos
-    UNION ALL 
-    SELECT * FROM isentos
-    ORDER BY valor DESC
-    """
-    logger.info("Finding all income sources")
-    return query_irpf_db(query)
-
 # Tool function for querying the knowledge base
 @mcp.tool()
 def query_kb(query: str):
@@ -331,6 +177,6 @@ def query_kb(query: str):
 if __name__ == "__main__":
     print("🚀 Starting IRPF MCP server...")
     config = load_config()
-    
+
     # Run the server
     mcp.run("stdio")
