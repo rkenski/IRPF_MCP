@@ -21,12 +21,20 @@ mcp = FastMCP("IRPF_MCP")
 
 # Load configuration immediately
 def load_config():
+    import os
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    config_path = os.path.join(base_dir, "setup.yaml")
     try:
-        with open("setup.yaml", "r", encoding="utf-8") as file:
-            return yaml.safe_load(file)
+        with open(config_path, "r", encoding="utf-8") as file:
+            config = yaml.safe_load(file)
+            logger.info(f"Loaded configuration from {config_path}")
+            return config
+    except FileNotFoundError:
+        logger.error(f"setup.yaml not found at {config_path}. Please ensure the file exists and is readable.")
+        raise
     except Exception as e:
-        logger.error(f"Error loading configuration: {e}")
-        return {"IRPF_DIR_2025": "irpf/2025", "CPF": "00000000000", "DB_DIR": "./database"}
+        logger.error(f"Error loading configuration from {config_path}: {e}")
+        raise
 
 # Load configuration immediately
 config = load_config()
@@ -383,7 +391,4 @@ initialize_chroma_client()
 duck_conn = initialize_db_connection()
 
 if __name__ == "__main__":
-    print("🚀 Starting IRPF MCP server...")
-    
-    # Run the server
     mcp.run("stdio")
