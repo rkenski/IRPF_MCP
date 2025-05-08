@@ -6,6 +6,11 @@ import sys
 import os
 import xml.etree.ElementTree as ET
 
+######################################################
+# Minimal configuration of the MCP server
+# Use it for testing purposes only
+######################################################
+
 # Configure logging
 logging.basicConfig(
     level=logging.DEBUG,
