@@ -1,5 +1,5 @@
-CPF: 30390505838 #Número do CPF sem traços ou pontos
+CPF: 00000000000 #Número do CPF sem traços ou pontos
 OPENAI_API_KEY:  #Deixe em branco caso a sua chave de API já esteja no env
 LLAMA_CLOUD_API_KEY:  #Deixe em branco caso a sua chave de API já esteja no env
-IRPF_DIR_2025: /home/kenski/ProgramasRFB/IRPF2025
-DB_DIR: /home/kenski/projects/IRPF_MCP/database
+IRPF_DIR_2025: /home/usuario/ProgramasRFB/IRPF2025
+DB_DIR: /home/usuario/projects/IRPF_MCP/database
