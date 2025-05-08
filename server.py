@@ -328,6 +328,102 @@ def query_kb(query: str):
         
         return f"Error querying knowledge base: {str(e)}"
 
+# Tool function for listing all available tools
+@mcp.list_tools()
+def handle_list_tools():
+    """
+    Lists all available tools in the IRPF MCP server.
+    
+    Returns:
+        list: A list of all available tools with their descriptions and input schemas
+    """
+    logger.info("Listing all available tools")
+    
+    return [
+        {
+            "name": "read_tax_return",
+            "description": "Reads the current tax return XML file and returns it as JSON.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {},
+                "required": []
+            }
+        },
+        {
+            "name": "check_tax_return_status",
+            "description": "Checks if the tax return is available and accessible, returning its status and basic information.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {},
+                "required": []
+            }
+        },
+        {
+            "name": "query_irpf_db",
+            "description": "Execute a SQL query against the IRPF DuckDB database.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "sql_query": {
+                        "type": "string",
+                        "description": "SQL query to execute against the DuckDB database"
+                    }
+                },
+                "required": ["sql_query"]
+            }
+        },
+        {
+            "name": "find_salary_income",
+            "description": "Find all salary income records in the database.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {},
+                "required": []
+            }
+        },
+        {
+            "name": "total_payments_by_category",
+            "description": "Calculate total payments by category.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {},
+                "required": []
+            }
+        },
+        {
+            "name": "analyze_assets",
+            "description": "Analyze assets with detailed statistics.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {},
+                "required": []
+            }
+        },
+        {
+            "name": "all_income_sources",
+            "description": "Find all income sources across different categories.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {},
+                "required": []
+            }
+        },
+        {
+            "name": "query_kb",
+            "description": "Query the IRPF knowledge base for tax-related information.",
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "query": {
+                        "type": "string",
+                        "description": "The query to search in the knowledge base"
+                    }
+                },
+                "required": ["query"]
+            }
+        }
+    ]
+
 if __name__ == "__main__":
     print("🚀 Starting IRPF MCP server...")
     config = load_config()
