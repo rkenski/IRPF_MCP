@@ -10,6 +10,7 @@ from llama_index.embeddings.openai import OpenAIEmbedding
 import time
 import duckdb
 import pandas as pd
+from xml2Pydantic import parse_irpf2025
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -17,7 +18,19 @@ logger = logging.getLogger("IRPF_MCP")
 
 # Create MCP server
 mcp = FastMCP("IRPF_MCP")
-config = {}
+
+# Load configuration immediately
+def load_config():
+    try:
+        with open("setup.yaml", "r", encoding="utf-8") as file:
+            return yaml.safe_load(file)
+    except Exception as e:
+        logger.error(f"Error loading configuration: {e}")
+        return {"IRPF_DIR_2025": "irpf/2025", "CPF": "00000000000", "DB_DIR": "./database"}
+
+# Load configuration immediately
+config = load_config()
+logger.info(f"Configuration loaded: IRPF_DIR={config.get('IRPF_DIR_2025')}, CPF={config.get('CPF')}")
 
 # Global variables for ChromaDB
 chroma_client = None
@@ -30,14 +43,7 @@ embed_model = None
 # Global variables for DuckDB
 duck_conn = None
 
-# Load configuration
-def load_config():
-    try:
-        with open("setup.yaml", "r", encoding="utf-8") as file:
-            return yaml.safe_load(file)
-    except Exception as e:
-        logger.error(f"Error loading configuration: {e}")
-        return {"IRPF_DIR_2025": "irpf/2025", "CPF": "00000000000", "DB_DIR": "./database"}
+# Initialize connections immediately
 
 # Initialize ChromaDB client
 def initialize_chroma_client():
@@ -69,18 +75,32 @@ def initialize_db_connection():
     global duck_conn, config
     
     try:
+        logger.info(f"Initializing DB connection with config: {config}")
         db_dir = Path(config.get('DB_DIR', './database'))
         duck_db_path = db_dir / "irpf_database.duckdb"
         
+        logger.info(f"Checking if database path exists: {duck_db_path}")
         if not db_dir.exists():
             db_dir.mkdir(parents=True, exist_ok=True)
             logger.info(f"Created database directory at {db_dir}")
         
+        if not duck_db_path.exists():
+            logger.warning(f"Database file does not exist at {duck_db_path}")
+        else:
+            logger.info(f"Database file exists at {duck_db_path}, size: {duck_db_path.stat().st_size} bytes")
+        
+        logger.info(f"Connecting to DuckDB at {duck_db_path}")
         conn = duckdb.connect(str(duck_db_path))
         logger.info(f"Connected to DuckDB at {duck_db_path}")
+        
+        # Test the connection
+        test_result = conn.execute("SELECT 1 as test").fetchdf()
+        logger.info(f"Connection test result: {test_result}")
+        
         return conn
     except Exception as e:
         logger.error(f"Error connecting to database: {e}")
+        logger.exception("Detailed exception information:")
         return None
 
 # Resource function for reading tax return
@@ -156,19 +176,29 @@ def query_irpf_db(sql_query: str):
     Returns:
         pandas.DataFrame: Result of the query
     """
-    global duck_conn
+    global duck_conn, config
+    
+    logger.info(f"query_irpf_db called with query: {sql_query[:50]}...")
+    logger.info(f"Current config: {config}")
+    logger.info(f"Current duck_conn: {duck_conn}")
     
     try:
         # Check if we need to initialize the DuckDB connection
         if duck_conn is None:
+            logger.info("DuckDB connection is None, initializing...")
             duck_conn = initialize_db_connection()
+            logger.info(f"After initialization, duck_conn: {duck_conn}")
             if duck_conn is None:
+                logger.error("Failed to initialize DuckDB connection")
                 return pd.DataFrame()
         
-        logger.info(f"Executing SQL query: {sql_query}")
-        return duck_conn.execute(sql_query).fetchdf()
+        logger.info(f"Executing SQL query using connection: {duck_conn}")
+        result = duck_conn.execute(sql_query).fetchdf()
+        logger.info(f"Query result shape: {result.shape}")
+        return result
     except Exception as e:
         logger.error(f"Error executing query: {e}")
+        logger.exception("Detailed exception information:")
         return pd.DataFrame()
 
 # Tool function for finding salary income
@@ -240,6 +270,24 @@ def all_income_sources():
     Returns:
         pandas.DataFrame: All income sources
     """
+    logger.info("all_income_sources called")
+    
+    # First check if tables exist
+    check_query = """SELECT table_name FROM information_schema.tables 
+                   WHERE table_schema='main' AND 
+                   table_name IN ('rendimentos_tributaveis_pj', 'rendimentos_exclusivos', 'rendimentos_isentos');"""
+    
+    logger.info("Checking if tables exist...")
+    tables_df = query_irpf_db(check_query)
+    logger.info(f"Tables found: {tables_df}")
+    
+    if tables_df.empty:
+        logger.warning("No tables found in database")
+        # Try to list all tables
+        all_tables = query_irpf_db("SELECT table_name FROM information_schema.tables WHERE table_schema='main'")
+        logger.info(f"All tables in database: {all_tables}")
+        return pd.DataFrame({'mensagem': ['Nenhuma tabela de receitas encontrada no banco de dados']})
+    
     query = """
     WITH 
     tributaveis AS (
@@ -272,8 +320,10 @@ def all_income_sources():
     SELECT * FROM isentos
     ORDER BY valor DESC
     """
-    logger.info("Finding all income sources")
-    return query_irpf_db(query)
+    logger.info("Executing income sources query")
+    result = query_irpf_db(query)
+    logger.info(f"Income sources query result: {result}")
+    return result
 
 # Tool function for querying the knowledge base
 @mcp.tool()
@@ -328,105 +378,12 @@ def query_kb(query: str):
         
         return f"Error querying knowledge base: {str(e)}"
 
-# Tool function for listing all available tools
-@mcp.list_tools()
-def handle_list_tools():
-    """
-    Lists all available tools in the IRPF MCP server.
-    
-    Returns:
-        list: A list of all available tools with their descriptions and input schemas
-    """
-    logger.info("Listing all available tools")
-    
-    return [
-        {
-            "name": "read_tax_return",
-            "description": "Reads the current tax return XML file and returns it as JSON.",
-            "inputSchema": {
-                "type": "object",
-                "properties": {},
-                "required": []
-            }
-        },
-        {
-            "name": "check_tax_return_status",
-            "description": "Checks if the tax return is available and accessible, returning its status and basic information.",
-            "inputSchema": {
-                "type": "object",
-                "properties": {},
-                "required": []
-            }
-        },
-        {
-            "name": "query_irpf_db",
-            "description": "Execute a SQL query against the IRPF DuckDB database.",
-            "inputSchema": {
-                "type": "object",
-                "properties": {
-                    "sql_query": {
-                        "type": "string",
-                        "description": "SQL query to execute against the DuckDB database"
-                    }
-                },
-                "required": ["sql_query"]
-            }
-        },
-        {
-            "name": "find_salary_income",
-            "description": "Find all salary income records in the database.",
-            "inputSchema": {
-                "type": "object",
-                "properties": {},
-                "required": []
-            }
-        },
-        {
-            "name": "total_payments_by_category",
-            "description": "Calculate total payments by category.",
-            "inputSchema": {
-                "type": "object",
-                "properties": {},
-                "required": []
-            }
-        },
-        {
-            "name": "analyze_assets",
-            "description": "Analyze assets with detailed statistics.",
-            "inputSchema": {
-                "type": "object",
-                "properties": {},
-                "required": []
-            }
-        },
-        {
-            "name": "all_income_sources",
-            "description": "Find all income sources across different categories.",
-            "inputSchema": {
-                "type": "object",
-                "properties": {},
-                "required": []
-            }
-        },
-        {
-            "name": "query_kb",
-            "description": "Query the IRPF knowledge base for tax-related information.",
-            "inputSchema": {
-                "type": "object",
-                "properties": {
-                    "query": {
-                        "type": "string",
-                        "description": "The query to search in the knowledge base"
-                    }
-                },
-                "required": ["query"]
-            }
-        }
-    ]
+# Initialize connections
+initialize_chroma_client()
+duck_conn = initialize_db_connection()
 
 if __name__ == "__main__":
     print("🚀 Starting IRPF MCP server...")
-    config = load_config()
     
     # Run the server
     mcp.run("stdio")
