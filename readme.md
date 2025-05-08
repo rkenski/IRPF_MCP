@@ -133,16 +133,9 @@ Para utilizar o IRPF_MCP com diferentes clientes de IA, você precisa adicionar 
    python setup.py
    ```
 
-2. Inicie o servidor MCP minimalista:
-   ```bash
-   python server_minimal.py
-   ```
-   
-   > **Nota**: Use `server_minimal.py` para uma versão simplificada do servidor que assume que as bases de dados já foram criadas pelo `setup.py`. Se preferir a versão completa com inicialização integrada, use `python server.py`.
+2. Conecte-se ao servidor usando seu cliente MCP preferido (Cursor, Windsurf, Claude Desktop, etc.)
 
-3. Conecte-se ao servidor usando seu cliente MCP preferido (Cursor, Windsurf, Claude Desktop, etc.)
-
-4. Comece a interagir com o assistente usando linguagem natural para obter ajuda com sua declaração de imposto de renda
+3. Comece a interagir com o assistente usando linguagem natural para obter ajuda com sua declaração de imposto de renda
 
 ## 📊 Escopo Atual
 
