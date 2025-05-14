@@ -1,16 +1,19 @@
-'''
-Esse script extrai as informações de arquivos PDF de declarações de IRPF e cria um banco de dados.
-Ele está focado muito mais em precisão do que em velocidade.
-O único parser que encontrei capaz de extrair as tabelas complexas de informes de rendimentos foi o Llamaparse.
-Outros parsers muito bons, como Pypdf ou mesmo o Docling, sequer conseguiram encontrar o texto em alguns formulários da TOTVS, que dirá formatar corretamente as tabelas.
-'''
+# --------------------------------------------------------------------------- #
+# Script para processar arquivos PDF de declarações de IRPF e criar um banco de dados.
+# Ele está focado muito mais em precisão do que em velocidade.
+# O único parser que encontrei capaz de extrair as tabelas complexas de informes de rendimentos foi o Llamaparse.
+# Outros parsers muito bons, como Pypdf ou mesmo o Docling, sequer conseguiram encontrar o texto em alguns formulários da TOTVS, que dirá formatar corretamente as tabelas.
+# --------------------------------------------------------------------------- #
+
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 from llama_index.core import SimpleDirectoryReader
 from llama_index.llms.openai import OpenAI
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_cloud_services import LlamaParse
 import nest_asyncio, os, json
-from pathlib import Path
 from tqdm import tqdm
 from llama_index.core import SQLDatabase, SimpleDirectoryReader, Document
 from llama_index.core.query_engine import NLSQLTableQueryEngine
@@ -19,7 +22,7 @@ import pandas as pd
 from decimal import Decimal
 import duckdb
 
-def process_personal_documents(source_folder=None, force_processing=False):
+def process_personal_documents(source_folder=None, force_processing=False, num_retries=3):
     """
     Process personal documents from PDF files and create a database.
     
@@ -110,14 +113,20 @@ def process_personal_documents(source_folder=None, force_processing=False):
             dir_reader = [Document.from_dict(x) for x in json.load(f)]
     
     from llama_index.llms.openai import OpenAI
-    from IRPF_pydantic_schem_resumido import DeclaracaoIRPF2025
+    from IRPF_schema import DeclaracaoIRPF2025
     
-    llm = OpenAI(model="o4-mini-2025-04-16")
+    llm = OpenAI(model="gpt-4.1-2025-04-14")
     sllm = llm.as_structured_llm(DeclaracaoIRPF2025)
     
     result = []
     for i in tqdm(dir_reader, total=len(dir_reader)):
-        result.append(sllm.complete(i.text))
+        for retry in range(num_retries):
+            try:
+                result.append(sllm.complete(i.text))
+                break
+            except Exception as e:
+                print(f"Error processing document {i.metadata['file_name']}: {e}")
+                print(f"Retrying ({retry + 1}/{num_retries})...")
     
     irpf = [json.loads(x.text) for x in result]
     for i, resp in enumerate(irpf):
@@ -247,7 +256,7 @@ def process_personal_documents(source_folder=None, force_processing=False):
     # Create DuckDB database
     duck_db_path = db_dir / "irpf_database.duckdb"
     duck_conn = duckdb.connect(str(duck_db_path))
-    
+    '''
     # Register DataFrames as tables in DuckDB
     duck_conn.register('bens_df', bens_df)
     duck_conn.register('doacoes_df', doacoes_df)
@@ -265,8 +274,47 @@ def process_personal_documents(source_folder=None, force_processing=False):
     duck_conn.execute("CREATE OR REPLACE TABLE rendimentos_isentos AS SELECT * FROM risento_df")
     duck_conn.execute("CREATE OR REPLACE TABLE rendimentos_tributaveis_pj AS SELECT * FROM rtrib_pj_df")
     duck_conn.execute("CREATE OR REPLACE TABLE declarations AS SELECT * FROM declarations_df")
-    
+    '''
+
+    # Save DataFrames as CSVs in data_files before uploading to DuckDB
+    data_files_dir = db_dir / "data_files"
+    data_files_dir.mkdir(exist_ok=True)
+    bens_csv = data_files_dir / "bens_direitos.csv"
+    doacoes_csv = data_files_dir / "doacoes_efetuadas.csv"
+    pagto_csv = data_files_dir / "pagamentos_efetuados.csv"
+    rexcl_csv = data_files_dir / "rendimentos_exclusivos.csv"
+    risento_csv = data_files_dir / "rendimentos_isentos.csv"
+    rtrib_pj_csv = data_files_dir / "rendimentos_tributaveis_pj.csv"
+    declarations_csv = data_files_dir / "declarations.csv"
+
+    bens_df.to_csv(bens_csv, index=False)
+    doacoes_df.to_csv(doacoes_csv, index=False)
+    pagto_df.to_csv(pagto_csv, index=False)
+    rexcl_df.to_csv(rexcl_csv, index=False)
+    risento_df.to_csv(risento_csv, index=False)
+    rtrib_pj_df.to_csv(rtrib_pj_csv, index=False)
+    declarations_df.to_csv(declarations_csv, index=False)
+
+    # Register CSVs as tables in DuckDB
+    duck_conn.execute(f"CREATE OR REPLACE TABLE bens_df AS SELECT * FROM read_csv_auto('{bens_csv}')")
+    duck_conn.execute(f"CREATE OR REPLACE TABLE doacoes_df AS SELECT * FROM read_csv_auto('{doacoes_csv}')")
+    duck_conn.execute(f"CREATE OR REPLACE TABLE pagto_df AS SELECT * FROM read_csv_auto('{pagto_csv}')")
+    duck_conn.execute(f"CREATE OR REPLACE TABLE rexcl_df AS SELECT * FROM read_csv_auto('{rexcl_csv}')")
+    duck_conn.execute(f"CREATE OR REPLACE TABLE risento_df AS SELECT * FROM read_csv_auto('{risento_csv}')")
+    duck_conn.execute(f"CREATE OR REPLACE TABLE rtrib_pj_df AS SELECT * FROM read_csv_auto('{rtrib_pj_csv}')")
+    duck_conn.execute(f"CREATE OR REPLACE TABLE declarations_df AS SELECT * FROM read_csv_auto('{declarations_csv}')")
+
+    # Create persistent tables in the database
+    duck_conn.execute("CREATE OR REPLACE TABLE bens_direitos AS SELECT * FROM bens_df")
+    duck_conn.execute("CREATE OR REPLACE TABLE doacoes_efetuadas AS SELECT * FROM doacoes_df")
+    duck_conn.execute("CREATE OR REPLACE TABLE pagamentos_efetuados AS SELECT * FROM pagto_df")
+    duck_conn.execute("CREATE OR REPLACE TABLE rendimentos_exclusivos AS SELECT * FROM rexcl_df")
+    duck_conn.execute("CREATE OR REPLACE TABLE rendimentos_isentos AS SELECT * FROM risento_df")
+    duck_conn.execute("CREATE OR REPLACE TABLE rendimentos_tributaveis_pj AS SELECT * FROM rtrib_pj_df")
+    duck_conn.execute("CREATE OR REPLACE TABLE declarations AS SELECT * FROM declarations_df")
+
     print(f"DuckDB database created at: {duck_db_path}")
+
     return True
 
 def query_irpf_db(sql_query):

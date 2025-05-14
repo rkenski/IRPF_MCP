@@ -51,8 +51,6 @@ embed_model = None
 # Global variables for DuckDB
 duck_conn = None
 
-# Initialize connections immediately
-
 # Initialize ChromaDB client
 def initialize_chroma_client():
     global chroma_client, chroma_collection, vector_store, index, query_engine, embed_model
