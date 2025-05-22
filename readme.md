@@ -17,6 +17,10 @@ IRPF_MCP é um assistente inteligente baseado em IA para auxiliar contribuintes 
 - **Análise de dados financeiros**: Organiza e analisa rendimentos, despesas, bens e direitos para otimizar a declaração
 - **Interface conversacional**: Responde a perguntas sobre o imposto de renda em linguagem natural
 
+<p align="center">
+  <img src="schematics.png" alt="IRPF_MCP Architecture Diagram" width="800">
+</p>
+
 ## 🛠️ Tecnologias Utilizadas
 
 - **FastMCP**: Framework para criação de assistentes inteligentes

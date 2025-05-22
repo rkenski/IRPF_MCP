@@ -1,5 +1,6 @@
-CPF: 00000000000 #Número do CPF sem traços ou pontos
+CPF: 98765432109 #Número do CPF sem traços ou pontos
 OPENAI_API_KEY:  #Deixe em branco caso a sua chave de API já esteja no env
 LLAMA_CLOUD_API_KEY:  #Deixe em branco caso a sua chave de API já esteja no env
-IRPF_DIR_2025: /home/usuario/ProgramasRFB/IRPF2025
-DB_DIR: /home/usuario/projects/IRPF_MCP/database
+IRPF_DIR_2025: ~/projects/IRPF_MCP/meus_arquivos/data_files/98765432109-0000000000.xml  #Caminho para o arquivo XML do IRPF (normalmente em /home/kenski/ProgramasRFB/IRPF2025/aplicacao/dados/{SEU CPF}/{SEU CPF}-0000000000.xml)
+DB_DIR: ~/projects/IRPF_MCP/database #Caminho para a pasta do banco de dados
+PROJECT_FOLDER: ~/projects/IRPF_MCP #Caminho para a pasta do projeto

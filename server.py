@@ -61,7 +61,7 @@ def initialize_chroma_client():
             embed_model = OpenAIEmbedding(model="text-embedding-3-large")
             
         # Connect to existing ChromaDB
-        chroma_client = chromadb.PersistentClient(path="knowledge_base/chroma_db")
+        chroma_client = chromadb.PersistentClient(path=config['PROJECT_FOLDER'] + "/knowledge_base/chroma_db")
         chroma_collection = chroma_client.get_or_create_collection("IRPF")
         vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
         index = VectorStoreIndex.from_vector_store(
@@ -83,6 +83,8 @@ def initialize_db_connection():
     try:
         logger.info(f"Initializing DB connection with config: {config}")
         db_dir = Path(config.get('DB_DIR', './database'))
+        if str(db_dir).startswith('~'):
+            db_dir = db_dir.expanduser()
         duck_db_path = db_dir / "irpf_database.duckdb"
         
         logger.info(f"Checking if database path exists: {duck_db_path}")
@@ -119,7 +121,9 @@ def read_tax_return():
         str: JSON representation of the tax return
     """
     try:
-        ir_xml = Path.home() / config['IRPF_DIR_2025'] / "aplicacao" / "dados" / str(config['CPF']) / f"{config['CPF']}-0000000000.xml"
+        ir_xml = Path(config['IRPF_DIR_2025'])
+        if str(ir_xml).startswith('~'):
+            ir_xml = ir_xml.expanduser()
         logger.info(f"Reading tax return from {ir_xml}")
         
         if not ir_xml.exists():
@@ -132,6 +136,7 @@ def read_tax_return():
         logger.error(f"Error reading tax return: {e}")
         return json.dumps({"error": f"Failed to read tax return: {str(e)}"}, indent=2, ensure_ascii=False)
 
+'''
 # Tool function for checking tax return status
 @mcp.tool()
 def check_tax_return_status():
@@ -144,7 +149,7 @@ def check_tax_return_status():
     logger.info("Verificando status da declaração")
     try:
         # Try to access the XML file
-        ir_xml = Path.home() / config['IRPF_DIR_2025'] / "aplicacao" / "dados" / str(config['CPF']) / f"{config['CPF']}-0000000000.xml"
+        ir_xml = Path(config['IRPF_DIR_2025'])
         
         if ir_xml.exists():
             file_size = ir_xml.stat().st_size
@@ -170,6 +175,17 @@ def check_tax_return_status():
             "mensagem": f"Erro ao verificar o status da declaração: {str(e)}"
         }
 
+          "check_tax_return_status": {
+            "category": "XML_TAX_RETURN",
+            "description": "Checks if the tax return is available and accessible (XML source)",
+            "parameters": [],
+            "returns": {
+              "type": "object",
+              "description": "Status of the tax return with basic information"
+            }
+          },
+        '''
+        
 # Tool function for querying the database
 @mcp.tool()
 def query_irpf_db(sql_query: str):
